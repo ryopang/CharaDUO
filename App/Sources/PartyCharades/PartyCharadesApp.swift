@@ -1,0 +1,23 @@
+import Content
+import SwiftUI
+
+@main
+struct PartyCharadesApp: App {
+    var body: some Scene {
+        WindowGroup {
+            RootView()
+        }
+    }
+}
+
+/// PRD §1.2.4 / §8: there is no Duo device-capability key, so this must be a
+/// hard failure the app cannot silently swallow — if the bundled JSON is
+/// missing or malformed, something is wrong with the build itself, not a
+/// runtime condition to degrade from.
+func loadBundledContentStoreOrFail() -> ContentStore {
+    do {
+        return try ContentStore.loadBundled()
+    } catch {
+        fatalError("Bundled vocabulary.json failed to load: \(error)")
+    }
+}

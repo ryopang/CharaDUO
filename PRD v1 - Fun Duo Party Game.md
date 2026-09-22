@@ -613,7 +613,7 @@ One theme in v1, executed properly. The other three from the draft are cut.
 |---|---|---|
 | M1 | Content pipeline | ✅ xlsx→JSON with Simplified conversion, validator failing the build on bad data, decoded and queryable |
 | M2 | Core engine | ✅ Deck, scoring, timer, match structure — fully unit tested, no UI |
-| M3 | Single-screen game | Complete playable game on any iPhone. **Shippable on its own.** |
+| M3 | Single-screen game | ✅ Complete playable game on any iPhone. **Shippable on its own.** |
 | M4 | Tabletop layout | Hinge detection, crease-aware split, 180°-rotated far edge, blind-tap zones |
 | M5 | Outer display | Accessory scene, scoreboard, availability handling incl. mid-round revocation |
 | M6 | Reaction camera | Direction resolution, capture with audio, state handling (§5.3), highlight extraction, playback, 1×/2×/3× export, save/auto-delete |

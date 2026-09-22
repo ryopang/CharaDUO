@@ -1,0 +1,73 @@
+name: PartyCharades
+options:
+  bundleIdPrefix: com.ryopang
+  deploymentTarget:
+    iOS: "27.0"
+  createIntermediateGroups: true
+configs:
+  Debug: debug
+  Release: release
+packages:
+  Content:
+    path: Packages/Content
+  Core:
+    path: Packages/Core
+targets:
+  PartyCharades:
+    type: application
+    platform: iOS
+    deploymentTarget: "27.0"
+    sources:
+      - path: App/Sources
+    resources:
+      - path: App/Resources
+    dependencies:
+      - package: Content
+        product: Content
+      - package: Core
+        product: Core
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: "Party Charades"
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.ryopang.partycharades
+        SWIFT_VERSION: "6.0"
+        SWIFT_STRICT_CONCURRENCY: complete
+        MARKETING_VERSION: "0.1"
+        CURRENT_PROJECT_VERSION: "1"
+        TARGETED_DEVICE_FAMILY: "1"
+        DEVELOPMENT_TEAM: ""
+        CODE_SIGN_STYLE: Automatic
+  PartyCharadesUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "27.0"
+    sources:
+      - path: App/UITests
+    dependencies:
+      - target: PartyCharades
+    settings:
+      base:
+        SWIFT_VERSION: "6.0"
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: PartyCharades
+schemes:
+  PartyCharades:
+    build:
+      targets:
+        PartyCharades: all
+        PartyCharadesUITests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - PartyCharadesUITests
