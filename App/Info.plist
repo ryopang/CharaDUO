@@ -20,6 +20,10 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Party Charades records the guessing team's reactions during a round so you can watch the highlights together at the end of the match. Video stays on this device and is never uploaded.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Party Charades records the table's audio so the highlight reel has sound. Audio stays on this device, is never uploaded, and is never analysed.</string>
 	<key>UILaunchScreen</key>
 	<dict/>
 	<key>UISupportedInterfaceOrientations</key>

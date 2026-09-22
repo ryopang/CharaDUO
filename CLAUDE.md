@@ -180,7 +180,7 @@ Update the status marks as work lands.
 - [x] **M2** Core engine — deck, scoring, timer, match structure; unit tested, no UI
 - [x] **M3** Single-screen game — **complete and shippable on any iPhone**
 - [x] **M4** Tabletop layout — hinge detection, crease-aware split, 180° far edge
-- [ ] **M5** Outer display — accessory scene, mid-round revocation handling
+- [x] **M5** Outer display — accessory scene, mid-round revocation handling
 - [ ] **M6** Reaction camera — capture + audio, highlights, 1×/2×/3× export, auto-delete
 - [ ] **M7** Polish & accessibility
 - [ ] **M8** Submission — hardware validation, review notes, demo video, final name

@@ -19,6 +19,8 @@ struct RootView: View {
                             }
                         }
                 }
+            case .captureConsent:
+                CaptureConsentView()
             case .gameplay:
                 GameplayView()
             case .roundSummary:
@@ -28,6 +30,15 @@ struct RootView: View {
             }
         }
         .environment(coordinator)
+        // PRD §3.4 — the outer display is an enhancement layer hung off the
+        // main scene. When the system isn't presenting it, this draws
+        // nothing and the match neither knows nor cares.
+        .outerDisplay(
+            isActive: coordinator.screen == .gameplay,
+            availability: coordinator.accessoryAvailability
+        ) {
+            coordinator.scoreboardSnapshot
+        }
         // Below iOS 27.1, or on a device with no hinge, this is a no-op and
         // posture stays `.noHinge` — the single-screen path (PRD §8).
         .observingHinge(coordinator.hinge)

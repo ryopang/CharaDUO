@@ -43,6 +43,13 @@ enum DebugOverrides {
         arguments.contains("-uiTestAutoStart")
     }
 
+    /// `-uiTestSkipConsent` / `-uiTestForceConsent` — pin the consent card's
+    /// state at launch. UserDefaults survives between launches in a
+    /// simulator, so without this a test would depend on whichever test ran
+    /// before it.
+    static var skipConsent: Bool { arguments.contains("-uiTestSkipConsent") }
+    static var forceConsent: Bool { arguments.contains("-uiTestForceConsent") }
+
     private static func value(for flag: String) -> String? {
         guard let index = arguments.firstIndex(of: flag),
               arguments.indices.contains(index + 1) else { return nil }

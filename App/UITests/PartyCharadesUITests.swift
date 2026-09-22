@@ -12,9 +12,19 @@ final class PartyCharadesUITests: XCTestCase {
         continueAfterFailure = false
     }
 
-    func testQuickPlayReachesGameplayAndScoresATap() throws {
+    /// The consent card (PRD §7.3) sits in front of the first match, and
+    /// UserDefaults survives between launches in a simulator. These tests
+    /// are about the game loop, so they pin it to "already answered, camera
+    /// off" — the consent card itself has its own tests.
+    private func launchApp() -> XCUIApplication {
         let app = XCUIApplication()
+        app.launchArguments += ["-uiTestSkipConsent"]
         app.launch()
+        return app
+    }
+
+    func testQuickPlayReachesGameplayAndScoresATap() throws {
+        let app = launchApp()
 
         let quickPlay = app.buttons["Quick Play"]
         XCTAssertTrue(quickPlay.waitForExistence(timeout: 5))
@@ -35,8 +45,7 @@ final class PartyCharadesUITests: XCTestCase {
     }
 
     func testCustomGameShortestMatchReachesMatchEndAndReturnsHome() throws {
-        let app = XCUIApplication()
-        app.launch()
+        let app = launchApp()
 
         app.buttons["Custom Game"].tap()
 
@@ -79,8 +88,7 @@ final class PartyCharadesUITests: XCTestCase {
     }
 
     func testCustomGameCancelReturnsHomeWithoutStartingAMatch() throws {
-        let app = XCUIApplication()
-        app.launch()
+        let app = launchApp()
 
         app.buttons["Custom Game"].tap()
         XCTAssertTrue(app.navigationBars["Custom Game"].waitForExistence(timeout: 5))

@@ -14,6 +14,8 @@ packages:
     path: Packages/Core
   Posture:
     path: Packages/Posture
+  Capture:
+    path: Packages/Capture
 targets:
   PartyCharades:
     type: application
@@ -30,10 +32,16 @@ targets:
         product: Core
       - package: Posture
         product: Posture
+      - package: Capture
+        product: Capture
     info:
       path: App/Info.plist
       properties:
         CFBundleDisplayName: "Party Charades"
+        # PRD §7.1 — explicit and honest: what is recorded, and that it
+        # stays on the device.
+        NSCameraUsageDescription: "Party Charades records the guessing team's reactions during a round so you can watch the highlights together at the end of the match. Video stays on this device and is never uploaded."
+        NSMicrophoneUsageDescription: "Party Charades records the table's audio so the highlight reel has sound. Audio stays on this device, is never uploaded, and is never analysed."
         UILaunchScreen: {}
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait

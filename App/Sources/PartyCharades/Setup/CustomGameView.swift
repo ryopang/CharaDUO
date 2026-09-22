@@ -66,6 +66,21 @@ struct CustomGameView: View {
                 Toggle("Skip Penalty (−1)", isOn: $skipPenaltyEnabled)
             }
 
+            // PRD §7.3 — the master toggle and its audio sub-toggle, with
+            // copy that states the tradeoff plainly rather than hiding it.
+            Section {
+                Toggle("Reaction Camera", isOn: reactionCameraBinding)
+                if coordinator.settings.reactionCameraEnabled {
+                    Toggle("Record Sound", isOn: reactionAudioBinding)
+                }
+            } header: {
+                Text("Reaction Camera")
+            } footer: {
+                Text(coordinator.settings.reactionCameraEnabled
+                     ? "Films the guessing team and records the table during a round, so you get a highlight reel at the end. Everything stays on this device. This is also what powers the scoreboard on the outer display."
+                     : "Off: no highlight reel, and no scoreboard on the outer display. The game plays normally.")
+            }
+
             Section {
                 Button("Start Match") {
                     startMatch()
@@ -76,6 +91,20 @@ struct CustomGameView: View {
         .onAppear {
             language = coordinator.settings.lastUsedLanguage
         }
+    }
+
+    private var reactionCameraBinding: Binding<Bool> {
+        Binding(
+            get: { coordinator.settings.reactionCameraEnabled },
+            set: { coordinator.settings.reactionCameraEnabled = $0 }
+        )
+    }
+
+    private var reactionAudioBinding: Binding<Bool> {
+        Binding(
+            get: { coordinator.settings.reactionAudioEnabled },
+            set: { coordinator.settings.reactionAudioEnabled = $0 }
+        )
     }
 
     private func binding(for category: GameCategory) -> Binding<Bool> {

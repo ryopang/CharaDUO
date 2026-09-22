@@ -15,7 +15,7 @@ final class TabletopLayoutUITests: XCTestCase {
 
     private func launch(posture: String, creaseFraction: String? = nil) -> XCUIApplication {
         let app = XCUIApplication()
-        app.launchArguments += ["-uiTestPosture", posture]
+        app.launchArguments += ["-uiTestSkipConsent", "-uiTestPosture", posture]
         if let creaseFraction {
             app.launchArguments += ["-uiTestCreaseFraction", creaseFraction]
         }
