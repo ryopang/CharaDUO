@@ -8,17 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		031FF581FF4201464A0D3DE0 /* CountdownColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676D542EBAF1AE9D5A5D5CF8 /* CountdownColor.swift */; };
+		03C2B51646AB6B58A711E894 /* PausedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654FD23F744B53BB574B58AA /* PausedView.swift */; };
+		09984B438788BFD9E2DEB4E0 /* DebugOverrides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862D413110D247993465DCF7 /* DebugOverrides.swift */; };
 		0AFB568980AF1B9D32301AFB /* GameplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606F24823AD67C34B68D7D7F /* GameplayView.swift */; };
+		0E918DB245BA2B59B4C76E14 /* TabletopLayoutUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F1556BE5686E5246B52E27 /* TabletopLayoutUITests.swift */; };
 		11E603273C39A67F2A1277AB /* CustomGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19705E31128122000ED7B254 /* CustomGameView.swift */; };
 		24A5140B6B26E76AEF0EAF2E /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 64C16AF4728D118144747093 /* Core */; };
 		34088D81C88949940DA73F7A /* DisplayNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0C65AFA04249EFC1905385 /* DisplayNames.swift */; };
 		453C16DD30FF9C07BCBEC2D5 /* MatchEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BBB8B83A32F2F61F9BB713 /* MatchEndView.swift */; };
+		4E9D469554FB2D612B725EF8 /* SingleScreenGameplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C13A1E605BA4750BCE5A5F9 /* SingleScreenGameplayView.swift */; };
 		65D25BCC75709A6FFFF5D6C7 /* RoundSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198052BA4B073265A3EC5459 /* RoundSummaryView.swift */; };
+		92B7206261213AD2FACF86E1 /* Posture in Frameworks */ = {isa = PBXBuildFile; productRef = E438210B9F6D056287FA6712 /* Posture */; };
 		94EB2E3649E591A6786C3BBB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92E868E3DB844ADCC62E383 /* HomeView.swift */; };
 		9754025BF110FD621676F854 /* PartyCharadesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF2C20FB6E7EE34810CA960 /* PartyCharadesUITests.swift */; };
 		A5D36D178F5FDDBEBFA35B1C /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978B83DCD95B370848F83BC /* AppSettings.swift */; };
 		A9DA88473FA1416ED51B0B8F /* Content in Frameworks */ = {isa = PBXBuildFile; productRef = 1BB0FD5FE388F9374E77E18C /* Content */; };
 		BF4BE1CFA9B305CCC6988AC4 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B12B3B3C13ABBF20745D24F /* RootView.swift */; };
+		D203CB7557C29F94D9ADF0B0 /* TabletopGameplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8182CC4A86E8E72A305E9118 /* TabletopGameplayView.swift */; };
 		EDB6A5B8D0A485BA0E15E908 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C434C43B6D72CCBE2B5556 /* AppCoordinator.swift */; };
 		F7C162168680CCB95C9E6E53 /* PartyCharadesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97E7DF0BDF55AA409CBFD24 /* PartyCharadesApp.swift */; };
 /* End PBXBuildFile section */
@@ -39,12 +45,18 @@
 		198052BA4B073265A3EC5459 /* RoundSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundSummaryView.swift; sourceTree = "<group>"; };
 		2AF2C20FB6E7EE34810CA960 /* PartyCharadesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyCharadesUITests.swift; sourceTree = "<group>"; };
 		2B12B3B3C13ABBF20745D24F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		2C13A1E605BA4750BCE5A5F9 /* SingleScreenGameplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleScreenGameplayView.swift; sourceTree = "<group>"; };
 		2DBD2992B92A0469F5ADE72D /* PartyCharades.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = PartyCharades.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A1E4D280222D107FFC0C67D /* PartyCharadesUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = PartyCharadesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		59C434C43B6D72CCBE2B5556 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		606F24823AD67C34B68D7D7F /* GameplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayView.swift; sourceTree = "<group>"; };
+		654FD23F744B53BB574B58AA /* PausedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PausedView.swift; sourceTree = "<group>"; };
 		676D542EBAF1AE9D5A5D5CF8 /* CountdownColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownColor.swift; sourceTree = "<group>"; };
 		815A55B3AD93729359A2B32D /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Core; path = Packages/Core; sourceTree = SOURCE_ROOT; };
+		8182CC4A86E8E72A305E9118 /* TabletopGameplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabletopGameplayView.swift; sourceTree = "<group>"; };
+		862D413110D247993465DCF7 /* DebugOverrides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugOverrides.swift; sourceTree = "<group>"; };
+		98BE5860C2CF44BB77040605 /* Posture */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Posture; path = Packages/Posture; sourceTree = SOURCE_ROOT; };
+		98F1556BE5686E5246B52E27 /* TabletopLayoutUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabletopLayoutUITests.swift; sourceTree = "<group>"; };
 		A97E7DF0BDF55AA409CBFD24 /* PartyCharadesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyCharadesApp.swift; sourceTree = "<group>"; };
 		CBD61B12171C323F91CBEEB0 /* Content */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Content; path = Packages/Content; sourceTree = SOURCE_ROOT; };
 		F92E868E3DB844ADCC62E383 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -59,6 +71,7 @@
 			files = (
 				A9DA88473FA1416ED51B0B8F /* Content in Frameworks */,
 				24A5140B6B26E76AEF0EAF2E /* Core in Frameworks */,
+				92B7206261213AD2FACF86E1 /* Posture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +109,7 @@
 			children = (
 				59C434C43B6D72CCBE2B5556 /* AppCoordinator.swift */,
 				F978B83DCD95B370848F83BC /* AppSettings.swift */,
+				862D413110D247993465DCF7 /* DebugOverrides.swift */,
 				FE0C65AFA04249EFC1905385 /* DisplayNames.swift */,
 				A97E7DF0BDF55AA409CBFD24 /* PartyCharadesApp.swift */,
 				2B12B3B3C13ABBF20745D24F /* RootView.swift */,
@@ -120,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				2AF2C20FB6E7EE34810CA960 /* PartyCharadesUITests.swift */,
+				98F1556BE5686E5246B52E27 /* TabletopLayoutUITests.swift */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -129,6 +144,9 @@
 			children = (
 				676D542EBAF1AE9D5A5D5CF8 /* CountdownColor.swift */,
 				606F24823AD67C34B68D7D7F /* GameplayView.swift */,
+				654FD23F744B53BB574B58AA /* PausedView.swift */,
+				2C13A1E605BA4750BCE5A5F9 /* SingleScreenGameplayView.swift */,
+				8182CC4A86E8E72A305E9118 /* TabletopGameplayView.swift */,
 			);
 			path = Gameplay;
 			sourceTree = "<group>";
@@ -154,6 +172,7 @@
 			children = (
 				CBD61B12171C323F91CBEEB0 /* Content */,
 				815A55B3AD93729359A2B32D /* Core */,
+				98BE5860C2CF44BB77040605 /* Posture */,
 			);
 			path = Packages;
 			sourceTree = "<group>";
@@ -185,6 +204,7 @@
 			packageProductDependencies = (
 				1BB0FD5FE388F9374E77E18C /* Content */,
 				64C16AF4728D118144747093 /* Core */,
+				E438210B9F6D056287FA6712 /* Posture */,
 			);
 			productName = PartyCharades;
 			productReference = 2DBD2992B92A0469F5ADE72D /* PartyCharades.app */;
@@ -238,6 +258,7 @@
 			packageReferences = (
 				30F45B485BC6313D305D579C /* XCLocalSwiftPackageReference "Packages/Content" */,
 				6D8F8D49EC1DA38241809898 /* XCLocalSwiftPackageReference "Packages/Core" */,
+				027D99B90941DFDFDA856EA5 /* XCLocalSwiftPackageReference "Packages/Posture" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 30FC704B98F8B2E7F3F3D4F9 /* Products */;
@@ -256,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9754025BF110FD621676F854 /* PartyCharadesUITests.swift in Sources */,
+				0E918DB245BA2B59B4C76E14 /* TabletopLayoutUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,13 +289,17 @@
 				A5D36D178F5FDDBEBFA35B1C /* AppSettings.swift in Sources */,
 				031FF581FF4201464A0D3DE0 /* CountdownColor.swift in Sources */,
 				11E603273C39A67F2A1277AB /* CustomGameView.swift in Sources */,
+				09984B438788BFD9E2DEB4E0 /* DebugOverrides.swift in Sources */,
 				34088D81C88949940DA73F7A /* DisplayNames.swift in Sources */,
 				0AFB568980AF1B9D32301AFB /* GameplayView.swift in Sources */,
 				94EB2E3649E591A6786C3BBB /* HomeView.swift in Sources */,
 				453C16DD30FF9C07BCBEC2D5 /* MatchEndView.swift in Sources */,
 				F7C162168680CCB95C9E6E53 /* PartyCharadesApp.swift in Sources */,
+				03C2B51646AB6B58A711E894 /* PausedView.swift in Sources */,
 				BF4BE1CFA9B305CCC6988AC4 /* RootView.swift in Sources */,
 				65D25BCC75709A6FFFF5D6C7 /* RoundSummaryView.swift in Sources */,
+				4E9D469554FB2D612B725EF8 /* SingleScreenGameplayView.swift in Sources */,
+				D203CB7557C29F94D9ADF0B0 /* TabletopGameplayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +550,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
+		027D99B90941DFDFDA856EA5 /* XCLocalSwiftPackageReference "Packages/Posture" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/Posture;
+		};
 		30F45B485BC6313D305D579C /* XCLocalSwiftPackageReference "Packages/Content" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Packages/Content;
@@ -542,6 +572,10 @@
 		64C16AF4728D118144747093 /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Core;
+		};
+		E438210B9F6D056287FA6712 /* Posture */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Posture;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -1,104 +1,46 @@
 import Core
+import Posture
 import SwiftUI
 
-/// M3's single-screen layout — the pass-the-phone mode that must be complete
-/// and fun on any iPhone with no fold, no outer display (PRD §8). The
-/// tabletop split (M4) and outer scoreboard (M5) build on top of this later;
-/// they never replace it.
+/// Routes between the tabletop and single-screen layouts, and drives the
+/// countdown's redraw cadence.
+///
+/// PRD §3.1 — posture changes reflow the layout and play continues; only a
+/// `.closed` fold pauses. There is deliberately no auto-pause on any other
+/// posture change: a party game gets jostled constantly and false pauses are
+/// worse than the problem they solve.
 struct GameplayView: View {
     @Environment(AppCoordinator.self) private var coordinator
 
     var body: some View {
         if let engine = coordinator.engine {
-            TimelineView(.periodic(from: .now, by: 0.1)) { context in
-                GameplayContentView(engine: engine)
-                    .onChange(of: context.date) {
-                        coordinator.checkForTurnExpiry(now: ContinuousClock().now)
-                    }
+            if engine.isPaused {
+                PausedView()
+            } else {
+                // The periodic tick is only a redraw prompt. Elapsed time is
+                // always recomputed from ContinuousClock (PRD §10.3), never
+                // accumulated from these ticks.
+                TimelineView(.periodic(from: .now, by: 0.1)) { context in
+                    layout(for: engine)
+                        .onChange(of: context.date) {
+                            coordinator.checkForTurnExpiry(now: ContinuousClock().now)
+                        }
+                }
+                // PRD §3.2 — the lid carries the word and nothing else; the
+                // system clock sitting on top of it is exactly the kind of
+                // competing element that costs legibility mid-round.
+                .statusBarHidden()
             }
         }
     }
-}
 
-private struct GameplayContentView: View {
-    let engine: GameEngine
-    @Environment(AppCoordinator.self) private var coordinator
-
-    private var now: ContinuousClock.Instant { ContinuousClock().now }
-
-    var body: some View {
-        let fraction = engine.timer?.fractionElapsed(now: now) ?? 0
-        let remainingSeconds = secondsRemaining(engine.timer)
-
-        VStack(spacing: 0) {
-            VStack(spacing: 16) {
-                Text("\(remainingSeconds)")
-                    .font(.system(size: 64, weight: .bold, design: .rounded))
-                    .monospacedDigit()
-                    .contentTransition(.numericText(countsDown: true))
-                    .foregroundStyle(.primary)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(CountdownColor.background(fractionElapsed: fraction))
-
-                if let word = engine.currentWord {
-                    VStack(spacing: 8) {
-                        Text(word.category.displayName.uppercased())
-                            .font(.caption.bold())
-                            .foregroundStyle(.secondary)
-                        Text(word.localizations[engine.configuration.language] ?? word.localizations[.english] ?? "")
-                            .font(.system(size: 48, weight: .bold))
-                            .minimumScaleFactor(0.4)
-                            .lineLimit(3)
-                            .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity)
-                    }
-                    .padding(.horizontal, 24)
-                    .padding(.vertical, 32)
-                    .frame(maxHeight: .infinity)
-                }
-
-                if engine.turnReshuffled {
-                    Text("Deck reshuffled")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                }
-            }
-            .frame(maxHeight: .infinity)
-
-            HStack(spacing: 0) {
-                Button {
-                    engine.markSkip()
-                } label: {
-                    Text("Skip")
-                        .font(.title.bold())
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                }
-                .buttonStyle(.plain)
-                .background(Color.secondary.opacity(0.2))
-                .foregroundStyle(.primary)
-
-                Button {
-                    engine.markCorrect()
-                } label: {
-                    Text("Correct")
-                        .font(.title.bold())
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                }
-                .buttonStyle(.plain)
-                .background(Color.green.opacity(0.85))
-                .foregroundStyle(.white)
-            }
-            .frame(height: 160)
+    @ViewBuilder
+    private func layout(for engine: GameEngine) -> some View {
+        switch coordinator.posture {
+        case .tabletop:
+            TabletopGameplayView(engine: engine)
+        case .flat, .closed, .noHinge:
+            SingleScreenGameplayView(engine: engine)
         }
-        .ignoresSafeArea(edges: .bottom)
-    }
-
-    private func secondsRemaining(_ timer: RoundTimer?) -> Int {
-        guard let timer else { return 0 }
-        let remaining = timer.remaining(now: now)
-        let components = remaining.components
-        let wholeSeconds = Double(components.seconds) + Double(components.attoseconds) / 1e18
-        return Int(wholeSeconds.rounded(.up))
     }
 }

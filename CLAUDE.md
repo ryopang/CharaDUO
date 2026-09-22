@@ -179,7 +179,7 @@ Update the status marks as work lands.
 - [x] **M1** Content pipeline — xlsx→JSON, T→S conversion, build-failing validator
 - [x] **M2** Core engine — deck, scoring, timer, match structure; unit tested, no UI
 - [x] **M3** Single-screen game — **complete and shippable on any iPhone**
-- [ ] **M4** Tabletop layout — hinge detection, crease-aware split, 180° far edge
+- [x] **M4** Tabletop layout — hinge detection, crease-aware split, 180° far edge
 - [ ] **M5** Outer display — accessory scene, mid-round revocation handling
 - [ ] **M6** Reaction camera — capture + audio, highlights, 1×/2×/3× export, auto-delete
 - [ ] **M7** Polish & accessibility

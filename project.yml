@@ -12,6 +12,8 @@ packages:
     path: Packages/Content
   Core:
     path: Packages/Core
+  Posture:
+    path: Packages/Posture
 targets:
   PartyCharades:
     type: application
@@ -26,6 +28,8 @@ targets:
         product: Content
       - package: Core
         product: Core
+      - package: Posture
+        product: Posture
     info:
       path: App/Info.plist
       properties:

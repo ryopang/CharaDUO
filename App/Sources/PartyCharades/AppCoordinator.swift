@@ -2,6 +2,10 @@ import Content
 import Core
 import Foundation
 import Observation
+import Posture
+#if canImport(UIKit)
+import UIKit
+#endif
 
 /// Owns navigation between the setup, gameplay, round-summary and match-end
 /// screens, and creates/discards the `GameEngine` for each match. No UI code.
@@ -22,11 +26,41 @@ final class AppCoordinator {
     var startError: String?
 
     let settings: AppSettings
+    let hinge = HingeObserver()
     private let contentStore: ContentStore
+
+    var posture: PostureState {
+        #if DEBUG
+        if let forced = DebugOverrides.posture { return forced }
+        #endif
+        return hinge.posture
+    }
 
     init(contentStore: ContentStore, settings: AppSettings = AppSettings()) {
         self.contentStore = contentStore
         self.settings = settings
+    }
+
+    /// PRD §3.1 — the *only* posture event that pauses a match is `.closed`.
+    /// Tabletop ⇄ flat transitions just reflow the layout mid-round.
+    func postureChanged(to posture: PostureState) {
+        guard posture == .closed, screen == .gameplay, let engine, !engine.isPaused else { return }
+        engine.pauseTurn()
+        setIdleTimerDisabled(false)
+    }
+
+    func resumeFromPause() {
+        guard let engine, engine.isPaused else { return }
+        engine.resumeTurn()
+        setIdleTimerDisabled(true)
+    }
+
+    /// PRD §10.3 — the screen must not sleep mid-round, and must be allowed
+    /// to sleep at every other moment.
+    private func setIdleTimerDisabled(_ disabled: Bool) {
+        #if canImport(UIKit)
+        UIApplication.shared.isIdleTimerDisabled = disabled
+        #endif
     }
 
     func presentCustomGame() {
@@ -38,6 +72,7 @@ final class AppCoordinator {
         lastTurnResult = nil
         startError = nil
         screen = .home
+        setIdleTimerDisabled(false)
     }
 
     /// PRD §2.4 Quick Play: one tap, 2 teams, all categories, 60s, 3 rounds,
@@ -66,6 +101,7 @@ final class AppCoordinator {
             self.startError = nil
             engine.startTurn()
             screen = .gameplay
+            setIdleTimerDisabled(true)
         } catch {
             startError = "Not enough words in the selected categories to start a match."
         }
@@ -86,6 +122,7 @@ final class AppCoordinator {
         guard let engine, engine.timer != nil else { return }
         lastTurnResult = engine.endTurn()
         screen = .roundSummary
+        setIdleTimerDisabled(false)
     }
 
     func continueAfterRoundSummary() {
@@ -95,6 +132,7 @@ final class AppCoordinator {
         } else {
             engine.startTurn()
             screen = .gameplay
+            setIdleTimerDisabled(true)
         }
     }
 }

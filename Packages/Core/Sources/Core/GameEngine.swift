@@ -38,6 +38,24 @@ public final class GameEngine {
         drawNextWord()
     }
 
+    public var isPaused: Bool { timer?.isPaused ?? false }
+
+    /// Score accumulated so far in the in-progress turn — drives the live
+    /// score the guessers read on the far edge (PRD §3.2).
+    public var currentTurnScore: Int {
+        Scoring.totalScore(for: turnEvents, skipPenaltyEnabled: configuration.skipPenaltyEnabled)
+    }
+
+    /// PRD §3.1 — the only posture event that pauses a match is `.closed`.
+    /// Everything else reflows the layout and play continues.
+    public func pauseTurn(at instant: ContinuousClock.Instant = ContinuousClock().now) {
+        timer?.pause(at: instant)
+    }
+
+    public func resumeTurn(at instant: ContinuousClock.Instant = ContinuousClock().now) {
+        timer?.resume(at: instant)
+    }
+
     public func markCorrect() {
         recordEvent(kind: .correct)
     }
@@ -74,7 +92,7 @@ public final class GameEngine {
     }
 
     private func recordEvent(kind: RoundEventKind) {
-        guard timer != nil, let word = currentWord else { return }
+        guard let timer, !timer.isPaused, let word = currentWord else { return }
         turnEvents.append(RoundEvent(word: word, kind: kind))
         drawNextWord()
     }

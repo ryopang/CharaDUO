@@ -1,4 +1,25 @@
 import Content
+import Core
+import Foundation
+
+extension GameWord {
+    /// The word as the describer should see it. English is the backstop —
+    /// the build-time validator guarantees all four localizations exist, so
+    /// this only ever matters if that guarantee is broken.
+    func text(in language: ContentLanguage) -> String {
+        localizations[language] ?? localizations[.english] ?? ""
+    }
+}
+
+extension RoundTimer {
+    /// Whole seconds remaining, rounded up — PRD §3.3's "descending digits"
+    /// are the primary, unambiguous channel, so 0.4s left still reads "1".
+    func displaySecondsRemaining(now: ContinuousClock.Instant) -> Int {
+        let components = remaining(now: now).components
+        let seconds = Double(components.seconds) + Double(components.attoseconds) / 1e18
+        return Int(seconds.rounded(.up))
+    }
+}
 
 // UI chrome strings. Per PRD §6.5 these belong in a String Catalog
 // (.xcstrings) following system language — hardcoded here for M3 and due for

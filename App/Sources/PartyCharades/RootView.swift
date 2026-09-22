@@ -1,3 +1,4 @@
+import Posture
 import SwiftUI
 
 struct RootView: View {
@@ -27,5 +28,18 @@ struct RootView: View {
             }
         }
         .environment(coordinator)
+        // Below iOS 27.1, or on a device with no hinge, this is a no-op and
+        // posture stays `.noHinge` — the single-screen path (PRD §8).
+        .observingHinge(coordinator.hinge)
+        .task {
+            #if DEBUG
+            if DebugOverrides.autoStartMatch, coordinator.screen == .home {
+                coordinator.startQuickPlay()
+            }
+            #endif
+        }
+        .onChange(of: coordinator.posture) { _, newPosture in
+            coordinator.postureChanged(to: newPosture)
+        }
     }
 }
