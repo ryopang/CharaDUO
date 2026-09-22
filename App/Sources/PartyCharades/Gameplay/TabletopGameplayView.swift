@@ -62,7 +62,7 @@ private struct TabletopSplitView: View {
                 .offset(x: flat.farEdge.minX, y: flat.farEdge.minY)
 
             HitZoneButton(title: "Correct", tint: Color.green.opacity(0.85), foreground: .white) {
-                engine.markCorrect()
+                engine.markCorrectWithFeedback()
             }
             .frame(width: flat.correct.width, height: flat.correct.height)
             .offset(x: flat.correct.minX, y: flat.correct.minY)
@@ -71,7 +71,7 @@ private struct TabletopSplitView: View {
             // to read as a target for a blind, angled stab (PRD §2.1), not as
             // empty space below the Correct zone.
             HitZoneButton(title: "Skip", tint: Color(white: 0.24), foreground: .white) {
-                engine.markSkip()
+                engine.markSkipWithFeedback()
             }
             .frame(width: flat.skip.width, height: flat.skip.height)
             .offset(x: flat.skip.minX, y: flat.skip.minY)
@@ -86,12 +86,20 @@ private struct TabletopSplitView: View {
 private struct DescriberLidView: View {
     let engine: GameEngine
 
+    // PRD §11.1 / §3.2 — the word is "the single most important element in
+    // the app", sized to fill the surface; Dynamic Type has to grow it
+    // further still. minimumScaleFactor below is the backstop once it does.
+    @ScaledMetric(relativeTo: .largeTitle) private var wordSize: CGFloat = 64
+    @ScaledMetric(relativeTo: .body) private var timerSize: CGFloat = 28
+    @Environment(\.colorSchemeContrast) private var colorSchemeContrast
+
     private var now: ContinuousClock.Instant { ContinuousClock().now }
 
     var body: some View {
-        let urgency = CountdownColor.background(
-            fractionElapsed: engine.timer?.fractionElapsed(now: now) ?? 0
-        )
+        let fraction = engine.timer?.fractionElapsed(now: now) ?? 0
+        let increaseContrast = colorSchemeContrast == .increased
+        let urgency = CountdownColor.background(fractionElapsed: fraction, increaseContrast: increaseContrast)
+        let secondsRemaining = engine.timer?.displaySecondsRemaining(now: now) ?? 0
 
         ZStack {
             Color.black
@@ -103,23 +111,25 @@ private struct DescriberLidView: View {
                         .foregroundStyle(.secondary)
 
                     Text(word.text(in: engine.configuration.language))
-                        .font(.system(size: 64, weight: .bold))
+                        .font(.system(size: wordSize, weight: .bold))
                         .foregroundStyle(.white)
-                        .minimumScaleFactor(0.3)
+                        .minimumScaleFactor(0.25)
                         .lineLimit(3)
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
 
                 // Subordinate to the word, per §3.2.
-                Text("\(engine.timer?.displaySecondsRemaining(now: now) ?? 0)")
-                    .font(.system(size: 28, weight: .bold, design: .rounded))
+                Text("\(secondsRemaining)")
+                    .font(.system(size: timerSize, weight: .bold, design: .rounded))
                     .monospacedDigit()
                     .contentTransition(.numericText(countsDown: true))
-                    .foregroundStyle(.black)
+                    .foregroundStyle(CountdownColor.foreground(fractionElapsed: fraction, increaseContrast: increaseContrast))
+                    .countdownPulse(secondsRemaining: secondsRemaining)
                     .padding(.horizontal, 18)
                     .padding(.vertical, 6)
                     .background(urgency, in: Capsule())
+                    .accessibilityLabel(Text("\(secondsRemaining) seconds remaining"))
             }
             .padding(24)
         }
@@ -137,6 +147,9 @@ private struct DescriberLidView: View {
 private struct GuesserFarEdgeView: View {
     let engine: GameEngine
 
+    @ScaledMetric(relativeTo: .largeTitle) private var timerSize: CGFloat = 64
+    @Environment(\.colorSchemeContrast) private var colorSchemeContrast
+
     private var now: ContinuousClock.Instant { ContinuousClock().now }
 
     var body: some View {
@@ -144,18 +157,21 @@ private struct GuesserFarEdgeView: View {
         let index = state.currentTeamIndex
         let team = state.teams[index]
         let liveScore = team.score + engine.currentTurnScore
+        let fraction = engine.timer?.fractionElapsed(now: now) ?? 0
+        let increaseContrast = colorSchemeContrast == .increased
+        let secondsRemaining = engine.timer?.displaySecondsRemaining(now: now) ?? 0
+        let foreground = CountdownColor.foreground(fractionElapsed: fraction, increaseContrast: increaseContrast)
 
         ZStack {
-            CountdownColor.background(
-                fractionElapsed: engine.timer?.fractionElapsed(now: now) ?? 0
-            )
+            CountdownColor.background(fractionElapsed: fraction, increaseContrast: increaseContrast)
 
             VStack(spacing: 4) {
-                Text("\(engine.timer?.displaySecondsRemaining(now: now) ?? 0)")
-                    .font(.system(size: 64, weight: .bold, design: .rounded))
+                Text("\(secondsRemaining)")
+                    .font(.system(size: timerSize, weight: .bold, design: .rounded))
                     .monospacedDigit()
                     .contentTransition(.numericText(countsDown: true))
-                    .foregroundStyle(.black)
+                    .foregroundStyle(foreground)
+                    .countdownPulse(secondsRemaining: secondsRemaining)
 
                 HStack(spacing: 8) {
                     Text(team.displayName(index: index))
@@ -163,7 +179,7 @@ private struct GuesserFarEdgeView: View {
                     Text("\(liveScore)")
                         .font(.headline.monospacedDigit())
                 }
-                .foregroundStyle(.black.opacity(0.75))
+                .foregroundStyle(foreground.opacity(0.75))
             }
         }
     }

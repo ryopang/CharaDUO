@@ -65,6 +65,9 @@ final class AppSettings {
             self.hasShownCaptureConsent = false
             self.reactionCameraEnabled = true
         }
+        if let raw = DebugOverrides.contentLanguageRawValue, let language = ContentLanguage(rawValue: raw) {
+            self.lastUsedLanguage = language
+        }
         #endif
     }
 }

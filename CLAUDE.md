@@ -182,7 +182,7 @@ Update the status marks as work lands.
 - [x] **M4** Tabletop layout — hinge detection, crease-aware split, 180° far edge
 - [x] **M5** Outer display — accessory scene, mid-round revocation handling
 - [ ] **M6** Reaction camera — capture + audio, highlights, 1×/2×/3× export, auto-delete
-- [ ] **M7** Polish & accessibility
+- [x] **M7** Polish & accessibility
 - [ ] **M8** Submission — hardware validation, review notes, demo video, final name
 
 **M3 is the critical gate.** If the single-screen game isn't fun on its own, the

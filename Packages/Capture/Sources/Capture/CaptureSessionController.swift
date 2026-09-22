@@ -38,8 +38,15 @@ public final class CaptureSessionController {
 
     /// Starts a video-only session for the round. A no-op when the resolved
     /// capture state rules the camera out.
+    ///
+    /// PRD §10.4's `.playAndRecord` policy is for when the app is actually
+    /// recording audio. This session is video-only (M5/M7 scope — see the
+    /// type doc), so it always holds `.ambient`; `AudioSessionPolicy.resolve`
+    /// is the policy M6 applies once a real audio input exists, and is
+    /// tested now so that switch is a one-line change.
     public func start(state: CaptureState) {
         self.state = state
+        applyAudioSession(.ambient)
         guard state.enablesOuterDisplay else {
             isRunning = false
             return
@@ -65,9 +72,17 @@ public final class CaptureSessionController {
     public func stop() {
         isRunning = false
         state = .none
+        applyAudioSession(.ambient)
         let box = session
         Task.detached(priority: .utility) {
             box.stop()
+        }
+    }
+
+    private func applyAudioSession(_ policy: AudioSessionPolicy) {
+        let box = session
+        Task.detached(priority: .utility) {
+            box.applyAudioSession(policy)
         }
     }
 }
@@ -114,6 +129,24 @@ private final class SessionBox: @unchecked Sendable {
             if session.isRunning {
                 session.stopRunning()
             }
+        }
+    }
+
+    /// Silent on failure (CLAUDE.md §4) — an audio session error never
+    /// blocks gameplay, it just means routing/ducking behaves like whatever
+    /// the system's previous category was.
+    func applyAudioSession(_ policy: AudioSessionPolicy) {
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            switch policy {
+            case .ambient:
+                try audioSession.setCategory(.ambient, options: [.mixWithOthers])
+            case .recording:
+                try audioSession.setCategory(.playAndRecord, options: [.mixWithOthers, .defaultToSpeaker])
+            }
+            try audioSession.setActive(true)
+        } catch {
+            // Intentionally silent.
         }
     }
 }

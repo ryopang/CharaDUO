@@ -8,20 +8,33 @@ import SwiftUI
 struct SingleScreenGameplayView: View {
     let engine: GameEngine
 
+    // PRD §11.1 — Dynamic Type throughout, including these custom-size
+    // fonts. @ScaledMetric keeps our chosen baseline sizes while letting them
+    // grow or shrink with the user's text size setting; minimumScaleFactor +
+    // lineLimit below is what keeps the word from clipping once it does.
+    @ScaledMetric(relativeTo: .largeTitle) private var countdownSize: CGFloat = 64
+    @ScaledMetric(relativeTo: .largeTitle) private var wordSize: CGFloat = 48
+    @Environment(\.colorSchemeContrast) private var colorSchemeContrast
+
     private var now: ContinuousClock.Instant { ContinuousClock().now }
 
     var body: some View {
         let fraction = engine.timer?.fractionElapsed(now: now) ?? 0
+        let secondsRemaining = engine.timer?.displaySecondsRemaining(now: now) ?? 0
+        let increaseContrast = colorSchemeContrast == .increased
 
         VStack(spacing: 0) {
             VStack(spacing: 16) {
-                Text("\(engine.timer?.displaySecondsRemaining(now: now) ?? 0)")
-                    .font(.system(size: 64, weight: .bold, design: .rounded))
+                Text("\(secondsRemaining)")
+                    .font(.system(size: countdownSize, weight: .bold, design: .rounded))
                     .monospacedDigit()
                     .contentTransition(.numericText(countsDown: true))
+                    .foregroundStyle(CountdownColor.foreground(fractionElapsed: fraction, increaseContrast: increaseContrast))
+                    .countdownPulse(secondsRemaining: secondsRemaining)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(CountdownColor.background(fractionElapsed: fraction))
+                    .background(CountdownColor.background(fractionElapsed: fraction, increaseContrast: increaseContrast))
+                    .accessibilityLabel(Text("\(secondsRemaining) seconds remaining"))
 
                 if let word = engine.currentWord {
                     VStack(spacing: 8) {
@@ -29,8 +42,8 @@ struct SingleScreenGameplayView: View {
                             .font(.caption.bold())
                             .foregroundStyle(.secondary)
                         Text(word.text(in: engine.configuration.language))
-                            .font(.system(size: 48, weight: .bold))
-                            .minimumScaleFactor(0.4)
+                            .font(.system(size: wordSize, weight: .bold))
+                            .minimumScaleFactor(0.35)
                             .lineLimit(3)
                             .multilineTextAlignment(.center)
                             .frame(maxWidth: .infinity)
@@ -38,6 +51,7 @@ struct SingleScreenGameplayView: View {
                     .padding(.horizontal, 24)
                     .padding(.vertical, 32)
                     .frame(maxHeight: .infinity)
+                    .accessibilityElement(children: .combine)
                 }
 
                 if engine.turnReshuffled {
@@ -50,10 +64,10 @@ struct SingleScreenGameplayView: View {
 
             HStack(spacing: 0) {
                 HitZoneButton(title: "Skip", tint: Color.secondary.opacity(0.2), foreground: .primary) {
-                    engine.markSkip()
+                    engine.markSkipWithFeedback()
                 }
                 HitZoneButton(title: "Correct", tint: Color.green.opacity(0.85), foreground: .white) {
-                    engine.markCorrect()
+                    engine.markCorrectWithFeedback()
                 }
             }
             .frame(height: 160)
@@ -64,6 +78,9 @@ struct SingleScreenGameplayView: View {
 
 /// Shared by both layouts. PRD §2.1 — sized for a standing, angled, blind
 /// stab: no margins, no competing controls, the whole zone is the target.
+/// PRD §11.1 — hit zones must be ≥44pt, and in practice these are far larger
+/// (each is half the flat surface); Correct/Skip differ by position, haptic,
+/// sound, and icon/label, not colour alone.
 struct HitZoneButton: View {
     let title: String
     let tint: Color
@@ -74,10 +91,17 @@ struct HitZoneButton: View {
         Button(action: action) {
             Text(title)
                 .font(.title.bold())
+                // At large Dynamic Type sizes "Correct" wraps to "Cor-rect"
+                // in the narrow half-width zone — shrinking to fit on one
+                // line reads far better than a mid-word hyphen break.
+                .lineLimit(1)
+                .minimumScaleFactor(0.4)
+                .padding(.horizontal, 8)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .buttonStyle(.plain)
         .background(tint)
         .foregroundStyle(foreground)
+        .accessibilityAddTraits(.isButton)
     }
 }

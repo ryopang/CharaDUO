@@ -190,6 +190,9 @@ final class AppCoordinator {
             screen = .gameplay
             setIdleTimerDisabled(true)
             startCapture()
+            #if canImport(UIKit)
+            FeedbackPlayer.shared.resetTickTracking()
+            #endif
         } catch {
             startError = "Not enough words in the selected categories to start a match."
         }
@@ -200,10 +203,15 @@ final class AppCoordinator {
     /// the tick is just a redraw prompt, expiry is decided from wall-clock
     /// elapsed time, never from tick count).
     func checkForTurnExpiry(now: ContinuousClock.Instant) {
-        guard screen == .gameplay, let engine, let timer = engine.timer else { return }
+        guard screen == .gameplay, let engine, let timer = engine.timer, !timer.isPaused else { return }
         if timer.isExpired(now: now) {
             endCurrentTurn()
+            return
         }
+        #if canImport(UIKit)
+        // PRD §10.4 — a tick per second for the final 10s, escalating.
+        FeedbackPlayer.shared.tickIfNeeded(secondsRemaining: timer.displaySecondsRemaining(now: now))
+        #endif
     }
 
     func endCurrentTurn() {
@@ -223,6 +231,9 @@ final class AppCoordinator {
             screen = .gameplay
             setIdleTimerDisabled(true)
             startCapture()
+            #if canImport(UIKit)
+            FeedbackPlayer.shared.resetTickTracking()
+            #endif
         }
     }
 }

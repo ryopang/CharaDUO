@@ -1,0 +1,567 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "About the reaction camera": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About the reaction camera"
+          }
+        }
+      }
+    },
+    "Allow Camera & Mic": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow Camera & Mic"
+          }
+        }
+      }
+    },
+    "Animal": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Animal"
+          }
+        }
+      }
+    },
+    "Back to Home": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back to Home"
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "Cantonese": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cantonese"
+          }
+        }
+      }
+    },
+    "Categories": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Categories"
+          }
+        }
+      }
+    },
+    "Celebrity": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Celebrity"
+          }
+        }
+      }
+    },
+    "Clips you don't save are deleted when the match ends.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clips you don't save are deleted when the match ends."
+          }
+        }
+      }
+    },
+    "Correct": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correct"
+          }
+        }
+      }
+    },
+    "Country": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Country"
+          }
+        }
+      }
+    },
+    "Custom Game": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom Game"
+          }
+        }
+      }
+    },
+    "Deck reshuffled": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deck reshuffled"
+          }
+        }
+      }
+    },
+    "Describe it. Guess it. Don't say the word.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Describe it. Guess it. Don't say the word."
+          }
+        }
+      }
+    },
+    "English": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "English"
+          }
+        }
+      }
+    },
+    "Everything stays on this device. Nothing is uploaded, analysed, or shared.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Everything stays on this device. Nothing is uploaded, analysed, or shared."
+          }
+        }
+      }
+    },
+    "Films the guessing team and records the table during a round, so you get a highlight reel at the end. Everything stays on this device. This is also what powers the scoreboard on the outer display.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Films the guessing team and records the table during a round, so you get a highlight reel at the end. Everything stays on this device. This is also what powers the scoreboard on the outer display."
+          }
+        }
+      }
+    },
+    "Food": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Food"
+          }
+        }
+      }
+    },
+    "It's a tie!": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It's a tie!"
+          }
+        }
+      }
+    },
+    "Language": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language"
+          }
+        }
+      }
+    },
+    "Mainland Chinese": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mainland Chinese"
+          }
+        }
+      }
+    },
+    "Match Complete": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Match Complete"
+          }
+        }
+      }
+    },
+    "Movie": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movie"
+          }
+        }
+      }
+    },
+    "Next Team": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next Team"
+          }
+        }
+      }
+    },
+    "Off: no highlight reel, and no scoreboard on the outer display. The game plays normally.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Off: no highlight reel, and no scoreboard on the outer display. The game plays normally."
+          }
+        }
+      }
+    },
+    "Party Charades": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Party Charades"
+          }
+        }
+      }
+    },
+    "Paused": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paused"
+          }
+        }
+      }
+    },
+    "Pick at least one category.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pick at least one category."
+          }
+        }
+      }
+    },
+    "Play Without It": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Without It"
+          }
+        }
+      }
+    },
+    "Quick Play": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quick Play"
+          }
+        }
+      }
+    },
+    "REC": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "REC"
+          }
+        }
+      }
+    },
+    "Reaction Camera": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reaction Camera"
+          }
+        }
+      }
+    },
+    "Record Sound": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Record Sound"
+          }
+        }
+      }
+    },
+    "Resume Round": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resume Round"
+          }
+        }
+      }
+    },
+    "Round length": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Round length"
+          }
+        }
+      }
+    },
+    "Rounds": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rounds"
+          }
+        }
+      }
+    },
+    "See Results": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "See Results"
+          }
+        }
+      }
+    },
+    "Sightseeing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sightseeing"
+          }
+        }
+      }
+    },
+    "Skip": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skip"
+          }
+        }
+      }
+    },
+    "Skip Penalty (−1)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skip Penalty (−1)"
+          }
+        }
+      }
+    },
+    "Skipped": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skipped"
+          }
+        }
+      }
+    },
+    "Sport": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sport"
+          }
+        }
+      }
+    },
+    "Start Match": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start Match"
+          }
+        }
+      }
+    },
+    "Superhero": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Superhero"
+          }
+        }
+      }
+    },
+    "TV Show": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TV Show"
+          }
+        }
+      }
+    },
+    "Taiwan Chinese": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taiwan Chinese"
+          }
+        }
+      }
+    },
+    "Teams": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Teams"
+          }
+        }
+      }
+    },
+    "The round is on hold. Pick up where you left off when everyone's ready.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The round is on hold. Pick up where you left off when everyone's ready."
+          }
+        }
+      }
+    },
+    "While a round is running, the guessing team is filmed and the table is recorded with sound — so the describer's voice is captured too.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "While a round is running, the guessing team is filmed and the table is recorded with sound — so the describer's voice is captured too."
+          }
+        }
+      }
+    },
+    "Word language": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Word language"
+          }
+        }
+      }
+    },
+    "You can turn the camera off any time in Settings. The game plays fine without it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You can turn the camera off any time in Settings. The game plays fine without it."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

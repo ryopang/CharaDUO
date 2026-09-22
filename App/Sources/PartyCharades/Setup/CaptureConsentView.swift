@@ -11,8 +11,8 @@ struct CaptureConsentView: View {
     @Environment(AppCoordinator.self) private var coordinator
 
     var body: some View {
-        VStack(spacing: 24) {
-            Spacer()
+        ScrollableCenteredColumn {
+            Spacer(minLength: 16)
 
             Image(systemName: "video.fill")
                 .font(.system(size: 48))
@@ -21,6 +21,7 @@ struct CaptureConsentView: View {
             Text("About the reaction camera")
                 .font(.title.bold())
                 .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
 
             VStack(alignment: .leading, spacing: 16) {
                 ConsentPoint(
@@ -42,7 +43,7 @@ struct CaptureConsentView: View {
             }
             .padding(.horizontal, 28)
 
-            Spacer()
+            Spacer(minLength: 16)
 
             VStack(spacing: 12) {
                 Button {
@@ -50,22 +51,29 @@ struct CaptureConsentView: View {
                 } label: {
                     Text("Allow Camera & Mic")
                         .font(.title3.bold())
+                        .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 8)
                 }
-                .buttonStyle(.borderedProminent)
+                .buttonStyle(.glassProminent)
                 .controlSize(.large)
 
-                Button("Play Without It") {
+                Button {
                     coordinator.declineCaptureConsent()
+                } label: {
+                    Text("Play Without It")
+                        .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
-                .buttonStyle(.bordered)
+                .buttonStyle(.glass)
                 .controlSize(.large)
             }
             .padding(.horizontal, 28)
 
-            Spacer()
+            Spacer(minLength: 16)
         }
+        .padding()
     }
 }
 

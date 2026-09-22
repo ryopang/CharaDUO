@@ -29,12 +29,21 @@ struct RoundSummaryView: View {
                 .padding()
 
                 List(Array(result.events.enumerated()), id: \.offset) { _, event in
+                    let wordText = event.word.localizations[engine.configuration.language] ?? event.word.localizations[.english] ?? ""
                     HStack {
-                        Text(event.word.localizations[engine.configuration.language] ?? event.word.localizations[.english] ?? "")
+                        Text(wordText)
                         Spacer()
                         Image(systemName: event.kind == .correct ? "checkmark.circle.fill" : "xmark.circle")
                             .foregroundStyle(event.kind == .correct ? .green : .secondary)
+                            .accessibilityHidden(true)
                     }
+                    // PRD §11.1 — round results must be readable by
+                    // VoiceOver. The icon carries no text on its own, so the
+                    // row combines into one statement ("Titanic, Correct")
+                    // with an explicit label rather than relying on the
+                    // icon's default SF Symbol name.
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(Text("\(wordText), \(event.kind == .correct ? "Correct" : "Skipped")"))
                 }
                 .listStyle(.plain)
 
@@ -43,10 +52,12 @@ struct RoundSummaryView: View {
                 } label: {
                     Text(engine.matchState.isMatchComplete ? "See Results" : "Next Team")
                         .font(.title3.bold())
+                        .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 8)
                 }
-                .buttonStyle(.borderedProminent)
+                .buttonStyle(.glassProminent)
                 .controlSize(.large)
                 .padding()
             }

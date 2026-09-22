@@ -22,21 +22,23 @@ extension RoundTimer {
 }
 
 // UI chrome strings. Per PRD §6.5 these belong in a String Catalog
-// (.xcstrings) following system language — hardcoded here for M3 and due for
-// that move during M7 polish & a11y.
+// (.xcstrings), follows system language — see App/Resources/Localizable.xcstrings.
+// This is independent of `ContentLanguage`, which is the in-game word
+// language the player picks explicitly (§6.5's "UI in English, words in
+// Cantonese" case).
 
 extension GameCategory {
     var displayName: String {
         switch self {
-        case .movie: return "Movie"
-        case .tvShow: return "TV Show"
-        case .celebrity: return "Celebrity"
-        case .animal: return "Animal"
-        case .food: return "Food"
-        case .country: return "Country"
-        case .sightseeing: return "Sightseeing"
-        case .superhero: return "Superhero"
-        case .sport: return "Sport"
+        case .movie: return String(localized: "Movie")
+        case .tvShow: return String(localized: "TV Show")
+        case .celebrity: return String(localized: "Celebrity")
+        case .animal: return String(localized: "Animal")
+        case .food: return String(localized: "Food")
+        case .country: return String(localized: "Country")
+        case .sightseeing: return String(localized: "Sightseeing")
+        case .superhero: return String(localized: "Superhero")
+        case .sport: return String(localized: "Sport")
         }
     }
 }
@@ -44,10 +46,10 @@ extension GameCategory {
 extension ContentLanguage {
     var displayName: String {
         switch self {
-        case .english: return "English"
-        case .cantonese: return "Cantonese"
-        case .taiwanChinese: return "Taiwan Chinese"
-        case .mainlandChinese: return "Mainland Chinese"
+        case .english: return String(localized: "English")
+        case .cantonese: return String(localized: "Cantonese")
+        case .taiwanChinese: return String(localized: "Taiwan Chinese")
+        case .mainlandChinese: return String(localized: "Mainland Chinese")
         }
     }
 }

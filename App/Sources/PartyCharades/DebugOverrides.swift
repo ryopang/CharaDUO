@@ -50,6 +50,14 @@ enum DebugOverrides {
     static var skipConsent: Bool { arguments.contains("-uiTestSkipConsent") }
     static var forceConsent: Bool { arguments.contains("-uiTestForceConsent") }
 
+    /// `-uiTestContentLanguage mainlandChinese` — forces Quick Play's word
+    /// language, for exercising CJK layout without driving Custom Game's
+    /// language picker (PRD §11 — test CJK and Latin word-length extremes in
+    /// the same layout).
+    static var contentLanguageRawValue: String? {
+        value(for: "-uiTestContentLanguage")
+    }
+
     private static func value(for flag: String) -> String? {
         guard let index = arguments.firstIndex(of: flag),
               arguments.indices.contains(index + 1) else { return nil }

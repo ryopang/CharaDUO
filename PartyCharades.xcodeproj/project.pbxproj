@@ -13,16 +13,20 @@
 		0AFB568980AF1B9D32301AFB /* GameplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606F24823AD67C34B68D7D7F /* GameplayView.swift */; };
 		0E918DB245BA2B59B4C76E14 /* TabletopLayoutUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F1556BE5686E5246B52E27 /* TabletopLayoutUITests.swift */; };
 		11E603273C39A67F2A1277AB /* CustomGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19705E31128122000ED7B254 /* CustomGameView.swift */; };
+		1757DF1F41B9806C87D535AF /* ScrollableCenteredColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F4510E635B2B502B88006F /* ScrollableCenteredColumn.swift */; };
 		24A5140B6B26E76AEF0EAF2E /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 64C16AF4728D118144747093 /* Core */; };
 		34088D81C88949940DA73F7A /* DisplayNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0C65AFA04249EFC1905385 /* DisplayNames.swift */; };
 		416CD983A073F8F65360065E /* Capture in Frameworks */ = {isa = PBXBuildFile; productRef = 6000B398F6DF8D8CD14C98CB /* Capture */; };
 		453C16DD30FF9C07BCBEC2D5 /* MatchEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BBB8B83A32F2F61F9BB713 /* MatchEndView.swift */; };
+		489AE0530C1919E94C7C5C99 /* Design in Frameworks */ = {isa = PBXBuildFile; productRef = 94607FBA1C0BD2F30E0119AA /* Design */; };
 		4E9D469554FB2D612B725EF8 /* SingleScreenGameplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C13A1E605BA4750BCE5A5F9 /* SingleScreenGameplayView.swift */; };
 		535AE444BE8A263596B32105 /* OuterDisplayModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D350F94B5D85006223717C /* OuterDisplayModifier.swift */; };
 		5C72BE5FEB86CA0F9E3E8469 /* CaptureConsentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9EEE0FBF144B1A7332E3C4 /* CaptureConsentView.swift */; };
 		65D25BCC75709A6FFFF5D6C7 /* RoundSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198052BA4B073265A3EC5459 /* RoundSummaryView.swift */; };
+		7A591568BB16B05158620BD9 /* CountdownPulseModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA71BABBF4BC9AB926245821 /* CountdownPulseModifier.swift */; };
 		92B7206261213AD2FACF86E1 /* Posture in Frameworks */ = {isa = PBXBuildFile; productRef = E438210B9F6D056287FA6712 /* Posture */; };
 		94EB2E3649E591A6786C3BBB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92E868E3DB844ADCC62E383 /* HomeView.swift */; };
+		94F03D77F994D120A3ECA4EA /* FeedbackPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91204596D30448F4856D6625 /* FeedbackPlayer.swift */; };
 		9754025BF110FD621676F854 /* PartyCharadesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF2C20FB6E7EE34810CA960 /* PartyCharadesUITests.swift */; };
 		A5D36D178F5FDDBEBFA35B1C /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978B83DCD95B370848F83BC /* AppSettings.swift */; };
 		A9DA88473FA1416ED51B0B8F /* Content in Frameworks */ = {isa = PBXBuildFile; productRef = 1BB0FD5FE388F9374E77E18C /* Content */; };
@@ -56,17 +60,21 @@
 		4A1E4D280222D107FFC0C67D /* PartyCharadesUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = PartyCharadesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		59C434C43B6D72CCBE2B5556 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		606F24823AD67C34B68D7D7F /* GameplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayView.swift; sourceTree = "<group>"; };
+		62F4510E635B2B502B88006F /* ScrollableCenteredColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableCenteredColumn.swift; sourceTree = "<group>"; };
 		654FD23F744B53BB574B58AA /* PausedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PausedView.swift; sourceTree = "<group>"; };
 		676D542EBAF1AE9D5A5D5CF8 /* CountdownColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownColor.swift; sourceTree = "<group>"; };
 		7CB8D82767762C0E9E8F18C5 /* GuesserScoreboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuesserScoreboard.swift; sourceTree = "<group>"; };
 		815A55B3AD93729359A2B32D /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Core; path = Packages/Core; sourceTree = SOURCE_ROOT; };
 		8182CC4A86E8E72A305E9118 /* TabletopGameplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabletopGameplayView.swift; sourceTree = "<group>"; };
 		862D413110D247993465DCF7 /* DebugOverrides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugOverrides.swift; sourceTree = "<group>"; };
+		91204596D30448F4856D6625 /* FeedbackPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackPlayer.swift; sourceTree = "<group>"; };
 		98BE5860C2CF44BB77040605 /* Posture */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Posture; path = Packages/Posture; sourceTree = SOURCE_ROOT; };
 		98F1556BE5686E5246B52E27 /* TabletopLayoutUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabletopLayoutUITests.swift; sourceTree = "<group>"; };
 		A97E7DF0BDF55AA409CBFD24 /* PartyCharadesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyCharadesApp.swift; sourceTree = "<group>"; };
+		AC59374A90522EF0B013BDF4 /* Design */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Design; path = Packages/Design; sourceTree = SOURCE_ROOT; };
 		C5D350F94B5D85006223717C /* OuterDisplayModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OuterDisplayModifier.swift; sourceTree = "<group>"; };
 		CBD61B12171C323F91CBEEB0 /* Content */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Content; path = Packages/Content; sourceTree = SOURCE_ROOT; };
+		DA71BABBF4BC9AB926245821 /* CountdownPulseModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownPulseModifier.swift; sourceTree = "<group>"; };
 		E21846A1C3700CCF45FE6269 /* CaptureConsentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureConsentUITests.swift; sourceTree = "<group>"; };
 		E2B0B6878F6C8BF330F572F1 /* Capture */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Capture; path = Packages/Capture; sourceTree = SOURCE_ROOT; };
 		F92E868E3DB844ADCC62E383 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -83,6 +91,7 @@
 				24A5140B6B26E76AEF0EAF2E /* Core in Frameworks */,
 				92B7206261213AD2FACF86E1 /* Posture in Frameworks */,
 				416CD983A073F8F65360065E /* Capture in Frameworks */,
+				489AE0530C1919E94C7C5C99 /* Design in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +142,7 @@
 				FE0C65AFA04249EFC1905385 /* DisplayNames.swift */,
 				A97E7DF0BDF55AA409CBFD24 /* PartyCharadesApp.swift */,
 				2B12B3B3C13ABBF20745D24F /* RootView.swift */,
+				62F4510E635B2B502B88006F /* ScrollableCenteredColumn.swift */,
 				0608260D530D777297169AE6 /* Accessory */,
 				744C91A861DF1166C7476390 /* Gameplay */,
 				7A86512EE39738F5048E40A5 /* MatchEnd */,
@@ -165,6 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				676D542EBAF1AE9D5A5D5CF8 /* CountdownColor.swift */,
+				DA71BABBF4BC9AB926245821 /* CountdownPulseModifier.swift */,
+				91204596D30448F4856D6625 /* FeedbackPlayer.swift */,
 				606F24823AD67C34B68D7D7F /* GameplayView.swift */,
 				654FD23F744B53BB574B58AA /* PausedView.swift */,
 				2C13A1E605BA4750BCE5A5F9 /* SingleScreenGameplayView.swift */,
@@ -195,6 +207,7 @@
 				E2B0B6878F6C8BF330F572F1 /* Capture */,
 				CBD61B12171C323F91CBEEB0 /* Content */,
 				815A55B3AD93729359A2B32D /* Core */,
+				AC59374A90522EF0B013BDF4 /* Design */,
 				98BE5860C2CF44BB77040605 /* Posture */,
 			);
 			path = Packages;
@@ -230,6 +243,7 @@
 				64C16AF4728D118144747093 /* Core */,
 				E438210B9F6D056287FA6712 /* Posture */,
 				6000B398F6DF8D8CD14C98CB /* Capture */,
+				94607FBA1C0BD2F30E0119AA /* Design */,
 			);
 			productName = PartyCharades;
 			productReference = 2DBD2992B92A0469F5ADE72D /* PartyCharades.app */;
@@ -284,6 +298,7 @@
 				516513D0CD98C8B310989978 /* XCLocalSwiftPackageReference "Packages/Capture" */,
 				30F45B485BC6313D305D579C /* XCLocalSwiftPackageReference "Packages/Content" */,
 				6D8F8D49EC1DA38241809898 /* XCLocalSwiftPackageReference "Packages/Core" */,
+				6D9223E2BC7429A8F3081C53 /* XCLocalSwiftPackageReference "Packages/Design" */,
 				027D99B90941DFDFDA856EA5 /* XCLocalSwiftPackageReference "Packages/Posture" */,
 			);
 			preferredProjectObjectVersion = 77;
@@ -316,9 +331,11 @@
 				A5D36D178F5FDDBEBFA35B1C /* AppSettings.swift in Sources */,
 				5C72BE5FEB86CA0F9E3E8469 /* CaptureConsentView.swift in Sources */,
 				031FF581FF4201464A0D3DE0 /* CountdownColor.swift in Sources */,
+				7A591568BB16B05158620BD9 /* CountdownPulseModifier.swift in Sources */,
 				11E603273C39A67F2A1277AB /* CustomGameView.swift in Sources */,
 				09984B438788BFD9E2DEB4E0 /* DebugOverrides.swift in Sources */,
 				34088D81C88949940DA73F7A /* DisplayNames.swift in Sources */,
+				94F03D77F994D120A3ECA4EA /* FeedbackPlayer.swift in Sources */,
 				0AFB568980AF1B9D32301AFB /* GameplayView.swift in Sources */,
 				F83F804CE7688F27268B6E67 /* GuesserScoreboard.swift in Sources */,
 				94EB2E3649E591A6786C3BBB /* HomeView.swift in Sources */,
@@ -328,6 +345,7 @@
 				03C2B51646AB6B58A711E894 /* PausedView.swift in Sources */,
 				BF4BE1CFA9B305CCC6988AC4 /* RootView.swift in Sources */,
 				65D25BCC75709A6FFFF5D6C7 /* RoundSummaryView.swift in Sources */,
+				1757DF1F41B9806C87D535AF /* ScrollableCenteredColumn.swift in Sources */,
 				4E9D469554FB2D612B725EF8 /* SingleScreenGameplayView.swift in Sources */,
 				D203CB7557C29F94D9ADF0B0 /* TabletopGameplayView.swift in Sources */,
 			);
@@ -596,6 +614,10 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Packages/Core;
 		};
+		6D9223E2BC7429A8F3081C53 /* XCLocalSwiftPackageReference "Packages/Design" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/Design;
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -610,6 +632,10 @@
 		64C16AF4728D118144747093 /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Core;
+		};
+		94607FBA1C0BD2F30E0119AA /* Design */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Design;
 		};
 		E438210B9F6D056287FA6712 /* Posture */ = {
 			isa = XCSwiftPackageProductDependency;

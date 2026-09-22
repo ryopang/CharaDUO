@@ -16,6 +16,8 @@ packages:
     path: Packages/Posture
   Capture:
     path: Packages/Capture
+  Design:
+    path: Packages/Design
 targets:
   PartyCharades:
     type: application
@@ -34,10 +36,13 @@ targets:
         product: Posture
       - package: Capture
         product: Capture
+      - package: Design
+        product: Design
     info:
       path: App/Info.plist
       properties:
         CFBundleDisplayName: "Party Charades"
+        CFBundleDevelopmentRegion: "en"
         # PRD §7.1 — explicit and honest: what is recorded, and that it
         # stays on the device.
         NSCameraUsageDescription: "Party Charades records the guessing team's reactions during a round so you can watch the highlights together at the end of the match. Video stays on this device and is never uploaded."

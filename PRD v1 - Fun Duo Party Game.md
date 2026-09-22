@@ -617,7 +617,7 @@ One theme in v1, executed properly. The other three from the draft are cut.
 | M4 | Tabletop layout | ✅ Hinge detection, crease-aware split, 180°-rotated far edge, blind-tap zones |
 | M5 | Outer display | ✅ Accessory scene, scoreboard, availability handling incl. mid-round revocation |
 | M6 | Reaction camera | Direction resolution, capture with audio, state handling (§5.3), highlight extraction, playback, 1×/2×/3× export, save/auto-delete |
-| M7 | Polish & a11y | Theme, motion, haptics, Dynamic Type, VoiceOver |
+| M7 | Polish & a11y | ✅ Theme, motion, haptics, Dynamic Type, VoiceOver |
 | M8 | Submission | Hardware validation, review notes, demo video, final name |
 
 M3 is the critical gate: if the single-screen game is not fun on its own, the

@@ -18,23 +18,30 @@ import SwiftUI
 struct GuesserScoreboard: View {
     let snapshot: ScoreboardSnapshot
 
+    @ScaledMetric(relativeTo: .largeTitle) private var timerSize: CGFloat = 140
+    @Environment(\.colorSchemeContrast) private var colorSchemeContrast
+
     var body: some View {
+        let increaseContrast = colorSchemeContrast == .increased
+        let foreground = CountdownColor.foreground(fractionElapsed: snapshot.fractionElapsed, increaseContrast: increaseContrast)
+
         ZStack {
-            CountdownColor.background(fractionElapsed: snapshot.fractionElapsed)
+            CountdownColor.background(fractionElapsed: snapshot.fractionElapsed, increaseContrast: increaseContrast)
                 .ignoresSafeArea()
 
             VStack(spacing: 12) {
                 Text(snapshot.category.displayName.uppercased())
                     .font(.title3.bold())
-                    .foregroundStyle(.black.opacity(0.7))
+                    .foregroundStyle(foreground.opacity(0.7))
 
                 Text("\(snapshot.secondsRemaining)")
-                    .font(.system(size: 140, weight: .bold, design: .rounded))
+                    .font(.system(size: timerSize, weight: .bold, design: .rounded))
                     .monospacedDigit()
                     .contentTransition(.numericText(countsDown: true))
-                    .foregroundStyle(.black)
+                    .foregroundStyle(foreground)
                     .minimumScaleFactor(0.4)
                     .lineLimit(1)
+                    .countdownPulse(secondsRemaining: snapshot.secondsRemaining)
 
                 HStack(spacing: 10) {
                     Text(snapshot.teamName)
@@ -42,7 +49,7 @@ struct GuesserScoreboard: View {
                     Text("\(snapshot.score)")
                         .font(.title2.bold().monospacedDigit())
                 }
-                .foregroundStyle(.black.opacity(0.75))
+                .foregroundStyle(foreground.opacity(0.75))
 
                 if snapshot.isRecording {
                     // PRD §7.3 — a persistent recording indicator belongs
@@ -54,7 +61,7 @@ struct GuesserScoreboard: View {
                         Text("REC")
                             .font(.caption.bold())
                     }
-                    .foregroundStyle(.black.opacity(0.7))
+                    .foregroundStyle(foreground.opacity(0.7))
                 }
             }
             .padding()
