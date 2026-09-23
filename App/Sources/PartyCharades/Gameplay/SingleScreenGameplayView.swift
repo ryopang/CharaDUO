@@ -47,10 +47,10 @@ struct SingleScreenGameplayView: View {
                     .frame(height: halfHeight)
 
                     HStack(spacing: 0) {
-                        HitZoneButton(title: "Skip", tint: Color.secondary.opacity(0.2), foreground: .primary) {
+                        HitZoneButton(kind: .skip) {
                             engine.markSkipWithFeedback()
                         }
-                        HitZoneButton(title: "Correct", tint: Color.green.opacity(0.85), foreground: .white) {
+                        HitZoneButton(kind: .correct) {
                             coordinator.recordCorrect()
                         }
                     }
@@ -146,44 +146,5 @@ private struct PauseButton: View {
         }
         .buttonStyle(.plain)
         .accessibilityLabel(Text("Pause"))
-    }
-}
-
-/// Shared by both layouts. PRD §2.1 — sized for a standing, angled, blind
-/// stab: no margins, no competing controls, the whole zone is the target.
-/// PRD §11.1 — hit zones must be ≥44pt, and in practice these are far larger
-/// (each is half the flat surface); Correct/Skip differ by position, haptic,
-/// sound, and icon/label, not colour alone.
-struct HitZoneButton: View {
-    let title: LocalizedStringKey
-    let tint: Color
-    let foreground: Color
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            Text(title)
-                .font(.system(size: 68, weight: .heavy, design: .rounded))
-                // At large Dynamic Type sizes "Correct" wraps to "Cor-rect"
-                // in the narrow half-width zone — shrinking to fit on one
-                // line reads far better than a mid-word hyphen break.
-                .lineLimit(1)
-                .minimumScaleFactor(0.3)
-                .padding(24)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                // Without an explicit content shape, `.plain` only treats the
-                // rendered glyphs as tappable — everything around the text in
-                // this "whole zone is the target" button (CLAUDE.md) would
-                // silently miss taps.
-                .contentShape(Rectangle())
-        }
-        .buttonStyle(.plain)
-        .background(tint)
-        .overlay(
-            Rectangle()
-                .strokeBorder(foreground.opacity(0.35), lineWidth: 3)
-        )
-        .foregroundStyle(foreground)
-        .accessibilityAddTraits(.isButton)
     }
 }

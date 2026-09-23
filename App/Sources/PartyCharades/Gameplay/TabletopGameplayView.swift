@@ -66,16 +66,13 @@ private struct TabletopSplitView: View {
                 .rotationEffect(.degrees(180))
                 .offset(x: flat.farEdge.minX, y: flat.farEdge.minY)
 
-            HitZoneButton(title: "Correct", tint: Color.green.opacity(0.85), foreground: .white) {
+            HitZoneButton(kind: .correct) {
                 coordinator.recordCorrect()
             }
             .frame(width: flat.correct.width, height: flat.correct.height)
             .offset(x: flat.correct.minX, y: flat.correct.minY)
 
-            // A concrete fill, not a translucent tint over black: the zone has
-            // to read as a target for a blind, angled stab (PRD §2.1), not as
-            // empty space below the Correct zone.
-            HitZoneButton(title: "Skip", tint: Color(white: 0.24), foreground: .white) {
+            HitZoneButton(kind: .skip) {
                 engine.markSkipWithFeedback()
             }
             .frame(width: flat.skip.width, height: flat.skip.height)

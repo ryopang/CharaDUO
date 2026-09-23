@@ -17,6 +17,7 @@
 		11E603273C39A67F2A1277AB /* CustomGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19705E31128122000ED7B254 /* CustomGameView.swift */; };
 		1757DF1F41B9806C87D535AF /* ScrollableCenteredColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F4510E635B2B502B88006F /* ScrollableCenteredColumn.swift */; };
 		24A5140B6B26E76AEF0EAF2E /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 64C16AF4728D118144747093 /* Core */; };
+		30DD21692E81BFF0E0757475 /* HitZoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CE743539ABFB9A7800980A /* HitZoneButton.swift */; };
 		34088D81C88949940DA73F7A /* DisplayNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0C65AFA04249EFC1905385 /* DisplayNames.swift */; };
 		416CD983A073F8F65360065E /* Capture in Frameworks */ = {isa = PBXBuildFile; productRef = 6000B398F6DF8D8CD14C98CB /* Capture */; };
 		453C16DD30FF9C07BCBEC2D5 /* MatchEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BBB8B83A32F2F61F9BB713 /* MatchEndView.swift */; };
@@ -105,6 +106,7 @@
 		E643F3321D387529105BD6CF /* TickSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickSound.swift; sourceTree = "<group>"; };
 		EE1215216DB3F102A8663BDA /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		F3013EC1B05836CA16FCAF9C /* ScoreFeedbackOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreFeedbackOverlay.swift; sourceTree = "<group>"; };
+		F8CE743539ABFB9A7800980A /* HitZoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitZoneButton.swift; sourceTree = "<group>"; };
 		F92E868E3DB844ADCC62E383 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		F978B83DCD95B370848F83BC /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		FE0C65AFA04249EFC1905385 /* DisplayNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayNames.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				DA71BABBF4BC9AB926245821 /* CountdownPulseModifier.swift */,
 				91204596D30448F4856D6625 /* FeedbackPlayer.swift */,
 				606F24823AD67C34B68D7D7F /* GameplayView.swift */,
+				F8CE743539ABFB9A7800980A /* HitZoneButton.swift */,
 				654FD23F744B53BB574B58AA /* PausedView.swift */,
 				F3013EC1B05836CA16FCAF9C /* ScoreFeedbackOverlay.swift */,
 				2C13A1E605BA4750BCE5A5F9 /* SingleScreenGameplayView.swift */,
@@ -417,6 +420,7 @@
 				E03EA5B6C1A9551B51F52E28 /* GuesserMatchEndView.swift in Sources */,
 				E2A9792C6947C674FEB7C800 /* GuesserRoundSummaryView.swift in Sources */,
 				F83F804CE7688F27268B6E67 /* GuesserScoreboard.swift in Sources */,
+				30DD21692E81BFF0E0757475 /* HitZoneButton.swift in Sources */,
 				94EB2E3649E591A6786C3BBB /* HomeView.swift in Sources */,
 				E7D5073C81B12C61BDF3C14C /* L10n.swift in Sources */,
 				453C16DD30FF9C07BCBEC2D5 /* MatchEndView.swift in Sources */,
