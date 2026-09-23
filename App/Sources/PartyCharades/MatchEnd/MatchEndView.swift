@@ -9,7 +9,6 @@ import SwiftUI
 /// renders, off the same `MatchEndSnapshot`.
 struct MatchEndView: View {
     @Environment(AppCoordinator.self) private var coordinator
-    @State private var showingSettings = false
 
     var body: some View {
         if let engine = coordinator.engine {
@@ -17,78 +16,69 @@ struct MatchEndView: View {
 
             GeometryReader { proxy in
                 VStack(spacing: 0) {
-                    MatchEndHeaderView(snapshot: snapshot)
-                        .frame(height: proxy.size.height / 2)
-
+                    // Upper half: the win/lose headline plus the standings —
+                    // everything the player reads, above the fold.
                     ScrollView {
-                        VStack(spacing: 24) {
+                        VStack(spacing: 20) {
+                            MatchEndHeaderView(snapshot: snapshot)
                             Standings(snapshot: snapshot)
-
-                            VStack(spacing: 12) {
-                                // M6 hasn't landed yet — there's no reel to
-                                // save. Kept visible (not hidden) so the
-                                // option reads as "coming soon," not missing.
-                                Button {
-                                } label: {
-                                    Text("Save Video")
-                                        .font(.title3.bold())
-                                        .frame(maxWidth: .infinity)
-                                        .padding(.vertical, 8)
-                                }
-                                .buttonStyle(.glass)
-                                .controlSize(.large)
-                                .disabled(true)
-
-                                Button {
-                                    coordinator.rematch()
-                                } label: {
-                                    Text("Rematch")
-                                        .font(.title3.bold())
-                                        .frame(maxWidth: .infinity)
-                                        .padding(.vertical, 8)
-                                }
-                                .buttonStyle(.glassProminent)
-                                .controlSize(.large)
-
-                                Button {
-                                    coordinator.startNewCustomGame()
-                                } label: {
-                                    Text("New Custom Game")
-                                        .frame(maxWidth: .infinity)
-                                        .padding(.vertical, 4)
-                                }
-                                .buttonStyle(.glass)
-                                .controlSize(.large)
-
-                                Button {
-                                    showingSettings = true
-                                } label: {
-                                    Text("Settings")
-                                        .frame(maxWidth: .infinity)
-                                        .padding(.vertical, 4)
-                                }
-                                .buttonStyle(.glass)
-                                .controlSize(.large)
-
-                                Button {
-                                    coordinator.returnHome()
-                                } label: {
-                                    Text("Back to Home")
-                                        .frame(maxWidth: .infinity)
-                                        .padding(.vertical, 4)
-                                }
-                                .buttonStyle(.glass)
-                                .controlSize(.large)
-                            }
                         }
                         .padding(.horizontal, 24)
-                        .padding(.vertical, 16)
+                        .padding(.bottom, 16)
                     }
                     .frame(height: proxy.size.height / 2)
+
+                    // Lower half: nothing but the next actions.
+                    VStack(spacing: 12) {
+                        // M6 hasn't landed yet — there's no reel to save.
+                        // Kept visible (not hidden) so the option reads as
+                        // "coming soon," not missing.
+                        Button {
+                        } label: {
+                            Text("Save Video")
+                                .font(.title3.bold())
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 8)
+                        }
+                        .buttonStyle(.glass)
+                        .controlSize(.large)
+                        .disabled(true)
+
+                        Button {
+                            coordinator.rematch()
+                        } label: {
+                            Text("Rematch")
+                                .font(.title3.bold())
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 8)
+                        }
+                        .buttonStyle(.glassProminent)
+                        .controlSize(.large)
+
+                        Button {
+                            coordinator.startNewCustomGame()
+                        } label: {
+                            Text("New Custom Game")
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 4)
+                        }
+                        .buttonStyle(.glass)
+                        .controlSize(.large)
+
+                        Button {
+                            coordinator.returnHome()
+                        } label: {
+                            Text("Back to Home")
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 4)
+                        }
+                        .buttonStyle(.glass)
+                        .controlSize(.large)
+                    }
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 16)
+                    .frame(height: proxy.size.height / 2)
                 }
-            }
-            .sheet(isPresented: $showingSettings) {
-                SettingsView()
             }
         }
     }
@@ -100,13 +90,17 @@ struct MatchEndHeaderView: View {
     let snapshot: MatchEndSnapshot
 
     var body: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 20) {
             Text("Game Over")
-                .font(.system(size: 44, weight: .heavy, design: .rounded))
+                .font(.system(size: 88, weight: .heavy, design: .rounded))
+                .minimumScaleFactor(0.4)
+                .lineLimit(1)
             let winnerText = matchEndWinnerText(snapshot: snapshot)
             if !winnerText.isEmpty {
-                Text(winnerText)
-                    .font(.system(size: 30, weight: .bold, design: .rounded))
+                Text("\(winnerText) 🎉")
+                    .font(.system(size: 60, weight: .bold, design: .rounded))
+                    .minimumScaleFactor(0.4)
+                    .lineLimit(2)
                     .foregroundStyle(.secondary)
             }
         }

@@ -7,6 +7,11 @@ import SwiftUI
 /// courtesy, so it stays a complete game on its own.
 struct SingleScreenGameplayView: View {
     let engine: GameEngine
+    // Passed down from `GameplayView` rather than computed locally: reading
+    // `engine.timer` alone doesn't force a re-render on its own (see
+    // `GameplayView`'s comment) — this parameter is what actually changes
+    // each tick and makes SwiftUI recompute the countdown.
+    let now: ContinuousClock.Instant
 
     @Environment(AppCoordinator.self) private var coordinator
 
@@ -15,11 +20,9 @@ struct SingleScreenGameplayView: View {
     // grow or shrink with the user's text size setting; minimumScaleFactor +
     // lineLimit below is what keeps the word from clipping once it does.
     @ScaledMetric(relativeTo: .largeTitle) private var countdownSize: CGFloat = 64
-    @ScaledMetric(relativeTo: .largeTitle) private var wordSize: CGFloat = 56
-    @ScaledMetric(relativeTo: .title2) private var categorySize: CGFloat = 22
+    @ScaledMetric(relativeTo: .largeTitle) private var wordSize: CGFloat = 112
+    @ScaledMetric(relativeTo: .title2) private var categorySize: CGFloat = 44
     @Environment(\.colorSchemeContrast) private var colorSchemeContrast
-
-    private var now: ContinuousClock.Instant { ContinuousClock().now }
 
     var body: some View {
         let fraction = engine.timer?.fractionElapsed(now: now) ?? 0
@@ -58,8 +61,8 @@ struct SingleScreenGameplayView: View {
             }
             .overlay(alignment: .topTrailing) {
                 PauseButton { coordinator.pauseMatch() }
-                    .padding(.top, 8)
-                    .padding(.trailing, 12)
+                    .padding(.top, 20)
+                    .padding(.trailing, 20)
             }
         }
         .ignoresSafeArea(edges: .bottom)
@@ -80,23 +83,35 @@ private struct TopHalf: View {
 
     var body: some View {
         GeometryReader { proxy in
+            let urgency = CountdownColor.background(fractionElapsed: fraction, increaseContrast: increaseContrast)
+            let foreground = CountdownColor.foreground(fractionElapsed: fraction, increaseContrast: increaseContrast)
+
             ZStack(alignment: .bottom) {
                 // Rises from the bottom of this half as the round elapses —
                 // a proportional wipe rather than a flat color swap, capped
                 // at this half's own height (never spills into the button
                 // area below).
-                CountdownColor.background(fractionElapsed: fraction, increaseContrast: increaseContrast)
+                urgency
                     .frame(height: proxy.size.height * min(1, max(0, fraction)))
                     .animation(.linear(duration: 0.1), value: fraction)
 
                 VStack(spacing: 16) {
+                    // The digit carries its own pill background matching its
+                    // foreground's contrast — the rising wipe behind it only
+                    // covers part of this half, so the number can't rely on
+                    // that wipe actually being under it to stay legible.
                     Text("\(secondsRemaining)")
                         .font(.system(size: countdownSize, weight: .bold, design: .rounded))
                         .monospacedDigit()
                         .contentTransition(.numericText(countsDown: true))
-                        .foregroundStyle(CountdownColor.foreground(fractionElapsed: fraction, increaseContrast: increaseContrast))
+                        .foregroundStyle(foreground)
                         .countdownPulse(secondsRemaining: secondsRemaining)
+                        .padding(.horizontal, 24)
+                        .padding(.vertical, 8)
+                        .background(urgency, in: Capsule())
                         .accessibilityLabel(Text("\(secondsRemaining) seconds remaining"))
+
+                    Spacer(minLength: 0)
 
                     if let word = engine.currentWord {
                         VStack(spacing: 8) {
@@ -108,10 +123,12 @@ private struct TopHalf: View {
                                 .minimumScaleFactor(0.3)
                                 .lineLimit(3)
                                 .multilineTextAlignment(.center)
-                                .frame(width: width * 0.8)
+                                .frame(width: width * 0.9)
                         }
                         .accessibilityElement(children: .combine)
                     }
+
+                    Spacer(minLength: 0)
 
                     if engine.turnReshuffled {
                         Text("Deck reshuffled")
@@ -119,6 +136,7 @@ private struct TopHalf: View {
                             .foregroundStyle(.secondary)
                     }
                 }
+                .padding(.top, 12)
                 .padding(.horizontal, 16)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
@@ -155,17 +173,26 @@ struct HitZoneButton: View {
     var body: some View {
         Button(action: action) {
             Text(title)
-                .font(.title.bold())
+                .font(.system(size: 68, weight: .heavy, design: .rounded))
                 // At large Dynamic Type sizes "Correct" wraps to "Cor-rect"
                 // in the narrow half-width zone — shrinking to fit on one
                 // line reads far better than a mid-word hyphen break.
                 .lineLimit(1)
-                .minimumScaleFactor(0.4)
-                .padding(.horizontal, 8)
+                .minimumScaleFactor(0.3)
+                .padding(24)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                // Without an explicit content shape, `.plain` only treats the
+                // rendered glyphs as tappable — everything around the text in
+                // this "whole zone is the target" button (CLAUDE.md) would
+                // silently miss taps.
+                .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
         .background(tint)
+        .overlay(
+            Rectangle()
+                .strokeBorder(foreground.opacity(0.35), lineWidth: 3)
+        )
         .foregroundStyle(foreground)
         .accessibilityAddTraits(.isButton)
     }

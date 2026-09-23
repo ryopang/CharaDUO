@@ -9,23 +9,33 @@ struct HomeView: View {
     @Environment(AppCoordinator.self) private var coordinator
 
     var body: some View {
-        ScrollableCenteredColumn(spacing: 32) {
-            Spacer(minLength: 24)
+        GeometryReader { proxy in
+            VStack(spacing: 0) {
+                VStack(spacing: 16) {
+                    Text("Party Charades")
+                        .font(.system(size: 72, weight: .heavy, design: .rounded))
+                        .minimumScaleFactor(0.4)
+                        .lineLimit(2)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Text("Describe it. Guess it. Don't say the word.")
+                        .font(.title3)
+                        .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 24)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-            VStack(spacing: 8) {
-                Text("Party Charades")
-                    .font(.largeTitle.bold())
-                    .fixedSize(horizontal: false, vertical: true)
-                Text("Describe it. Guess it. Don't say the word.")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
+                buttons
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             }
-            .multilineTextAlignment(.center)
+            .frame(width: proxy.size.width, height: proxy.size.height)
+        }
+        .padding()
+    }
 
-            Spacer(minLength: 24)
-
-            VStack(spacing: 20) {
+    private var buttons: some View {
+        VStack(spacing: 20) {
                 VStack(spacing: 8) {
                     Button {
                         coordinator.startQuickPlay()
@@ -75,11 +85,8 @@ struct HomeView: View {
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
                 }
-            }
-            .padding(.horizontal, 32)
-
-            Spacer(minLength: 24)
         }
-        .padding()
+        .padding(.horizontal, 32)
+        .padding(.bottom, 24)
     }
 }

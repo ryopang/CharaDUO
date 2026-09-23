@@ -8,6 +8,7 @@ import SwiftUI
 /// idea of the app.
 struct TabletopGameplayView: View {
     let engine: GameEngine
+    let now: ContinuousClock.Instant
 
     var body: some View {
         GeometryReader { proxy in
@@ -15,12 +16,12 @@ struct TabletopGameplayView: View {
                 container: proxy.size,
                 division: division(in: proxy)
             ) {
-                TabletopSplitView(engine: engine, split: split)
+                TabletopSplitView(engine: engine, split: split, containerSize: proxy.size, now: now)
             } else {
                 // The hinge says tabletop but the system reports no usable
                 // crease. CLAUDE.md: never hardcode the fold position or a
                 // 50/50 split — so fall back rather than guess a midpoint.
-                SingleScreenGameplayView(engine: engine)
+                SingleScreenGameplayView(engine: engine, now: now)
             }
         }
         // The two halves must reach the physical edges of the inner display:
@@ -42,6 +43,8 @@ struct TabletopGameplayView: View {
 private struct TabletopSplitView: View {
     let engine: GameEngine
     let split: FoldSplit
+    let containerSize: CGSize
+    let now: ContinuousClock.Instant
 
     var body: some View {
         let flat = FoldGeometry.flatHalfLayout(flat: split.flat)
@@ -49,14 +52,14 @@ private struct TabletopSplitView: View {
         ZStack(alignment: .topLeading) {
             Color.black
 
-            DescriberLidView(engine: engine)
+            DescriberLidView(engine: engine, now: now)
                 .frame(width: split.lid.width, height: split.lid.height)
                 .offset(x: split.lid.minX, y: split.lid.minY)
 
             // Rotated a half turn so it reads right-side-up from across the
             // table. 180° about the centre leaves the bounding box alone, so
             // the offset still positions it correctly.
-            GuesserFarEdgeView(engine: engine)
+            GuesserFarEdgeView(engine: engine, now: now)
                 .frame(width: flat.farEdge.width, height: flat.farEdge.height)
                 .rotationEffect(.degrees(180))
                 .offset(x: flat.farEdge.minX, y: flat.farEdge.minY)
@@ -76,11 +79,11 @@ private struct TabletopSplitView: View {
             .frame(width: flat.skip.width, height: flat.skip.height)
             .offset(x: flat.skip.minX, y: flat.skip.minY)
 
-            // Centered over the flat half (where the describer is actually
-            // looking when they tap) rather than the whole container.
+            // Spans the full container — both the lid and the flat half read
+            // as one surface for this event, not just wherever the tap
+            // landed.
             ScoreFeedbackOverlay(feedback: engine.lastFeedback)
-                .frame(width: split.flat.width, height: split.flat.height)
-                .offset(x: split.flat.minX, y: split.flat.minY)
+                .frame(width: containerSize.width, height: containerSize.height)
         }
     }
 }
@@ -106,6 +109,7 @@ private struct TabletopPauseButton: View {
 /// border inset, never a full background wash that would fight the word.
 private struct DescriberLidView: View {
     let engine: GameEngine
+    let now: ContinuousClock.Instant
 
     @Environment(AppCoordinator.self) private var coordinator
 
@@ -115,8 +119,6 @@ private struct DescriberLidView: View {
     @ScaledMetric(relativeTo: .largeTitle) private var wordSize: CGFloat = 64
     @ScaledMetric(relativeTo: .body) private var timerSize: CGFloat = 28
     @Environment(\.colorSchemeContrast) private var colorSchemeContrast
-
-    private var now: ContinuousClock.Instant { ContinuousClock().now }
 
     var body: some View {
         let fraction = engine.timer?.fractionElapsed(now: now) ?? 0
@@ -163,7 +165,7 @@ private struct DescriberLidView: View {
         )
         .overlay(alignment: .topTrailing) {
             TabletopPauseButton { coordinator.pauseMatch() }
-                .padding(12)
+                .padding(20)
         }
     }
 }
@@ -173,12 +175,11 @@ private struct DescriberLidView: View {
 /// carries the urgency gradient at **full** strength.
 private struct GuesserFarEdgeView: View {
     let engine: GameEngine
+    let now: ContinuousClock.Instant
 
     @Environment(AppCoordinator.self) private var coordinator
     @ScaledMetric(relativeTo: .largeTitle) private var timerSize: CGFloat = 64
     @Environment(\.colorSchemeContrast) private var colorSchemeContrast
-
-    private var now: ContinuousClock.Instant { ContinuousClock().now }
 
     var body: some View {
         let state = engine.matchState
@@ -212,7 +213,7 @@ private struct GuesserFarEdgeView: View {
         }
         .overlay(alignment: .topTrailing) {
             TabletopPauseButton { coordinator.pauseMatch() }
-                .padding(12)
+                .padding(20)
         }
     }
 }

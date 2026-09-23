@@ -20,6 +20,15 @@ outer-display features are an enhancement layer, never a requirement.
 `v0.1.0` — 6 of 8 milestones complete. Not yet submitted; no hardware
 validation has been done (see M6/M8 below).
 
+Since the initial M7 pass, a second playtest-driven polish round tightened
+layout across the launch screen, Custom Game setup, in-round gameplay, and
+the results screens (larger word/countdown text, fully tappable Correct/Skip
+zones, results anchored to the bottom of their screen), and fixed a
+countdown-freeze bug: the timer's `@Observable` engine wasn't mutating its
+own properties between ticks, so SwiftUI's fine-grained diffing could skip
+re-rendering the digit even while `TimelineView` kept firing. The fix threads
+"now" down explicitly rather than relying on implicit observation.
+
 | # | Milestone | Status |
 |---|---|---|
 | M1 | Content pipeline (xlsx→JSON, Simplified conversion, validator) | ✅ |

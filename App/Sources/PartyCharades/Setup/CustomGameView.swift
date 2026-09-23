@@ -9,7 +9,7 @@ struct CustomGameView: View {
     @State private var teamNames: [String] = ["", ""]
     @State private var roundsPerTeam = 2
     @State private var roundDuration = RoundDuration.default
-    @State private var selectedCategories = Set(GameCategory.allCases)
+    @State private var selectedCategories = Set<GameCategory>()
     @State private var language: ContentLanguage
     @State private var skipPenaltyEnabled = false
 
@@ -21,8 +21,8 @@ struct CustomGameView: View {
 
     var body: some View {
         Form {
-            Section("Teams") {
-                Picker("Teams", selection: $teamCount) {
+            Section("Number of Teams") {
+                Picker("Number of Teams", selection: $teamCount) {
                     ForEach(1...4, id: \.self) { count in
                         Text("\(count)").tag(count)
                     }
@@ -65,20 +65,23 @@ struct CustomGameView: View {
                 }
             }
 
-            Section("Language") {
-                Picker("Word language", selection: $language) {
+            Section("Local Language") {
+                Picker("Local Language", selection: $language) {
                     ForEach(ContentLanguage.allCases, id: \.self) { language in
                         Text(language.worldLabel).tag(language)
                     }
                 }
+                .pickerStyle(.segmented)
             }
 
             Section {
-                Picker("Skip Penalty", selection: $skipPenaltyEnabled) {
+                Picker("Penalty on Skipping?", selection: $skipPenaltyEnabled) {
                     Text("No").tag(false)
                     Text("Yes (−1)").tag(true)
                 }
                 .pickerStyle(.segmented)
+            } header: {
+                Text("Penalty on Skipping?")
             } footer: {
                 Text(skipPenaltyEnabled
                      ? "Tapping Skip costs the describing team 1 point."
@@ -88,12 +91,12 @@ struct CustomGameView: View {
             // PRD §7.3 — the master toggle and its audio sub-toggle, with
             // copy that states the tradeoff plainly rather than hiding it.
             Section {
-                Toggle("Reaction Camera", isOn: reactionCameraBinding)
+                Toggle("Camera On", isOn: reactionCameraBinding)
                 if coordinator.settings.reactionCameraEnabled {
-                    Toggle("Record Sound", isOn: reactionAudioBinding)
+                    Toggle("Sound On", isOn: reactionAudioBinding)
                 }
             } header: {
-                Text("Reaction Camera")
+                Text("Fun Cam")
             } footer: {
                 Text(coordinator.settings.reactionCameraEnabled
                      ? "Films the guessing team and records the table during a round, so you get a highlight reel at the end. Everything stays on this device. This is also what powers the scoreboard on the outer display."
@@ -101,10 +104,14 @@ struct CustomGameView: View {
             }
 
             Section {
-                Button("Start Game") {
-                    startMatch()
+                HStack {
+                    Spacer()
+                    Button("Start Game") {
+                        startMatch()
+                    }
+                    .disabled(selectedCategories.isEmpty)
+                    Spacer()
                 }
-                .disabled(selectedCategories.isEmpty)
             }
         }
         .onAppear {

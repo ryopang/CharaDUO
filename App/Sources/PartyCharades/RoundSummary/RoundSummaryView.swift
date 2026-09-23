@@ -23,7 +23,10 @@ struct RoundSummaryView: View {
                     RoundSummaryHeaderView(snapshot: snapshot)
                         .frame(height: proxy.size.height / 2)
 
-                    ZStack {
+                    // All the round's results sit above the button, which
+                    // stays pinned near the bottom edge so it's reachable
+                    // without hunting through the word lists first.
+                    VStack(spacing: 0) {
                         HStack(spacing: 0) {
                             WordColumn(
                                 title: "Correct Answers",
@@ -39,9 +42,8 @@ struct RoundSummaryView: View {
                                 tint: .secondary
                             )
                         }
+                        .frame(maxHeight: .infinity)
 
-                        // Centered over both columns rather than docked to
-                        // an edge, so both stay fully visible/scrollable.
                         Button {
                             coordinator.continueAfterRoundSummary()
                         } label: {
@@ -52,6 +54,8 @@ struct RoundSummaryView: View {
                         }
                         .buttonStyle(.glassProminent)
                         .controlSize(.large)
+                        .padding(.bottom, 24)
+                        .padding(.top, 12)
                     }
                     .frame(height: proxy.size.height / 2)
                 }
@@ -107,11 +111,14 @@ private struct WordColumn: View {
             List(Array(words.enumerated()), id: \.offset) { _, word in
                 let wordText = word.text(in: language)
                 Text(wordText)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .multilineTextAlignment(.center)
                     // PRD §11.1 — round results must be readable by
                     // VoiceOver; the column header alone isn't announced per
                     // row, so each row states its own status explicitly.
                     .accessibilityElement(children: .ignore)
                     .accessibilityLabel(Text("\(wordText), \(title)"))
+                    .listRowSeparator(.hidden)
             }
             .listStyle(.plain)
             .scrollContentBackground(.hidden)

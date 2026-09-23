@@ -16,8 +16,10 @@ struct ScoreFeedbackOverlay: View {
         Group {
             if let visibleFeedback {
                 Text(visibleFeedback.delta > 0 ? "+\(visibleFeedback.delta)" : "\(visibleFeedback.delta)")
-                    .font(.system(size: 120, weight: .heavy, design: .rounded))
+                    .font(.system(size: 360, weight: .heavy, design: .rounded))
                     .monospacedDigit()
+                    .minimumScaleFactor(0.2)
+                    .lineLimit(1)
                     .foregroundStyle(visibleFeedback.delta > 0 ? .green : .red)
                     .shadow(radius: 12)
                     .opacity(opacity)
