@@ -25,7 +25,6 @@ targets:
     deploymentTarget: "27.0"
     sources:
       - path: App/Sources
-    resources:
       - path: App/Resources
     dependencies:
       - package: Content
@@ -49,7 +48,10 @@ targets:
         NSMicrophoneUsageDescription: "CharaDUO records the table's audio so the highlight reel has sound. Audio stays on this device, is never uploaded, and is never analysed."
         # PRD §7.1 — requested only at the moment a player taps Save.
         NSPhotoLibraryAddUsageDescription: "CharaDUO saves the reaction reel you choose to your photo library. Nothing is saved unless you tap Save."
-        UILaunchScreen: {}
+        UILaunchScreen:
+          UIColorName: LaunchPurple
+          UIImageName: Wordmark
+          UIImageRespectsSafeAreaInsets: true
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
           - UIInterfaceOrientationPortraitUpsideDown

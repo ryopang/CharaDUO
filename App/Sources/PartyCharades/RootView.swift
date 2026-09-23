@@ -30,6 +30,7 @@ struct RootView: View {
             }
         }
         .environment(coordinator)
+        .charaDuoTheme()
         // PRD §3.4 — the outer display is an enhancement layer hung off the
         // main scene. When the system isn't presenting it, this draws
         // nothing and the match neither knows nor cares.

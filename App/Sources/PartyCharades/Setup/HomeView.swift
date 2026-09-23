@@ -12,14 +12,14 @@ struct HomeView: View {
         GeometryReader { proxy in
             VStack(spacing: 0) {
                 VStack(spacing: 16) {
-                    Text("Party Charades")
-                        .font(.system(size: 72, weight: .heavy, design: .rounded))
-                        .minimumScaleFactor(0.4)
-                        .lineLimit(2)
-                        .fixedSize(horizontal: false, vertical: true)
+                    Image("Wordmark")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: 420)
+                        .accessibilityLabel("CharaDUO")
                     Text("Describe it. Guess it. Don't say the word.")
-                        .font(.title3)
-                        .foregroundStyle(.secondary)
+                        .font(.title3.weight(.semibold))
+                        .foregroundStyle(.white.opacity(0.85))
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 .multilineTextAlignment(.center)
@@ -32,6 +32,7 @@ struct HomeView: View {
             .frame(width: proxy.size.width, height: proxy.size.height)
         }
         .padding()
+        .background { homeBackground }
     }
 
     private var buttons: some View {
@@ -88,5 +89,24 @@ struct HomeView: View {
         }
         .padding(.horizontal, 32)
         .padding(.bottom, 24)
+    }
+}
+
+private extension HomeView {
+    /// `images/launch screen.jpg` (its empty speech bubbles are empty by
+    /// design) under a purple scrim so the wordmark and buttons stay legible.
+    var homeBackground: some View {
+        ZStack {
+            Theme.background
+            Image("HomeBackground")
+                .resizable()
+                .scaledToFill()
+                .accessibilityHidden(true)
+            LinearGradient(
+                colors: [Theme.background.opacity(0.92), Theme.backgroundDeep.opacity(0.78), Theme.backgroundDeep.opacity(0.94)],
+                startPoint: .top, endPoint: .bottom
+            )
+        }
+        .ignoresSafeArea()
     }
 }

@@ -27,7 +27,14 @@
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>CharaDUO saves the reaction reel you choose to your photo library. Nothing is saved unless you tap Save.</string>
 	<key>UILaunchScreen</key>
-	<dict/>
+	<dict>
+		<key>UIColorName</key>
+		<string>LaunchPurple</string>
+		<key>UIImageName</key>
+		<string>Wordmark</string>
+		<key>UIImageRespectsSafeAreaInsets</key>
+		<true/>
+	</dict>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
