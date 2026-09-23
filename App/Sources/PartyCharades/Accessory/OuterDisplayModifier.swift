@@ -35,6 +35,7 @@ struct OuterDisplayModifier: ViewModifier {
     let content: () -> OuterDisplayContent?
     let isQuarterTurned: () -> Bool
     let availability: AccessoryAvailability
+    let locale: Locale
     let onForwardCameras: @MainActor ([CameraDirectionResolver.Candidate]) -> Void
 
     func body(content hostContent: Content) -> some View {
@@ -64,6 +65,10 @@ struct OuterDisplayModifier: ViewModifier {
                     // PRD §1.3 — the camera facing the guessers is, by
                     // definition, whatever faces *this* scene's view.
                     .background { CameraDirectionProbe(onChange: onForwardCameras) }
+                    // The accessory is its own scene: it does not inherit the
+                    // host's environment, so `Text("literal")` would follow
+                    // the system language instead of the in-app choice.
+                    .environment(\.locale, locale)
                 }
                 .onAvailabilityChange { isAvailable in
                     // PRD §3.4: record it and do nothing else. No error, no
@@ -87,6 +92,7 @@ extension View {
     func outerDisplay(
         isActive: Bool,
         availability: AccessoryAvailability,
+        locale: Locale,
         onForwardCameras: @escaping @MainActor ([CameraDirectionResolver.Candidate]) -> Void,
         isQuarterTurned: @escaping () -> Bool,
         content: @escaping () -> OuterDisplayContent?
@@ -96,6 +102,7 @@ extension View {
             content: content,
             isQuarterTurned: isQuarterTurned,
             availability: availability,
+            locale: locale,
             onForwardCameras: onForwardCameras
         ))
     }

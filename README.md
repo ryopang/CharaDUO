@@ -21,9 +21,15 @@ outer-display features are an enhancement layer, never a requirement.
 
 ## Status
 
-`v1.2.2` (build 5). M1–M7 are complete, M8 is in progress. **Still needs a real
+`v1.2.3` (build 6). M1–M7 are complete, M8 is in progress. **Still needs a real
 iPhone Duo** for the hardware pass and the demo video; the checklist is in
 [`Submission/HARDWARE-VALIDATION.md`](./Submission/HARDWARE-VALIDATION.md).
+
+### 1.2.3 (2026-09-23)
+
+- **Outer display language:** the outer display now follows the in-app language
+  instead of the system language (e.g. Taiwan no longer shows Cantonese text).
+
 
 ### 1.2.2 (2026-09-23)
 
