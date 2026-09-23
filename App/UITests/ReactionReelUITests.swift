@@ -34,7 +34,21 @@ final class ReactionReelUITests: XCTestCase {
         // Game disabled until at least one is on.
         let animal = app.switches.matching(NSPredicate(format: "label CONTAINS 'Animal'")).firstMatch
         XCTAssertTrue(animal.waitForExistence(timeout: 5))
-        animal.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5)).tap()
+        // Scroll in small steps until the row sits mid-screen, clear of the
+        // translucent title bar that overlays the top of the form.
+        let window = app.windows.firstMatch
+        for _ in 0..<15 where animal.frame.midY > window.frame.height * 0.6 || animal.frame.midY < window.frame.height * 0.3 {
+            let dragUp = animal.frame.midY > window.frame.height * 0.6
+            let from = window.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: dragUp ? 0.7 : 0.4))
+            let to = window.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: dragUp ? 0.5 : 0.6))
+            from.press(forDuration: 0.05, thenDragTo: to)
+            sleep(1)
+        }
+        for _ in 0..<3 where (animal.value as? String) != "1" {
+            animal.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5)).tap()
+            sleep(1)
+        }
+        XCTAssertEqual(animal.value as? String, "1", "Animal category should be on")
 
         let startMatch = app.buttons["Start Game"]
         let form = app.collectionViews.firstMatch
