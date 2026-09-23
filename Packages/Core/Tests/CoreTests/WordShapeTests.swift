@@ -14,6 +14,14 @@ struct WordShapeTests {
         ("Pokémon", [7]),
         ("Apollo 13", [6, 2]),
         ("  padded   spaces ", [6, 6]),
+        ("湯姆克魯斯 (Tom Cruise)", [5]),
+        ("里安納度狄卡比奧（Leonardo DiCaprio）", [8]),
+        ("Ossan's Love (HK)", [6, 4]),
+        ("X戰警 (X-Men)", [3]),
+        ("Unclosed (paren", [8, 5]),
+        ("Nike / 耐吉", [2]),
+        ("Land Rover / 荒原路華", [4]),
+        ("AC / DC", [2, 2]),
         ("", []),
     ])
     func groups(text: String, expected: [Int]) {

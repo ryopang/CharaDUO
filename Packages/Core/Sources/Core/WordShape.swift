@@ -4,6 +4,12 @@ import Foundation
 /// count per word, one unit per letter or CJK character. "Avengers" is `[8]`,
 /// "蛋撻" is `[2]`, "Spider-Man" is `[6, 3]`.
 ///
+/// A parenthetical — the English original after a Chinese title, "(HK)" —
+/// is a note, not part of the answer, so it is not counted: "湯姆克魯斯
+/// (Tom Cruise)" is `[5]`.
+///
+/// Likewise the English half of a bilingual brand ("Nike / 耐吉" is `[2]`).
+///
 /// Only the shape crosses into the accessory scene — never the word itself,
 /// which the guessers must not be able to read.
 public enum WordShape {
@@ -15,7 +21,12 @@ public enum WordShape {
     public static func groups(for text: String) -> [Int] {
         var groups: [Int] = []
         var current = 0
-        for character in text {
+        let answer = chineseOnly(
+            text.replacingOccurrences(
+                of: "[（(][^）)]*[）)]", with: " ", options: .regularExpression
+            )
+        )
+        for character in answer {
             if character.isWhitespace || breaks.contains(character) {
                 if current > 0 { groups.append(current) }
                 current = 0
@@ -29,5 +40,14 @@ public enum WordShape {
         }
         if current > 0 { groups.append(current) }
         return groups
+    }
+
+    /// Brand entries pair the two spellings with a spaced slash — "Nike /
+    /// 耐吉". When one side is Chinese, only that side is the answer.
+    private static func chineseOnly(_ text: String) -> String {
+        let parts = text.components(separatedBy: " / ")
+        guard parts.count > 1 else { return text }
+        let chinese = parts.filter { $0.unicodeScalars.contains { $0.properties.isIdeographic } }
+        return chinese.isEmpty ? text : chinese.joined(separator: " ")
     }
 }
