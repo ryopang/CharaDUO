@@ -105,9 +105,9 @@ extension View {
 /// Folded into a tent, the outer panel faces the guessers on its side, so
 /// without this every line of text would read sideways to them.
 ///
-/// The content is laid out in the panel's **safe area** with width and
-/// height swapped, then rotated about its centre, so it lands back exactly
-/// on that area and stays clear of the camera cluster's inset. The backdrop
+/// The content is laid out with width and height swapped, then rotated
+/// about the **panel's** centre, with equal margins at both ends wide enough
+/// to clear the camera cluster's inset. The backdrop
 /// is drawn separately, unrotated and full-bleed — a rotated view's own
 /// `ignoresSafeArea` would compute the insets in the wrong frame.
 ///
@@ -130,11 +130,27 @@ struct QuarterTurn<Backdrop: View, Content: View>: View {
                 .ignoresSafeArea()
             if isTurned {
                 GeometryReader { proxy in
+                    let insets = proxy.safeAreaInsets
+                    let panel = CGSize(
+                        width: proxy.size.width + insets.leading + insets.trailing,
+                        height: proxy.size.height + insets.top + insets.bottom
+                    )
+                    // After the turn the panel's top and bottom become the
+                    // left and right ends. Give both ends the larger inset,
+                    // so the content clears the camera cluster and still
+                    // sits dead centre on the glass. Centring in the safe
+                    // area instead pushed everything away from the camera.
+                    let endMargin = max(insets.top, insets.bottom)
+                    // The other two sides report no inset, but a strip of
+                    // breathing room keeps the layout from touching the
+                    // rounded corners.
+                    let sideMargin: CGFloat = 20
                     content()
                         .ignoresSafeArea()
-                        .frame(width: proxy.size.height, height: proxy.size.width)
+                        .frame(width: panel.height - 2 * endMargin, height: panel.width - 2 * sideMargin)
                         .rotationEffect(Self.angle)
-                        .frame(width: proxy.size.width, height: proxy.size.height)
+                        .frame(width: panel.width, height: panel.height)
+                        .offset(x: -insets.leading, y: -insets.top)
                 }
             } else {
                 content()

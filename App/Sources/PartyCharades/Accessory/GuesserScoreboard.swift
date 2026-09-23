@@ -72,7 +72,9 @@ struct GuesserScoreboard: View {
                 .accessibilityElement(children: .combine)
             }
             .padding()
-            .overlay(alignment: .topLeading) {
+            .overlay(alignment: .topTrailing) {
+                // Top-trailing: in the Duo simulator the outer camera sits
+                // in the top-leading corner of the turned layout.
                 if snapshot.isRecording {
                     // PRD §7.3 — a persistent recording indicator belongs
                     // here, where the people being filmed are looking.
