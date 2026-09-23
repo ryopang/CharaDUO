@@ -1,7 +1,7 @@
 import Content
 
 /// PRD §2.2 / §2.4. Quick Play constructs this with all defaults: 2 teams,
-/// all 9 categories, 60s, 3 rounds, last-used language.
+/// all 10 categories, 60s, 3 rounds, last-used language.
 public struct MatchConfiguration: Sendable, Equatable {
     public var teams: [Team]
     public var roundsPerTeam: Int

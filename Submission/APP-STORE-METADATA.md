@@ -24,8 +24,8 @@ standing up, phone flat on the table, everyone shouting.
 • Pass-the-phone or tabletop — works on any iPhone, and on iPhone Duo the fold
   splits the screen: the describer's word on the lid, a scoreboard facing the
   guessers.
-• 1,100 words across 9 categories — movies, TV, celebrities, animals, food,
-  countries, sightseeing, superheroes and sport.
+• 1,200 words across 10 categories — movies, TV, celebrities, animals, food,
+  countries, sightseeing, superheroes, sport and brands.
 • Words in English, Cantonese, Taiwan Mandarin and Mainland Mandarin, with the
   whole app translated to match.
 • Reaction Reel — the guessing team's best moments, replayed at 1×, 2× or 3×

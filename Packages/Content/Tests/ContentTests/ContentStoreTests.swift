@@ -8,7 +8,7 @@ struct ContentStoreTests {
 
     @Test func loadsAllElevenHundredWordsAcrossNineCategories() throws {
         let store = try loadStore()
-        #expect(store.allWords.count == 1100)
+        #expect(store.allWords.count == 1200)
         #expect(Set(store.allWords.map(\.category)).count == GameCategory.allCases.count)
     }
 
@@ -16,7 +16,7 @@ struct ContentStoreTests {
         let store = try loadStore()
         let expectedCounts: [GameCategory: Int] = [
             .movie: 200, .tvShow: 200, .celebrity: 100, .animal: 100,
-            .food: 100, .country: 100, .sightseeing: 100, .superhero: 100, .sport: 100
+            .food: 100, .country: 100, .sightseeing: 100, .superhero: 100, .sport: 100, .brand: 100
         ]
         for (category, expected) in expectedCounts {
             #expect(store.words(in: [category]).count == expected)

@@ -11006,6 +11006,1006 @@
           "mainlandChinese" : "拉什莫尔山",
           "taiwanChinese" : "拉什莫爾山"
         }
+      },
+      {
+        "category" : "brand",
+        "id" : "95D7D9DC-8355-5687-B52D-35A2362C7AC2",
+        "localizations" : {
+          "cantonese" : "蘋果",
+          "english" : "Apple",
+          "mainlandChinese" : "苹果",
+          "taiwanChinese" : "蘋果"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "782F9C8C-1AF9-51E0-B10F-599A79263EC8",
+        "localizations" : {
+          "cantonese" : "微軟",
+          "english" : "Microsoft",
+          "mainlandChinese" : "微软",
+          "taiwanChinese" : "微軟"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "3779793B-C75C-51D3-8518-681AA259C9D7",
+        "localizations" : {
+          "cantonese" : "Google",
+          "english" : "Google",
+          "mainlandChinese" : "谷歌",
+          "taiwanChinese" : "Google \/ 谷歌"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "0A1C5BB2-1480-5054-BCF2-556619ECA94C",
+        "localizations" : {
+          "cantonese" : "亞馬遜",
+          "english" : "Amazon",
+          "mainlandChinese" : "亚马逊",
+          "taiwanChinese" : "亞馬遜"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "FEA9172A-1887-572D-A6F5-A68F94CC3CB8",
+        "localizations" : {
+          "cantonese" : "Facebook",
+          "english" : "Facebook",
+          "mainlandChinese" : "脸书",
+          "taiwanChinese" : "Facebook \/ 臉書"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "EF3E5212-F4E6-548A-AB9B-0233BB826670",
+        "localizations" : {
+          "cantonese" : "Netflix",
+          "english" : "Netflix",
+          "mainlandChinese" : "网飞",
+          "taiwanChinese" : "Netflix \/ 網飛"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "4177F0FE-AA9B-5F89-A74C-58CF9C571815",
+        "localizations" : {
+          "cantonese" : "Spotify",
+          "english" : "Spotify",
+          "mainlandChinese" : "声田",
+          "taiwanChinese" : "Spotify"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "599738EA-BABC-55D8-8131-C08A9524512B",
+        "localizations" : {
+          "cantonese" : "Sony \/ 索尼",
+          "english" : "Sony",
+          "mainlandChinese" : "索尼",
+          "taiwanChinese" : "Sony \/ 索尼"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "0B5A8F66-00D3-5B6E-8CF7-1377C4A3A226",
+        "localizations" : {
+          "cantonese" : "三星",
+          "english" : "Samsung",
+          "mainlandChinese" : "三星",
+          "taiwanChinese" : "三星"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "8DB97EF3-983C-557D-A0A8-28431A844FEE",
+        "localizations" : {
+          "cantonese" : "LG",
+          "english" : "LG",
+          "mainlandChinese" : "LG",
+          "taiwanChinese" : "LG"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "20D61F5E-B9D7-587B-8603-9AAFE0399198",
+        "localizations" : {
+          "cantonese" : "樂聲",
+          "english" : "Panasonic",
+          "mainlandChinese" : "松下",
+          "taiwanChinese" : "Panasonic \/ 國際牌"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "29584201-69D6-5CBD-9899-370E4C8C4600",
+        "localizations" : {
+          "cantonese" : "Dell",
+          "english" : "Dell",
+          "mainlandChinese" : "戴尔",
+          "taiwanChinese" : "Dell \/ 戴爾"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "2CC7AC76-19F2-54C4-8958-09D6D1BDE64E",
+        "localizations" : {
+          "cantonese" : "HP",
+          "english" : "HP",
+          "mainlandChinese" : "惠普",
+          "taiwanChinese" : "HP \/ 惠普"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "4A773AED-B10F-5A76-8300-AA8F1155F73E",
+        "localizations" : {
+          "cantonese" : "Lenovo",
+          "english" : "Lenovo",
+          "mainlandChinese" : "联想",
+          "taiwanChinese" : "Lenovo \/ 聯想"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "2A668249-4400-5908-BB92-86DCEA8E0D38",
+        "localizations" : {
+          "cantonese" : "Asus",
+          "english" : "Asus",
+          "mainlandChinese" : "华硕",
+          "taiwanChinese" : "Asus \/ 華碩"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "FCF4E9F1-015D-547E-A91F-C66EBB250C3F",
+        "localizations" : {
+          "cantonese" : "Acer",
+          "english" : "Acer",
+          "mainlandChinese" : "宏碁",
+          "taiwanChinese" : "Acer \/ 宏碁"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "CDA1DA3C-0670-5FA1-927E-50D60AF998C7",
+        "localizations" : {
+          "cantonese" : "Intel",
+          "english" : "Intel",
+          "mainlandChinese" : "英特尔",
+          "taiwanChinese" : "Intel \/ 英特爾"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "DAA291E2-C924-559F-81FB-82822EAD2D46",
+        "localizations" : {
+          "cantonese" : "AMD",
+          "english" : "AMD",
+          "mainlandChinese" : "超威",
+          "taiwanChinese" : "AMD \/ 超微"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "EDBBB7A2-F755-5DB8-A2E1-3BB692284503",
+        "localizations" : {
+          "cantonese" : "Nvidia",
+          "english" : "Nvidia",
+          "mainlandChinese" : "英伟达",
+          "taiwanChinese" : "Nvidia \/ 輝達"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "053EC603-9DD1-5382-9FA6-AC4D621D203E",
+        "localizations" : {
+          "cantonese" : "任天堂",
+          "english" : "Nintendo",
+          "mainlandChinese" : "任天堂",
+          "taiwanChinese" : "任天堂"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "A2111F38-48E7-5FFD-BB1C-155354147C49",
+        "localizations" : {
+          "cantonese" : "豐田",
+          "english" : "Toyota",
+          "mainlandChinese" : "丰田",
+          "taiwanChinese" : "豐田"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "F60D4CED-BDC4-5503-BECD-9A14216407E3",
+        "localizations" : {
+          "cantonese" : "本田",
+          "english" : "Honda",
+          "mainlandChinese" : "本田",
+          "taiwanChinese" : "本田"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "6CC494AA-C973-5F98-AE04-76DCD1305435",
+        "localizations" : {
+          "cantonese" : "日產",
+          "english" : "Nissan",
+          "mainlandChinese" : "日产",
+          "taiwanChinese" : "日產"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "17A2CFF0-623D-5430-9B31-320A8A6A11CB",
+        "localizations" : {
+          "cantonese" : "寶馬",
+          "english" : "BMW",
+          "mainlandChinese" : "宝马",
+          "taiwanChinese" : "BMW \/ 寶馬"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "328A23DC-ED05-5ADF-B208-B4328D386118",
+        "localizations" : {
+          "cantonese" : "平治",
+          "english" : "Mercedes-Benz",
+          "mainlandChinese" : "奔驰",
+          "taiwanChinese" : "賓士"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "7DA17205-2236-5DD3-949C-59865BDA7D2F",
+        "localizations" : {
+          "cantonese" : "福士",
+          "english" : "Volkswagen",
+          "mainlandChinese" : "大众",
+          "taiwanChinese" : "福斯"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "5DE94083-1CC9-5448-AECF-C7B2A3708322",
+        "localizations" : {
+          "cantonese" : "保時捷",
+          "english" : "Porsche",
+          "mainlandChinese" : "保时捷",
+          "taiwanChinese" : "保時捷"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "3137ADD9-A487-54BE-9472-2E5422440ED2",
+        "localizations" : {
+          "cantonese" : "奧迪",
+          "english" : "Audi",
+          "mainlandChinese" : "奥迪",
+          "taiwanChinese" : "奧迪"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "307DE583-FD84-5EEC-860A-C3FD8BC85CB1",
+        "localizations" : {
+          "cantonese" : "凌志",
+          "english" : "Lexus",
+          "mainlandChinese" : "雷克萨斯",
+          "taiwanChinese" : "Lexus \/ 凌志"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "73362AAB-1E26-5FC6-BB8E-B475C1B37B1C",
+        "localizations" : {
+          "cantonese" : "越野路華",
+          "english" : "Land Rover",
+          "mainlandChinese" : "路虎",
+          "taiwanChinese" : "Land Rover \/ 荒原路華"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "91838206-268D-52BE-9006-8E76857174C8",
+        "localizations" : {
+          "cantonese" : "積架",
+          "english" : "Jaguar",
+          "mainlandChinese" : "捷豹",
+          "taiwanChinese" : "Jaguar \/ 捷豹"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "3393386F-D66F-5594-95BC-BA7110D1EBAD",
+        "localizations" : {
+          "cantonese" : "萬事得",
+          "english" : "Mazda",
+          "mainlandChinese" : "马自达",
+          "taiwanChinese" : "Mazda \/ 馬自達"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "B3B3B34F-DC40-587A-B2E1-BF2200192122",
+        "localizations" : {
+          "cantonese" : "富士",
+          "english" : "Subaru",
+          "mainlandChinese" : "斯巴鲁",
+          "taiwanChinese" : "Subaru \/ 速霸陸"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "ED7A938A-6F9B-5532-8B16-5181CC4F840C",
+        "localizations" : {
+          "cantonese" : "富豪",
+          "english" : "Volvo",
+          "mainlandChinese" : "沃尔沃",
+          "taiwanChinese" : "Volvo \/ 富豪"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "47A483B1-A776-54CF-A7E7-CFFE9E7EF3DE",
+        "localizations" : {
+          "cantonese" : "福特",
+          "english" : "Ford",
+          "mainlandChinese" : "福特",
+          "taiwanChinese" : "福特"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "A65EA440-1C22-5B7B-9741-2A325E5FE9E5",
+        "localizations" : {
+          "cantonese" : "麥當勞",
+          "english" : "McDonald's",
+          "mainlandChinese" : "麦当劳",
+          "taiwanChinese" : "麥當勞"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "97B4A72C-0BF6-5380-B38C-DA30FFDB00CB",
+        "localizations" : {
+          "cantonese" : "肯德基",
+          "english" : "KFC",
+          "mainlandChinese" : "肯德基",
+          "taiwanChinese" : "肯德基"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "51D54424-30F1-5642-9B4A-F972CB63F1D1",
+        "localizations" : {
+          "cantonese" : "星巴克",
+          "english" : "Starbucks",
+          "mainlandChinese" : "星巴克",
+          "taiwanChinese" : "星巴克"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "9C543E53-D73E-5751-94CD-EAB13F41A517",
+        "localizations" : {
+          "cantonese" : "漢堡王",
+          "english" : "Burger King",
+          "mainlandChinese" : "汉堡王",
+          "taiwanChinese" : "漢堡王"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "65FF3924-E022-51CB-A469-98B1AFDAF8BB",
+        "localizations" : {
+          "cantonese" : "必勝客",
+          "english" : "Pizza Hut",
+          "mainlandChinese" : "必胜客",
+          "taiwanChinese" : "必勝客"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "DAA817DC-3E79-50C1-AB5B-8990502849F6",
+        "localizations" : {
+          "cantonese" : "Subway",
+          "english" : "Subway",
+          "mainlandChinese" : "赛百味",
+          "taiwanChinese" : "Subway \/ 賽百味"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "2D7E8DDC-8C81-53F2-91D2-59EE6DE21FAE",
+        "localizations" : {
+          "cantonese" : "可口可樂",
+          "english" : "Coca-Cola",
+          "mainlandChinese" : "可口可乐",
+          "taiwanChinese" : "可口可樂"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "F4077469-75C8-5BA3-8B43-14A44BD5DA50",
+        "localizations" : {
+          "cantonese" : "百事可樂",
+          "english" : "Pepsi",
+          "mainlandChinese" : "百事可乐",
+          "taiwanChinese" : "百事可樂"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "A49C5597-5C50-5714-AD95-C2DB03F132A4",
+        "localizations" : {
+          "cantonese" : "雪碧",
+          "english" : "Sprite",
+          "mainlandChinese" : "雪碧",
+          "taiwanChinese" : "雪碧"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "2E0648C1-FC33-5659-B972-7C5878D37CDC",
+        "localizations" : {
+          "cantonese" : "芬達",
+          "english" : "Fanta",
+          "mainlandChinese" : "芬达",
+          "taiwanChinese" : "芬達"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "4557863B-2443-579A-A1F0-27CAA035DC31",
+        "localizations" : {
+          "cantonese" : "立頓",
+          "english" : "Lipton",
+          "mainlandChinese" : "立顿",
+          "taiwanChinese" : "立頓"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "C26B224B-75C2-52F8-B2E8-06B8F7955A00",
+        "localizations" : {
+          "cantonese" : "雀巢",
+          "english" : "Nestle",
+          "mainlandChinese" : "雀巢",
+          "taiwanChinese" : "雀巢"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "7ACFB743-2DE2-528A-A0DB-2E8F82787131",
+        "localizations" : {
+          "cantonese" : "亨氏",
+          "english" : "Heinz",
+          "mainlandChinese" : "亨氏",
+          "taiwanChinese" : "亨氏"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "A032C0F6-1A9B-5DBD-9C9A-803F882E78AA",
+        "localizations" : {
+          "cantonese" : "家樂氏",
+          "english" : "Kellogg's",
+          "mainlandChinese" : "家乐氏",
+          "taiwanChinese" : "家樂氏"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "71DC44FE-1568-5063-A1A1-086BB4EEE760",
+        "localizations" : {
+          "cantonese" : "樂事",
+          "english" : "Lay's",
+          "mainlandChinese" : "乐事",
+          "taiwanChinese" : "樂事"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "007A957A-5C48-5237-B57B-D275DA25113A",
+        "localizations" : {
+          "cantonese" : "M&M's",
+          "english" : "M&M's",
+          "mainlandChinese" : "M&M's",
+          "taiwanChinese" : "M&M's"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "7DDC9198-19FE-5EAB-82CD-A7F0913994D9",
+        "localizations" : {
+          "cantonese" : "士力架",
+          "english" : "Snickers",
+          "mainlandChinese" : "士力架",
+          "taiwanChinese" : "士力架"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "6630FDC6-D493-55C4-94AD-A272524A8E38",
+        "localizations" : {
+          "cantonese" : "彩虹糖",
+          "english" : "Skittles",
+          "mainlandChinese" : "彩虹糖",
+          "taiwanChinese" : "彩虹糖"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "E803E90D-8882-5909-8DB9-6FFC4A82A907",
+        "localizations" : {
+          "cantonese" : "奧利奧",
+          "english" : "Oreo",
+          "mainlandChinese" : "奥利奥",
+          "taiwanChinese" : "奧利奧"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "C0BDB8DD-653D-5D0E-B43C-3C68995F1C4B",
+        "localizations" : {
+          "cantonese" : "萬豪",
+          "english" : "Marriott",
+          "mainlandChinese" : "万豪",
+          "taiwanChinese" : "萬豪"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "23C471A5-1612-51FE-B557-3AB92E36F0B4",
+        "localizations" : {
+          "cantonese" : "紅牛",
+          "english" : "Red Bull",
+          "mainlandChinese" : "红牛",
+          "taiwanChinese" : "紅牛"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "1280B12B-F50A-5356-8C60-3A4A200AD2AF",
+        "localizations" : {
+          "cantonese" : "喜力",
+          "english" : "Heineken",
+          "mainlandChinese" : "喜力",
+          "taiwanChinese" : "海尼根"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "C3B0DD82-A076-57FC-9DA7-8C4A86611D76",
+        "localizations" : {
+          "cantonese" : "嘉士伯",
+          "english" : "Carlsberg",
+          "mainlandChinese" : "嘉士伯",
+          "taiwanChinese" : "嘉士伯"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "7FEB5CB5-7226-5718-B773-23F1CE3BEA5D",
+        "localizations" : {
+          "cantonese" : "健力士",
+          "english" : "Guinness",
+          "mainlandChinese" : "健力士",
+          "taiwanChinese" : "健力士"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "1A58F91C-0EE3-560A-A49D-D6EDD7FB8E6A",
+        "localizations" : {
+          "cantonese" : "依雲",
+          "english" : "Evian",
+          "mainlandChinese" : "依云",
+          "taiwanChinese" : "愛維養"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "6E090B76-B1AF-547C-83BC-480560E0A358",
+        "localizations" : {
+          "cantonese" : "幫寶適",
+          "english" : "Pampers",
+          "mainlandChinese" : "帮宝适",
+          "taiwanChinese" : "幫寶適"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "CE31CF6B-9F69-57CF-914D-C30B91425FF0",
+        "localizations" : {
+          "cantonese" : "多芬",
+          "english" : "Dove",
+          "mainlandChinese" : "多芬",
+          "taiwanChinese" : "多芬"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "DC78ED61-D3D4-5F17-94E3-04F943601B07",
+        "localizations" : {
+          "cantonese" : "潘婷",
+          "english" : "Pantene",
+          "mainlandChinese" : "潘婷",
+          "taiwanChinese" : "潘婷"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "BE1CD296-31CB-5708-A217-C74E97D08B50",
+        "localizations" : {
+          "cantonese" : "海飛絲",
+          "english" : "Head & Shoulders",
+          "mainlandChinese" : "海飞丝",
+          "taiwanChinese" : "海倫仙度絲"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "05CB7558-83C1-5ABC-9F48-E4CEC1211D01",
+        "localizations" : {
+          "cantonese" : "佳潔士",
+          "english" : "Crest",
+          "mainlandChinese" : "佳洁士",
+          "taiwanChinese" : "固齒佳"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "50C1A3D0-2866-51C9-AE14-9387548D9540",
+        "localizations" : {
+          "cantonese" : "高露潔",
+          "english" : "Colgate",
+          "mainlandChinese" : "高露洁",
+          "taiwanChinese" : "高露潔"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "B271637A-096E-5926-A717-DC384B500492",
+        "localizations" : {
+          "cantonese" : "吉列",
+          "english" : "Gillette",
+          "mainlandChinese" : "吉列",
+          "taiwanChinese" : "吉列"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "16635776-11F6-53C8-B572-8ACD6748E6C8",
+        "localizations" : {
+          "cantonese" : "巴黎歐萊雅",
+          "english" : "L'Oréal",
+          "mainlandChinese" : "巴黎欧莱雅",
+          "taiwanChinese" : "巴黎萊雅"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "F080BE5A-261B-5247-AE91-04F014651A1F",
+        "localizations" : {
+          "cantonese" : "好來",
+          "english" : "Darlie",
+          "mainlandChinese" : "好来",
+          "taiwanChinese" : "好來"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "CD2F8BDF-41FC-580C-9D15-D59C89847C55",
+        "localizations" : {
+          "cantonese" : "資生堂",
+          "english" : "Shiseido",
+          "mainlandChinese" : "资生堂",
+          "taiwanChinese" : "資生堂"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "CD1901D4-4A71-55D9-881C-8732D0C8C9F5",
+        "localizations" : {
+          "cantonese" : "Nike",
+          "english" : "Nike",
+          "mainlandChinese" : "耐克",
+          "taiwanChinese" : "Nike \/ 耐吉"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "41A82911-442A-509C-B074-DAA792C2D9CD",
+        "localizations" : {
+          "cantonese" : "Adidas",
+          "english" : "Adidas",
+          "mainlandChinese" : "阿迪达斯",
+          "taiwanChinese" : "Adidas \/ 愛迪達"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "A7FB9BE2-BFB9-5C0D-BF00-2EC1B571B8DA",
+        "localizations" : {
+          "cantonese" : "Puma",
+          "english" : "Puma",
+          "mainlandChinese" : "彪马",
+          "taiwanChinese" : "Puma \/ 彪馬"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "435FE0F7-94DF-5607-B42E-31FA7B55E542",
+        "localizations" : {
+          "cantonese" : "Zara",
+          "english" : "Zara",
+          "mainlandChinese" : "萨拉",
+          "taiwanChinese" : "Zara"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "589DC96D-9401-5702-B861-38DA81541BB1",
+        "localizations" : {
+          "cantonese" : "H&M",
+          "english" : "H&M",
+          "mainlandChinese" : "H&M",
+          "taiwanChinese" : "H&M"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "C9AFD386-85D2-5CC7-BF01-70C1B5CBE915",
+        "localizations" : {
+          "cantonese" : "Uniqlo \/ 優衣庫",
+          "english" : "Uniqlo",
+          "mainlandChinese" : "优衣库",
+          "taiwanChinese" : "Uniqlo \/ 優衣庫"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "05961A93-7AC9-56B1-9CC2-4EFF9A6D7628",
+        "localizations" : {
+          "cantonese" : "Levi's",
+          "english" : "Levi's",
+          "mainlandChinese" : "李维斯",
+          "taiwanChinese" : "Levi's"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "08BAA741-0439-5E68-9F41-E8A5EEA3B29D",
+        "localizations" : {
+          "cantonese" : "香奈兒",
+          "english" : "Chanel",
+          "mainlandChinese" : "香奈儿",
+          "taiwanChinese" : "香奈兒"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "7A68A1BE-9BC9-58A7-8A8B-AD278108CDBC",
+        "localizations" : {
+          "cantonese" : "愛馬仕",
+          "english" : "Hermes",
+          "mainlandChinese" : "爱马仕",
+          "taiwanChinese" : "愛馬仕"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "DA9A1093-A85C-5F59-BDF7-CF16935CD902",
+        "localizations" : {
+          "cantonese" : "LV \/ 路易威登",
+          "english" : "Louis Vuitton",
+          "mainlandChinese" : "LV \/ 路易威登",
+          "taiwanChinese" : "LV \/ 路易威登"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "7B9F0F8E-4C20-50C4-8434-5166C27FF05A",
+        "localizations" : {
+          "cantonese" : "Gucci",
+          "english" : "Gucci",
+          "mainlandChinese" : "古驰",
+          "taiwanChinese" : "Gucci \/ 古馳"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "16D6A9AE-7492-59E6-9416-85CB1C6981F7",
+        "localizations" : {
+          "cantonese" : "Prada",
+          "english" : "Prada",
+          "mainlandChinese" : "普拉达",
+          "taiwanChinese" : "Prada \/ 普拉達"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "2DA908AF-12D8-5EF9-BE85-8765E31140CE",
+        "localizations" : {
+          "cantonese" : "Burberry",
+          "english" : "Burberry",
+          "mainlandChinese" : "博柏利",
+          "taiwanChinese" : "Burberry \/ 巴寶莉"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "6880BBC0-08C4-5401-B8F9-63BAF4A2DE05",
+        "localizations" : {
+          "cantonese" : "勞力士",
+          "english" : "Rolex",
+          "mainlandChinese" : "劳力士",
+          "taiwanChinese" : "勞力士"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "1575A759-BDF8-5952-BB86-7FA954687A0C",
+        "localizations" : {
+          "cantonese" : "卡地亞",
+          "english" : "Cartier",
+          "mainlandChinese" : "卡地亚",
+          "taiwanChinese" : "卡地亞"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "98F7D1AD-F51E-564D-B005-F7EC4193409E",
+        "localizations" : {
+          "cantonese" : "迪士尼",
+          "english" : "Disney",
+          "mainlandChinese" : "迪士尼",
+          "taiwanChinese" : "迪士尼"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "4106CB75-CF03-588F-9115-7B0ECC7DB41A",
+        "localizations" : {
+          "cantonese" : "漫威",
+          "english" : "Marvel",
+          "mainlandChinese" : "漫威",
+          "taiwanChinese" : "漫威"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "44574991-B3DB-5E9A-8F35-90C32AF4D148",
+        "localizations" : {
+          "cantonese" : "華納兄弟",
+          "english" : "Warner Bros.",
+          "mainlandChinese" : "华纳兄弟",
+          "taiwanChinese" : "華納兄弟"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "E28B1187-30C6-5DDB-972F-3089C236428C",
+        "localizations" : {
+          "cantonese" : "環球影城",
+          "english" : "Universal Studios",
+          "mainlandChinese" : "环球影城",
+          "taiwanChinese" : "環球影城"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "6BE16EB3-8B51-5FCF-9FE6-0C86C76FD3B2",
+        "localizations" : {
+          "cantonese" : "樂高",
+          "english" : "Lego",
+          "mainlandChinese" : "乐高",
+          "taiwanChinese" : "樂高"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "DBF5C895-1C89-5594-922C-BA24FD72B3DB",
+        "localizations" : {
+          "cantonese" : "孩之寶",
+          "english" : "Hasbro",
+          "mainlandChinese" : "孩之宝",
+          "taiwanChinese" : "孩之寶"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "60E7D431-89C6-5B5E-864C-86D6F8A3B855",
+        "localizations" : {
+          "cantonese" : "宜家傢俬",
+          "english" : "IKEA",
+          "mainlandChinese" : "宜家",
+          "taiwanChinese" : "IKEA \/ 宜家家居"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "C1EDBF2F-ECC9-5000-A0DE-3488236642EA",
+        "localizations" : {
+          "cantonese" : "Visa",
+          "english" : "Visa",
+          "mainlandChinese" : "Visa",
+          "taiwanChinese" : "Visa"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "8FA1DB83-B1EB-5975-816E-FBBCC7DD79D6",
+        "localizations" : {
+          "cantonese" : "Mastercard",
+          "english" : "Mastercard",
+          "mainlandChinese" : "万事达卡",
+          "taiwanChinese" : "Mastercard \/ 萬事達卡"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "D5F75C1E-2BD9-5AA1-B60C-DB4D86336DC9",
+        "localizations" : {
+          "cantonese" : "美國運通",
+          "english" : "American Express",
+          "mainlandChinese" : "美国运通",
+          "taiwanChinese" : "美國運通"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "D315071E-7206-5D09-B641-A026BB2AB13C",
+        "localizations" : {
+          "cantonese" : "PayPal",
+          "english" : "PayPal",
+          "mainlandChinese" : "贝宝",
+          "taiwanChinese" : "PayPal"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "4C114F60-5148-5F4B-BFED-DE5AB4F33EB3",
+        "localizations" : {
+          "cantonese" : "eBay",
+          "english" : "eBay",
+          "mainlandChinese" : "易趣",
+          "taiwanChinese" : "eBay"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "02E08628-E9F9-56EA-9ACA-50670A1B7154",
+        "localizations" : {
+          "cantonese" : "阿里巴巴",
+          "english" : "Alibaba",
+          "mainlandChinese" : "阿里巴巴",
+          "taiwanChinese" : "阿里巴巴"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "742BA7EB-86AD-5109-BFAD-7F58E10B7A86",
+        "localizations" : {
+          "cantonese" : "騰訊",
+          "english" : "Tencent",
+          "mainlandChinese" : "腾讯",
+          "taiwanChinese" : "騰訊"
+        }
+      },
+      {
+        "category" : "brand",
+        "id" : "B9871DAF-AB9B-5641-AB7A-B21D4C084A6B",
+        "localizations" : {
+          "cantonese" : "百度",
+          "english" : "Baidu",
+          "mainlandChinese" : "百度",
+          "taiwanChinese" : "百度"
+        }
       }
     ]
   }

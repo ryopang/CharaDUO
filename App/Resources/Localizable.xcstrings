@@ -496,6 +496,36 @@
         }
       }
     },
+    "Brand": {
+      "comment": "Category",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brand"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "品牌"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "品牌"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "品牌"
+          }
+        }
+      }
+    },
     "Camera On": {
       "extractionState": "manual",
       "localizations": {

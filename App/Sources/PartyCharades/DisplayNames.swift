@@ -51,6 +51,7 @@ extension GameCategory {
         case .sightseeing: return tr("Sightseeing")
         case .superhero: return tr("Superhero")
         case .sport: return tr("Sport")
+        case .brand: return tr("Brand")
         }
     }
 
@@ -68,6 +69,7 @@ extension GameCategory {
         case .sightseeing: return "🗺️"
         case .superhero: return "🦸"
         case .sport: return "🏅"
+        case .brand: return "🏷️"
         }
     }
 

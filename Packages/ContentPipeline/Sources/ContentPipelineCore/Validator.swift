@@ -23,7 +23,8 @@ public enum Validator {
         "Country": .country,
         "Sightseeing": .sightseeing,
         "Superhero": .superhero,
-        "Sport": .sport
+        "Sport": .sport,
+        "Brand": .brand
     ]
 
     /// PRD §6.2.3 flags 100 words/category as thin; below half that, a match

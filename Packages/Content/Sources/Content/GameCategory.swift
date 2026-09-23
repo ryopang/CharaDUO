@@ -1,4 +1,4 @@
-/// The 9 built-in categories, per the source vocabulary spreadsheet (PRD §6.1).
+/// The 10 built-in categories, per the source vocabulary spreadsheet (PRD §6.1).
 public enum GameCategory: String, Codable, CaseIterable, Sendable, Hashable {
     case movie
     case tvShow
@@ -9,4 +9,5 @@ public enum GameCategory: String, Codable, CaseIterable, Sendable, Hashable {
     case sightseeing
     case superhero
     case sport
+    case brand
 }

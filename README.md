@@ -21,11 +21,17 @@ outer-display features are an enhancement layer, never a requirement.
 
 ## Status
 
-`v1.1.0` (build 2). M1–M7 are complete, M8 is in progress. **Still needs a real
+`v1.2.0` (build 3). M1–M7 are complete, M8 is in progress. **Still needs a real
 iPhone Duo** for the hardware pass and the demo video; the checklist is in
 [`Submission/HARDWARE-VALIDATION.md`](./Submission/HARDWARE-VALIDATION.md).
 
-### What's new in 1.1.0 (2026-09-23)
+### What's new in 1.2.0 (2026-09-23)
+
+- **New category: Brand.** 100 words (Apple, …) in all four word languages,
+  bringing the built-in set to **10 categories and 1,200 words**. Named 品牌 in
+  the Chinese UI languages, with a 🏷️ emoji.
+
+### 1.1.0 (2026-09-23)
 
 - **Outer display redesign.** Top to bottom: category name, countdown, one
   category emoji per letter or CJK character of the answer ("Avengers" → 8 🦸,

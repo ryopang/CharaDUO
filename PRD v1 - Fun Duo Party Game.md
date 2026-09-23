@@ -122,7 +122,7 @@ This has two design consequences:
 The setup flow must reach "first word on screen" in under 30 seconds. Enforce by:
 
 - **Quick Play** is the primary button on the home screen. One tap → 2 teams
-  ("Team 1"/"Team 2"), all 9 categories, 60s, 3 rounds, words in the app language (§6.5).
+  ("Team 1"/"Team 2"), all 10 categories, 60s, 3 rounds, words in the app language (§6.5).
   No naming, no toggles.
 - Everything else lives behind a secondary **Custom Game** path.
 - Team names are optional throughout. Never block on text entry.
