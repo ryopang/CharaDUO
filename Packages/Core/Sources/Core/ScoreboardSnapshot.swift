@@ -13,6 +13,9 @@ public struct ScoreboardSnapshot: Sendable, Equatable {
     public let score: Int
     public let isRecording: Bool
     public let lastFeedback: ScoreFeedback?
+    /// Letters (or CJK characters) per word of the current answer — see
+    /// `WordShape`. The word itself never leaves the engine.
+    public let wordShape: [Int]
 
     public init(
         category: GameCategory,
@@ -21,7 +24,8 @@ public struct ScoreboardSnapshot: Sendable, Equatable {
         teamName: String,
         score: Int,
         isRecording: Bool,
-        lastFeedback: ScoreFeedback? = nil
+        lastFeedback: ScoreFeedback? = nil,
+        wordShape: [Int] = []
     ) {
         self.category = category
         self.secondsRemaining = secondsRemaining
@@ -30,6 +34,7 @@ public struct ScoreboardSnapshot: Sendable, Equatable {
         self.score = score
         self.isRecording = isRecording
         self.lastFeedback = lastFeedback
+        self.wordShape = wordShape
     }
 }
 
@@ -52,7 +57,10 @@ extension GameEngine {
             teamName: matchState.teams[index].displayName(index: index),
             score: matchState.teams[index].score + currentTurnScore,
             isRecording: isRecording,
-            lastFeedback: lastFeedback
+            lastFeedback: lastFeedback,
+            wordShape: WordShape.groups(
+                for: word.localizations[configuration.language] ?? word.localizations[.english] ?? ""
+            )
         )
     }
 }

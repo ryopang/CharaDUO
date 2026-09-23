@@ -437,6 +437,36 @@
         }
       }
     },
+    "Answer length: %lld": {
+      "comment": "VoiceOver label for the outer display's emoji row: how many letters or characters the answer has.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Answer length: %lld"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "答案長度：%lld"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "答案长度：%lld"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "答案長度：%lld"
+          }
+        }
+      }
+    },
     "Back to Home": {
       "extractionState": "manual",
       "localizations": {

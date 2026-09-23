@@ -44,7 +44,10 @@ struct RootView: View {
         .outerDisplay(
             isActive: coordinator.isOuterDisplayActive,
             availability: coordinator.accessoryAvailability,
-            onForwardCameras: { coordinator.forwardFacingCamerasChanged($0) }
+            onForwardCameras: { coordinator.forwardFacingCamerasChanged($0) },
+            // Tabletop only: flat has no outer display in practice, and a
+            // closed phone pauses the match anyway.
+            isQuarterTurned: { coordinator.posture == .tabletop }
         ) {
             coordinator.outerDisplayContent
         }

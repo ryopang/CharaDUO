@@ -25,9 +25,15 @@ import SwiftUI
 /// The snapshot arrives as a closure because the countdown has to advance on
 /// the outer display independently of whatever is redrawing the inner one —
 /// the accessory runs its own tick.
+///
+/// Orientation: neither `CameraCaptureAccessory` nor `UISceneAccessory.h`
+/// exposes any orientation control (checked in the 27.1 SDK), so the
+/// tabletop quarter turn is ours — see `QuarterTurn`. Posture arrives as a
+/// closure for the same reason the content does: read-only, read per tick.
 struct OuterDisplayModifier: ViewModifier {
     let isActive: Bool
     let content: () -> OuterDisplayContent?
+    let isQuarterTurned: () -> Bool
     let availability: AccessoryAvailability
     let onForwardCameras: @MainActor ([CameraDirectionResolver.Candidate]) -> Void
 
@@ -37,17 +43,22 @@ struct OuterDisplayModifier: ViewModifier {
             hostContent.sceneAccessory {
                 CameraCaptureAccessory(isEnabled: .constant(isActive)) {
                     TimelineView(.periodic(from: .now, by: 0.1)) { _ in
-                        switch content() {
-                        case .liveRound(let snapshot):
-                            GuesserScoreboard(snapshot: snapshot)
-                        case .roundSummary(let snapshot):
-                            GuesserRoundSummaryView(snapshot: snapshot)
-                        case .matchEnd(let snapshot):
-                            GuesserMatchEndView(snapshot: snapshot)
-                        case nil:
-                            // Nothing to show right now (e.g. mid-pause);
-                            // drawing nothing is the whole behaviour.
-                            Color.black.ignoresSafeArea()
+                        let current = content()
+                        QuarterTurn(isTurned: isQuarterTurned()) {
+                            OuterDisplayBackdrop(content: current)
+                        } content: {
+                            switch current {
+                            case .liveRound(let snapshot):
+                                GuesserScoreboard(snapshot: snapshot)
+                            case .roundSummary(let snapshot):
+                                GuesserRoundSummaryView(snapshot: snapshot)
+                            case .matchEnd(let snapshot):
+                                GuesserMatchEndView(snapshot: snapshot)
+                            case nil:
+                                // Nothing to show right now (e.g. mid-pause);
+                                // drawing nothing is the whole behaviour.
+                                Color.black.ignoresSafeArea()
+                            }
                         }
                     }
                     // PRD §1.3 — the camera facing the guessers is, by
@@ -77,14 +88,78 @@ extension View {
         isActive: Bool,
         availability: AccessoryAvailability,
         onForwardCameras: @escaping @MainActor ([CameraDirectionResolver.Candidate]) -> Void,
+        isQuarterTurned: @escaping () -> Bool,
         content: @escaping () -> OuterDisplayContent?
     ) -> some View {
         modifier(OuterDisplayModifier(
             isActive: isActive,
             content: content,
+            isQuarterTurned: isQuarterTurned,
             availability: availability,
             onForwardCameras: onForwardCameras
         ))
+    }
+}
+
+/// Turns the outer display's content a quarter turn in tabletop posture.
+/// Folded into a tent, the outer panel faces the guessers on its side, so
+/// without this every line of text would read sideways to them.
+///
+/// The content is laid out in the panel's **safe area** with width and
+/// height swapped, then rotated about its centre, so it lands back exactly
+/// on that area and stays clear of the camera cluster's inset. The backdrop
+/// is drawn separately, unrotated and full-bleed — a rotated view's own
+/// `ignoresSafeArea` would compute the insets in the wrong frame.
+///
+/// The accessory scene reports `.portrait` (checked with a probe on the
+/// Duo simulator), so `angle` is relative to the panel's own up. Note that
+/// `simctl io screenshot` returns that panel's framebuffer turned a further
+/// 180°; that is the capture, not the app. Whether a clockwise turn is right
+/// on a real Duo can only be confirmed on hardware (M8 checklist) — `angle`
+/// is the one place to correct it.
+struct QuarterTurn<Backdrop: View, Content: View>: View {
+    static var angle: Angle { .degrees(90) }
+
+    let isTurned: Bool
+    @ViewBuilder let backdrop: () -> Backdrop
+    @ViewBuilder let content: () -> Content
+
+    var body: some View {
+        ZStack {
+            backdrop()
+                .ignoresSafeArea()
+            if isTurned {
+                GeometryReader { proxy in
+                    content()
+                        .ignoresSafeArea()
+                        .frame(width: proxy.size.height, height: proxy.size.width)
+                        .rotationEffect(Self.angle)
+                        .frame(width: proxy.size.width, height: proxy.size.height)
+                }
+            } else {
+                content()
+            }
+        }
+    }
+}
+
+/// The full-bleed colour behind whatever the outer display shows: the
+/// countdown colour during a live round, black otherwise.
+private struct OuterDisplayBackdrop: View {
+    let content: OuterDisplayContent?
+
+    @Environment(\.colorSchemeContrast) private var colorSchemeContrast
+
+    var body: some View {
+        switch content {
+        case .liveRound(let snapshot):
+            CountdownColor.background(
+                fractionElapsed: snapshot.fractionElapsed,
+                increaseContrast: colorSchemeContrast == .increased
+            )
+        case .roundSummary, .matchEnd, nil:
+            Color.black
+        }
     }
 }
 

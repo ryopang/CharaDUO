@@ -16,6 +16,12 @@ exercise degraded paths.
 - [ ] Revoke mid-round (e.g. leave full-screen / system takes it): round continues, no error UI.
 - [ ] Availability returns → outer content resumes.
 - [ ] REC indicator visible on the outer display while recording.
+- [ ] **Tabletop:** outer-display text reads upright to the guessers (rotated a quarter turn
+      clockwise). If it's sideways the other way or upside-down, change `QuarterTurn.angle`
+      in `OuterDisplayModifier.swift`. Simulator only shows `simctl` framebuffer captures,
+      which come out 180° turned and offset, so this has never been seen on real glass.
+- [ ] Flat: outer display unrotated, content clear of the camera cluster (82 pt top inset in the sim).
+- [ ] Emoji row: one category emoji per letter/character, gaps between words, fits long titles.
 
 ## Capture (M6)
 - [ ] Direction coordinator names the camera facing the guessers; recording starts only then.

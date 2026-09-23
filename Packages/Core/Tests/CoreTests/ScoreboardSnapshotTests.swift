@@ -30,6 +30,9 @@ struct ScoreboardSnapshotTests {
         // Live: the running total plus what this turn has earned so far.
         #expect(snapshot.score == 2)
         #expect(snapshot.isRecording)
+        // "Word N" — the shape of the answer, never the answer.
+        #expect(snapshot.wordShape.first == 4)
+        #expect(snapshot.wordShape.count == 2)
     }
 
     @Test func countdownTracksTheSameClockAsTheRound() throws {
