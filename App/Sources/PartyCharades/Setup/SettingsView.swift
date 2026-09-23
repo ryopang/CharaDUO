@@ -23,7 +23,7 @@ struct SettingsView: View {
                 } header: {
                     Text("Language")
                 } footer: {
-                    Text("Sets the words and the app's language together.")
+                    Text("Sets the app's language only. To play with words in another language, pick it in Custom Game.")
                 }
 
                 Section {
@@ -59,8 +59,8 @@ struct SettingsView: View {
 
     private var languageBinding: Binding<ContentLanguage> {
         Binding(
-            get: { coordinator.settings.lastUsedLanguage },
-            set: { coordinator.settings.lastUsedLanguage = $0 }
+            get: { coordinator.settings.appLanguage },
+            set: { coordinator.settings.chooseAppLanguage($0) }
         )
     }
 

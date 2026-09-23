@@ -66,7 +66,9 @@ final class PartyCharadesUITests: XCTestCase {
         let startMatch = app.buttons["Start Game"]
         let form = app.collectionViews.firstMatch
         for _ in 0..<10 where !startMatch.isHittable {
-            form.swipeUp()
+            // The form isn't always exposed as a collection view; swiping
+            // the app scrolls it either way.
+            (form.exists ? form : app).swipeUp()
         }
         XCTAssertTrue(startMatch.waitForExistence(timeout: 5))
         startMatch.tap()
@@ -101,5 +103,47 @@ final class PartyCharadesUITests: XCTestCase {
         app.buttons["Cancel"].tap()
 
         XCTAssertTrue(app.buttons["Quick Play"].waitForExistence(timeout: 5))
+    }
+
+    /// The UI follows the phone (English on the test simulator) until a
+    /// language is picked in Settings; a Custom Game word language never
+    /// changes the UI; a Settings choice survives a relaunch.
+    func testAppLanguageFollowsPhoneUntilChosenInSettings() throws {
+        let app = XCUIApplication()
+        app.launchArguments += ["-uiTestSkipConsent", "-uiTestResetAppLanguage"]
+        app.launch()
+        XCTAssertTrue(app.buttons["Quick Play"].waitForExistence(timeout: 5))
+
+        // Custom Game word language: this match only, UI untouched.
+        app.buttons["Custom Game"].tap()
+        let wordLanguage = app.segmentedControls["wordLanguagePicker"]
+        for _ in 0..<4 where !wordLanguage.waitForExistence(timeout: 2) {
+            app.swipeUp()
+        }
+        XCTAssertTrue(wordLanguage.exists)
+        wordLanguage.buttons["香港"].tap()
+        XCTAssertTrue(app.navigationBars["Custom Game"].exists, "picking a word language must not change the UI language")
+        app.buttons["Cancel"].tap()
+        XCTAssertTrue(app.buttons["Quick Play"].waitForExistence(timeout: 5))
+
+        // Settings choice: applies now and is kept.
+        app.buttons["Settings"].tap()
+        let hongKong = app.buttons["香港"].exists ? app.buttons["香港"] : app.staticTexts["香港"]
+        XCTAssertTrue(hongKong.waitForExistence(timeout: 5))
+        hongKong.tap()
+
+        app.terminate()
+        let relaunched = XCUIApplication()
+        relaunched.launchArguments += ["-uiTestSkipConsent"]
+        relaunched.launch()
+        XCTAssertTrue(relaunched.buttons["即刻玩"].waitForExistence(timeout: 5), "a language chosen in Settings survives a relaunch")
+        relaunched.terminate()
+
+        // Leave the simulator following the phone again for other tests.
+        let reset = XCUIApplication()
+        reset.launchArguments += ["-uiTestSkipConsent", "-uiTestResetAppLanguage"]
+        reset.launch()
+        XCTAssertTrue(reset.buttons["Quick Play"].waitForExistence(timeout: 5))
+        reset.terminate()
     }
 }

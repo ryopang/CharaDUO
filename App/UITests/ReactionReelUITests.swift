@@ -39,7 +39,9 @@ final class ReactionReelUITests: XCTestCase {
         let startMatch = app.buttons["Start Game"]
         let form = app.collectionViews.firstMatch
         for _ in 0..<10 where !startMatch.isHittable {
-            form.swipeUp()
+            // The form isn't always exposed as a collection view; swiping
+            // the app scrolls it either way.
+            (form.exists ? form : app).swipeUp()
         }
         startMatch.tap()
     }

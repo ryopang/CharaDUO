@@ -290,7 +290,7 @@ final class AppCoordinator {
             roundsPerTeam: 2,
             roundDuration: .default,
             categories: [category],
-            language: settings.lastUsedLanguage,
+            language: settings.appLanguage,
             skipPenaltyEnabled: false
         ))
     }
@@ -337,7 +337,6 @@ final class AppCoordinator {
     }
 
     private func beginMatch(with configuration: MatchConfiguration) {
-        settings.lastUsedLanguage = configuration.language
         let words = contentStore.words(in: configuration.categories)
         do {
             let engine = try GameEngine(configuration: configuration, words: words)

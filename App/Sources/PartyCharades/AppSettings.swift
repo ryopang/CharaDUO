@@ -8,7 +8,12 @@ import Observation
 @Observable
 final class AppSettings {
     private enum Key {
-        static let language = "lastUsedContentLanguage"
+        /// Set only when the player picks a language in Settings.
+        static let appLanguageOverride = "appLanguageOverride"
+        /// Pre-2026-09-23 key, written automatically on first launch and at
+        /// every match start, so it can't tell a real choice from a default.
+        /// Discarded on launch.
+        static let legacyLanguage = "lastUsedContentLanguage"
         static let reactionCamera = "reactionCameraEnabled"
         static let reactionAudio = "reactionAudioEnabled"
         static let consentShown = "captureConsentShown"
@@ -17,14 +22,23 @@ final class AppSettings {
 
     private let defaults: UserDefaults
 
-    /// PRD §2.4 — Quick Play uses the last-used language.
-    /// Design refresh — this one setting is both the word language and the
-    /// UI language.
-    var lastUsedLanguage: ContentLanguage {
-        didSet {
-            defaults.set(lastUsedLanguage.rawValue, forKey: Key.language)
-            L10n.apply(lastUsedLanguage)
-        }
+    /// The app's UI language. It follows the phone's language until the
+    /// player picks one in Settings (`chooseAppLanguage`), and that choice
+    /// is kept from then on. Quick Play deals words in this language too;
+    /// Custom Game can pick a different word language for one match without
+    /// touching this.
+    private(set) var appLanguage: ContentLanguage
+
+    /// True once the player has picked a language in Settings.
+    private(set) var hasChosenAppLanguage: Bool
+
+    /// The only path that saves a language. Nothing else — first launch,
+    /// match start, Custom Game — writes one.
+    func chooseAppLanguage(_ language: ContentLanguage) {
+        defaults.set(language.rawValue, forKey: Key.appLanguageOverride)
+        hasChosenAppLanguage = true
+        appLanguage = language
+        L10n.apply(language, pinSystemLanguage: true)
     }
 
     /// PRD §7.3 — the Reaction Camera master toggle. Turning it off means
@@ -54,10 +68,25 @@ final class AppSettings {
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
 
-        if let raw = defaults.string(forKey: Key.language), let language = ContentLanguage(rawValue: raw) {
-            self.lastUsedLanguage = language
+        defaults.removeObject(forKey: Key.legacyLanguage)
+        #if DEBUG
+        if DebugOverrides.resetAppLanguage {
+            defaults.removeObject(forKey: Key.appLanguageOverride)
+        }
+        #endif
+        if let raw = defaults.string(forKey: Key.appLanguageOverride),
+           let language = ContentLanguage(rawValue: raw) {
+            self.appLanguage = language
+            self.hasChosenAppLanguage = true
         } else {
-            self.lastUsedLanguage = L10n.initialLanguage()
+            // No choice yet: follow the phone. Drop any app-level
+            // AppleLanguages pin first (older builds wrote one on first
+            // launch), so the lookup below sees the phone's own list.
+            defaults.removeObject(forKey: L10n.appleLanguagesKey)
+            self.appLanguage = L10n.initialLanguage(
+                preferred: defaults.stringArray(forKey: L10n.appleLanguagesKey) ?? Locale.preferredLanguages
+            )
+            self.hasChosenAppLanguage = false
         }
 
         // Both capture toggles default on; consent is what actually gates
@@ -67,7 +96,7 @@ final class AppSettings {
         self.hasShownCaptureConsent = defaults.bool(forKey: Key.consentShown)
         self.tickSoundEnabled = defaults.object(forKey: Key.tickSound) as? Bool ?? true
 
-        L10n.apply(lastUsedLanguage)
+        L10n.apply(appLanguage, pinSystemLanguage: hasChosenAppLanguage)
 
         #if DEBUG
         // UserDefaults outlives a launch in the simulator, so tests pin this
@@ -79,8 +108,10 @@ final class AppSettings {
             self.hasShownCaptureConsent = false
             self.reactionCameraEnabled = true
         }
+        // For this launch only: never saved, never pins AppleLanguages.
         if let raw = DebugOverrides.contentLanguageRawValue, let language = ContentLanguage(rawValue: raw) {
-            self.lastUsedLanguage = language
+            self.appLanguage = language
+            L10n.apply(language, pinSystemLanguage: false)
         }
         #endif
     }

@@ -2,9 +2,9 @@ import Content
 import Core
 import Foundation
 
-/// One language setting drives both the word bank and the whole UI
-/// (design refresh, 2026-09-23). The player's choice overrides the system
-/// language, so SwiftUI `Text("literal")` sites follow `\.locale` in the
+/// The app language (Settings) drives the UI and Quick Play's words; Custom
+/// Game can deal words in a different language for one match. A choice made
+/// in Settings overrides the system language, so SwiftUI `Text("literal")` sites follow `\.locale` in the
 /// environment while plain-`String` sites go through `tr(_:)`, which reads
 /// from the matching `.lproj` bundle directly.
 ///
@@ -15,7 +15,14 @@ enum L10n {
     nonisolated(unsafe) private(set) static var bundle: Bundle = .main
     nonisolated(unsafe) private(set) static var locale: Locale = Locale(identifier: "en")
 
-    static func apply(_ language: ContentLanguage) {
+    static let appleLanguagesKey = "AppleLanguages"
+
+    /// `pinSystemLanguage` is true only for a language the player chose in
+    /// Settings. Pinning writes an app-level AppleLanguages, which is what
+    /// makes the system-owned permission prompts (Info.plist strings) follow
+    /// the choice next launch. Without a choice nothing is pinned, so the
+    /// app keeps following the phone's language.
+    static func apply(_ language: ContentLanguage, pinSystemLanguage: Bool) {
         locale = language.locale
         if let path = Bundle.main.path(forResource: language.catalogCode, ofType: "lproj"),
            let localized = Bundle(path: path) {
@@ -24,9 +31,9 @@ enum L10n {
             bundle = .main
         }
         Team.defaultName = { number in tr("Team \(number)") }
-        // Takes effect next launch — this is what makes the system-owned
-        // permission prompts (Info.plist strings) follow the setting too.
-        UserDefaults.standard.set([language.catalogCode], forKey: "AppleLanguages")
+        if pinSystemLanguage {
+            UserDefaults.standard.set([language.catalogCode], forKey: appleLanguagesKey)
+        }
     }
 
     /// Maps the device's preferred language to a starting `ContentLanguage`

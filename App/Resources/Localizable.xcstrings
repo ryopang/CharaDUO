@@ -1495,6 +1495,36 @@
         }
       }
     },
+    "Only changes the words for this match. The app's language stays as it is.": {
+      "comment": "Custom Game: footer under the word-language picker.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only changes the words for this match. The app's language stays as it is."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "只會改呢場遊戲嘅詞語，App 介面語言唔會變。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "只会更改这场游戏的词语，App 界面语言不变。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "只會變更這場遊戲的詞語，App 介面語言不變。"
+          }
+        }
+      }
+    },
     "Open Settings": {
       "extractionState": "manual",
       "localizations": {
@@ -2226,31 +2256,32 @@
         }
       }
     },
-    "Sets the words and the app's language together.": {
+    "Sets the app's language only. To play with words in another language, pick it in Custom Game.": {
+      "comment": "Settings: footer under the app-language picker.",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sets the words and the app's language together."
+            "value": "Sets the app's language only. To play with words in another language, pick it in Custom Game."
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "詞語同 App 介面會一齊轉用呢個語言。"
+            "value": "只會改 App 介面嘅語言。想用其他語言嘅詞語玩，可以喺「自訂遊戲」揀。"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "词语和 App 界面会一起切换为这个语言。"
+            "value": "只会更改 App 界面的语言。想用其他语言的词语来玩，可以在「自定义游戏」中选择。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "詞語與 App 介面會一起切換為這個語言。"
+            "value": "只會變更 App 介面的語言。想用其他語言的詞語來玩，可以在「自訂遊戲」中選擇。"
           }
         }
       }
@@ -2839,6 +2870,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "回合進行時，猜題的隊伍會被拍攝，整張桌子的聲音也會被錄下, 因此描述者的聲音也會被錄到。"
+          }
+        }
+      }
+    },
+    "Word Language": {
+      "comment": "Custom Game: section header for the per-match word language.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Word Language"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "詞語語言"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "词语语言"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "詞語語言"
           }
         }
       }

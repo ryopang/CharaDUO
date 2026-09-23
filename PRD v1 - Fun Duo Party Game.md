@@ -122,7 +122,7 @@ This has two design consequences:
 The setup flow must reach "first word on screen" in under 30 seconds. Enforce by:
 
 - **Quick Play** is the primary button on the home screen. One tap → 2 teams
-  ("Team 1"/"Team 2"), all 9 categories, 60s, 3 rounds, last-used language.
+  ("Team 1"/"Team 2"), all 9 categories, 60s, 3 rounds, words in the app language (§6.5).
   No naming, no toggles.
 - Everything else lives behind a secondary **Custom Game** path.
 - Team names are optional throughout. Never block on text entry.
@@ -390,12 +390,16 @@ decks, settings. Keep that store small and separately versioned.
 
 ### 6.5 Localization
 
-Two independent systems — do not conflate them:
-- **UI chrome** → String Catalog (`.xcstrings`), follows system language.
-- **Game content** → `ContentLanguage`, chosen in-app, persists across matches.
+Updated 2026-09-23:
+- **App language** (Settings) → the UI (String Catalog, `.xcstrings`) and Quick
+  Play's words. It follows the phone's language until the player picks one in
+  Settings; only that explicit choice is saved, and it is kept from then on.
+- **Word language for one match** → Custom Game's Word Language picker. Starts
+  on the app language, applies to that match only, never saved, never changes
+  the UI.
 
-A player can run the UI in English and the words in Cantonese. That is a normal
-case in Hong Kong, not an edge case.
+A player can run the UI in English and the words in Cantonese — pick 香港 in
+Custom Game. That is a normal case in Hong Kong, not an edge case.
 
 ---
 

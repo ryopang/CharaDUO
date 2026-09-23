@@ -11,6 +11,9 @@ struct CustomGameView: View {
     @State private var roundDuration = RoundDuration.default
     @State private var selectedCategories = Set<GameCategory>()
     @State private var skipPenaltyEnabled = false
+    /// This match only — never saved, never changes the UI language. Starts
+    /// on the app language each time the screen opens.
+    @State private var wordLanguage: ContentLanguage?
 
     var body: some View {
         Form {
@@ -45,6 +48,20 @@ struct CustomGameView: View {
                     }
                 }
                 .pickerStyle(.segmented)
+            }
+
+            Section {
+                Picker("Word Language", selection: wordLanguageBinding) {
+                    ForEach(ContentLanguage.allCases, id: \.self) { language in
+                        Text(language.worldLabel).tag(language)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .accessibilityIdentifier("wordLanguagePicker")
+            } header: {
+                Text("Word Language")
+            } footer: {
+                Text("Only changes the words for this match. The app's language stays as it is.")
             }
 
             Section("Categories") {
@@ -102,6 +119,13 @@ struct CustomGameView: View {
         .background(Theme.backdrop.ignoresSafeArea())
     }
 
+    private var wordLanguageBinding: Binding<ContentLanguage> {
+        Binding(
+            get: { wordLanguage ?? coordinator.settings.appLanguage },
+            set: { wordLanguage = $0 }
+        )
+    }
+
     private var reactionCameraBinding: Binding<Bool> {
         Binding(
             get: { coordinator.settings.reactionCameraEnabled },
@@ -139,7 +163,7 @@ struct CustomGameView: View {
             roundsPerTeam: roundsPerTeam,
             roundDuration: roundDuration,
             categories: selectedCategories,
-            language: coordinator.settings.lastUsedLanguage,
+            language: wordLanguage ?? coordinator.settings.appLanguage,
             skipPenaltyEnabled: skipPenaltyEnabled
         )
         coordinator.startCustomGame(configuration)

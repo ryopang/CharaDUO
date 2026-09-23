@@ -49,6 +49,9 @@ enum DebugOverrides {
     /// simulator, so without this a test would depend on whichever test ran
     /// before it.
     static var skipConsent: Bool { arguments.contains("-uiTestSkipConsent") }
+    /// `-uiTestResetAppLanguage` — forget any language picked in Settings,
+    /// so the app starts out following the phone's language again.
+    static var resetAppLanguage: Bool { arguments.contains("-uiTestResetAppLanguage") }
     static var forceConsent: Bool { arguments.contains("-uiTestForceConsent") }
 
     /// `-uiTestContentLanguage mainlandChinese` — forces Quick Play's word
