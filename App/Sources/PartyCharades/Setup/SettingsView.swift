@@ -23,6 +23,13 @@ struct SettingsView: View {
                          ? "Films the guessing team and records the table during a round, so you get a highlight reel at the end. Everything stays on this device. This is also what powers the scoreboard on the outer display."
                          : "Off: no highlight reel, and no scoreboard on the outer display. The game plays normally.")
                 }
+                Section {
+                    Toggle("Tick Sound", isOn: tickSoundBinding)
+                } header: {
+                    Text("Sound")
+                } footer: {
+                    Text("A soft tick every second during a round, sharper in the last 10 seconds. Follows your silent switch.")
+                }
             }
             .navigationTitle("Settings")
             .toolbar {
@@ -37,6 +44,13 @@ struct SettingsView: View {
         Binding(
             get: { coordinator.settings.reactionCameraEnabled },
             set: { coordinator.settings.reactionCameraEnabled = $0 }
+        )
+    }
+
+    private var tickSoundBinding: Binding<Bool> {
+        Binding(
+            get: { coordinator.settings.tickSoundEnabled },
+            set: { coordinator.settings.tickSoundEnabled = $0 }
         )
     }
 

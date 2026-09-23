@@ -44,13 +44,19 @@ final class FeedbackPlayer {
         AudioServicesPlaySystemSound(chimeSoundID(for: event.chime))
     }
 
-    /// Called every tick; fires at most once per integer-second boundary
-    /// within the final 10 seconds, escalating as the count drops. Resets at
-    /// the start of each turn so a new round always starts un-ticked.
-    func tickIfNeeded(secondsRemaining: Int) {
-        guard secondsRemaining > 0, secondsRemaining <= 10, secondsRemaining != lastTickSecond else { return }
+    /// Called every tick; fires at most once per integer-second boundary.
+    /// A soft tick sounds every second of the round, a more present one in
+    /// the final 10 seconds, where the haptic also escalates. Resets at the
+    /// start of each turn so a new round always starts un-ticked.
+    func tickIfNeeded(secondsRemaining: Int, soundEnabled: Bool) {
+        guard secondsRemaining > 0, secondsRemaining != lastTickSecond else { return }
         lastTickSecond = secondsRemaining
-        play(.finalCountdownTick(secondsRemaining: secondsRemaining))
+        let urgent = secondsRemaining <= 10
+        if urgent {
+            let generator = UIImpactFeedbackGenerator(style: impactStyle(forSecondsRemaining: secondsRemaining))
+            generator.impactOccurred()
+        }
+        if soundEnabled { TickSound.shared.play(urgent: urgent) }
     }
 
     func resetTickTracking() {

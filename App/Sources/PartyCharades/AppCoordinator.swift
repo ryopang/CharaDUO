@@ -368,7 +368,7 @@ final class AppCoordinator {
         }
         #if canImport(UIKit)
         // PRD §10.4 — a tick per second for the final 10s, escalating.
-        FeedbackPlayer.shared.tickIfNeeded(secondsRemaining: timer.displaySecondsRemaining(now: now))
+        FeedbackPlayer.shared.tickIfNeeded(secondsRemaining: timer.displaySecondsRemaining(now: now), soundEnabled: settings.tickSoundEnabled)
         #endif
     }
 

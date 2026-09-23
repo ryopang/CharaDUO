@@ -12,6 +12,7 @@ final class AppSettings {
         static let reactionCamera = "reactionCameraEnabled"
         static let reactionAudio = "reactionAudioEnabled"
         static let consentShown = "captureConsentShown"
+        static let tickSound = "tickSoundEnabled"
     }
 
     private let defaults: UserDefaults
@@ -40,6 +41,11 @@ final class AppSettings {
         didSet { defaults.set(hasShownCaptureConsent, forKey: Key.consentShown) }
     }
 
+    /// The per-second clock tick. Respects the silent switch regardless.
+    var tickSoundEnabled: Bool {
+        didSet { defaults.set(tickSoundEnabled, forKey: Key.tickSound) }
+    }
+
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
 
@@ -54,6 +60,7 @@ final class AppSettings {
         self.reactionCameraEnabled = defaults.object(forKey: Key.reactionCamera) as? Bool ?? true
         self.reactionAudioEnabled = defaults.object(forKey: Key.reactionAudio) as? Bool ?? true
         self.hasShownCaptureConsent = defaults.bool(forKey: Key.consentShown)
+        self.tickSoundEnabled = defaults.object(forKey: Key.tickSound) as? Bool ?? true
 
         #if DEBUG
         // UserDefaults outlives a launch in the simulator, so tests pin this

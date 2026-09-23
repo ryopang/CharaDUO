@@ -32,6 +32,7 @@
 		94F03D77F994D120A3ECA4EA /* FeedbackPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91204596D30448F4856D6625 /* FeedbackPlayer.swift */; };
 		9754025BF110FD621676F854 /* PartyCharadesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF2C20FB6E7EE34810CA960 /* PartyCharadesUITests.swift */; };
 		A5D36D178F5FDDBEBFA35B1C /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978B83DCD95B370848F83BC /* AppSettings.swift */; };
+		A7B82466FA62DB33FDD837EA /* TickSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = E643F3321D387529105BD6CF /* TickSound.swift */; };
 		A9DA88473FA1416ED51B0B8F /* Content in Frameworks */ = {isa = PBXBuildFile; productRef = 1BB0FD5FE388F9374E77E18C /* Content */; };
 		B401E064F8B8FBA50A5CA88C /* ReactionReelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE5248B042C59B4162E703 /* ReactionReelUITests.swift */; };
 		B6B38FD81A8C95D52759051F /* CaptureConsentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21846A1C3700CCF45FE6269 /* CaptureConsentUITests.swift */; };
@@ -95,6 +96,7 @@
 		DCCE01D34F62DE8A15280628 /* GuesserMatchEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuesserMatchEndView.swift; sourceTree = "<group>"; };
 		E21846A1C3700CCF45FE6269 /* CaptureConsentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureConsentUITests.swift; sourceTree = "<group>"; };
 		E2B0B6878F6C8BF330F572F1 /* Capture */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Capture; path = Packages/Capture; sourceTree = SOURCE_ROOT; };
+		E643F3321D387529105BD6CF /* TickSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickSound.swift; sourceTree = "<group>"; };
 		EE1215216DB3F102A8663BDA /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		F3013EC1B05836CA16FCAF9C /* ScoreFeedbackOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreFeedbackOverlay.swift; sourceTree = "<group>"; };
 		F92E868E3DB844ADCC62E383 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				F3013EC1B05836CA16FCAF9C /* ScoreFeedbackOverlay.swift */,
 				2C13A1E605BA4750BCE5A5F9 /* SingleScreenGameplayView.swift */,
 				8182CC4A86E8E72A305E9118 /* TabletopGameplayView.swift */,
+				E643F3321D387529105BD6CF /* TickSound.swift */,
 			);
 			path = Gameplay;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				4E9D469554FB2D612B725EF8 /* SingleScreenGameplayView.swift in Sources */,
 				D203CB7557C29F94D9ADF0B0 /* TabletopGameplayView.swift in Sources */,
 				F796F1C4CF3CE8E8C1923D73 /* Theme.swift in Sources */,
+				A7B82466FA62DB33FDD837EA /* TickSound.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
