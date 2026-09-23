@@ -35,7 +35,8 @@ struct RootView: View {
         // nothing and the match neither knows nor cares.
         .outerDisplay(
             isActive: coordinator.isOuterDisplayActive,
-            availability: coordinator.accessoryAvailability
+            availability: coordinator.accessoryAvailability,
+            onForwardCameras: { coordinator.forwardFacingCamerasChanged($0) }
         ) {
             coordinator.outerDisplayContent
         }

@@ -51,7 +51,7 @@ struct SingleScreenGameplayView: View {
                             engine.markSkipWithFeedback()
                         }
                         HitZoneButton(title: "Correct", tint: Color.green.opacity(0.85), foreground: .white) {
-                            engine.markCorrectWithFeedback()
+                            coordinator.recordCorrect()
                         }
                     }
                     .frame(height: halfHeight)

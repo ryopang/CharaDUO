@@ -35,6 +35,27 @@ final class AppCoordinator {
     private let captureSession = CaptureSessionController()
     #endif
 
+    /// PRD §5.5 — one highlight reel per completed turn that produced one,
+    /// keyed by the turn's index in `matchState.completedTurns`. Arrives a
+    /// moment after the turn ends (the last segment has to finish writing),
+    /// so the round summary shows its clip section when it lands rather than
+    /// ever waiting for it. Deleted with the match (PRD §7.2).
+    private(set) var reels: [Int: RoundReel] = [:]
+
+    /// The reel for the round summary currently on screen, if any.
+    var lastTurnReel: RoundReel? {
+        guard let engine, !engine.matchState.completedTurns.isEmpty else { return nil }
+        return reels[engine.matchState.completedTurns.count - 1]
+    }
+
+    /// Every reel of the match, in play order — the Game Over reel.
+    var matchReels: [(turn: TurnResult, reel: RoundReel)] {
+        guard let engine else { return [] }
+        return engine.matchState.completedTurns.enumerated().compactMap { index, turn in
+            reels[index].map { (turn, $0) }
+        }
+    }
+
     /// A pending configuration held while the consent card is up, so
     /// accepting or declining resumes the exact match the player asked for.
     private var pendingConfiguration: MatchConfiguration?
@@ -69,9 +90,11 @@ final class AppCoordinator {
         }
     }
 
+    /// Frames are going to disk right now — drives the recording
+    /// indicators on both displays (PRD §7.3).
     var isRecording: Bool {
         #if os(iOS)
-        return captureSession.isRunning
+        return captureSession.isRecording
         #else
         return false
         #endif
@@ -87,6 +110,9 @@ final class AppCoordinator {
     init(contentStore: ContentStore, settings: AppSettings = AppSettings()) {
         self.contentStore = contentStore
         self.settings = settings
+        #if os(iOS) && DEBUG
+        captureSession.usesSyntheticCamera = DebugOverrides.syntheticCamera
+        #endif
     }
 
     /// PRD §3.1 — the *only* posture event that pauses a match is `.closed`.
@@ -95,14 +121,14 @@ final class AppCoordinator {
         guard posture == .closed, screen == .gameplay, let engine, !engine.isPaused else { return }
         engine.pauseTurn()
         setIdleTimerDisabled(false)
-        stopCapture()
+        pauseCapture()
     }
 
     func resumeFromPause() {
         guard let engine, engine.isPaused else { return }
         engine.resumeTurn()
         setIdleTimerDisabled(true)
-        startCapture()
+        resumeCapture()
     }
 
     /// The pause button on the gameplay screens — a manual counterpart to
@@ -112,27 +138,103 @@ final class AppCoordinator {
         guard let engine, !engine.isPaused, screen == .gameplay else { return }
         engine.pauseTurn()
         setIdleTimerDisabled(false)
-        stopCapture()
+        pauseCapture()
     }
 
-    /// PRD §5.2 — capture runs only during an active round; the session is
-    /// torn down at round end. Its only M5 job is making the outer display
-    /// available (§1.2.2); M6 turns it into the actual reel.
-    private func startCapture() {
+    /// A Correct tap: score it, give feedback, and mark the reaction reel's
+    /// highlight at the same instant (PRD §5.5). Core stays capture-free.
+    func recordCorrect() {
+        guard let engine else { return }
+        engine.markCorrectWithFeedback()
         #if os(iOS)
-        let state = CaptureStateResolver.resolve(
+        captureSession.markHighlight()
+        #endif
+    }
+
+    /// From the direction coordinator living in the outer accessory scene
+    /// (PRD §1.3) — which cameras face the guessers, live as the hinge moves.
+    func forwardFacingCamerasChanged(_ candidates: [CameraDirectionResolver.Candidate]) {
+        #if os(iOS)
+        captureSession.forwardFacingCamerasChanged(candidates)
+        #endif
+    }
+
+    #if os(iOS)
+    /// PRD §5.6 — render once, at Save, at the chosen speed.
+    func save(_ reels: [RoundReel], speed: ReelSpeed) async -> ReelSaver.Outcome {
+        await ReelSaver.save(reels, speed: speed, store: captureSession.store)
+    }
+    #endif
+
+    // MARK: Capture lifecycle
+    //
+    // The session spans the match (CLAUDE.md §4 — the outer display mirrors
+    // summary and Game Over); recording spans only live rounds. Everything
+    // here degrades silently.
+
+    /// PRD §5.3 — resolved once, at match start.
+    private func resolvedCaptureState() -> CaptureState {
+        #if DEBUG
+        if let forced = DebugOverrides.captureState { return forced }
+        #endif
+        #if os(iOS)
+        return CaptureStateResolver.resolve(
             reactionCameraEnabled: settings.reactionCameraEnabled,
             cameraAuthorized: CapturePermissions.cameraAuthorized,
             audioEnabled: settings.reactionAudioEnabled,
             microphoneAuthorized: CapturePermissions.microphoneAuthorized
         )
-        captureSession.start(state: state)
+        #else
+        return .none
         #endif
     }
 
-    private func stopCapture() {
+    private func beginMatchCapture() {
+        reels = [:]
         #if os(iOS)
-        captureSession.stop()
+        captureSession.beginMatch(state: resolvedCaptureState())
+        #endif
+    }
+
+    private func beginRoundCapture() {
+        #if os(iOS)
+        captureSession.beginRound()
+        #endif
+    }
+
+    private func endRoundCapture(turnIndex: Int) {
+        #if os(iOS)
+        let session = captureSession
+        Task { [weak self] in
+            guard let reel = await session.endRound() else { return }
+            // The match may have been left while the last segment finished;
+            // footage for a match that no longer exists is deleted, not kept.
+            guard let self, self.engine != nil, self.engine?.matchState.completedTurns.count ?? 0 > turnIndex else {
+                for segment in reel.segments { try? FileManager.default.removeItem(at: segment.url) }
+                return
+            }
+            self.reels[turnIndex] = reel
+        }
+        #endif
+    }
+
+    private func pauseCapture() {
+        #if os(iOS)
+        captureSession.pauseRound()
+        #endif
+    }
+
+    private func resumeCapture() {
+        #if os(iOS)
+        captureSession.resumeRound()
+        #endif
+    }
+
+    /// Leaving the match: anything unsaved is deleted (PRD §4.2, §7.2.3).
+    private func endMatchCapture() {
+        reels = [:]
+        #if os(iOS)
+        captureSession.endMatch()
         #endif
     }
 
@@ -155,7 +257,7 @@ final class AppCoordinator {
         pendingConfiguration = nil
         screen = .home
         setIdleTimerDisabled(false)
-        stopCapture()
+        endMatchCapture()
     }
 
     /// Game Over → "New Custom Game": leaves the finished match behind (same
@@ -167,7 +269,7 @@ final class AppCoordinator {
         pendingConfiguration = nil
         screen = .customGame
         setIdleTimerDisabled(false)
-        stopCapture()
+        endMatchCapture()
     }
 
     /// Game Over → "Rematch": same configuration, fresh scores. Safe to
@@ -244,7 +346,8 @@ final class AppCoordinator {
             engine.startTurn()
             screen = .gameplay
             setIdleTimerDisabled(true)
-            startCapture()
+            beginMatchCapture()
+            beginRoundCapture()
             #if canImport(UIKit)
             FeedbackPlayer.shared.resetTickTracking()
             #endif
@@ -274,10 +377,11 @@ final class AppCoordinator {
         lastTurnResult = engine.endTurn()
         screen = .roundSummary
         setIdleTimerDisabled(false)
-        // Capture keeps running through round summary and Game Over now —
-        // the outer display needs an active session to stay lit that whole
-        // time (§1.2.2). It only stops in `returnHome()` /
-        // `startNewCustomGame()`, or implicitly restarts for the next match.
+        // Recording stops here; the session itself keeps running through
+        // round summary and Game Over — the outer display needs an active
+        // session to stay lit that whole time (§1.2.2). It only stops in
+        // `returnHome()` / `startNewCustomGame()`, or restarts for a rematch.
+        endRoundCapture(turnIndex: engine.matchState.completedTurns.count - 1)
     }
 
     func continueAfterRoundSummary() {
@@ -288,7 +392,7 @@ final class AppCoordinator {
             engine.startTurn()
             screen = .gameplay
             setIdleTimerDisabled(true)
-            startCapture()
+            beginRoundCapture()
             #if canImport(UIKit)
             FeedbackPlayer.shared.resetTickTracking()
             #endif

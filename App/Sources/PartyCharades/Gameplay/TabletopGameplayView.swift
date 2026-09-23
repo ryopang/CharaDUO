@@ -46,6 +46,8 @@ private struct TabletopSplitView: View {
     let containerSize: CGSize
     let now: ContinuousClock.Instant
 
+    @Environment(AppCoordinator.self) private var coordinator
+
     var body: some View {
         let flat = FoldGeometry.flatHalfLayout(flat: split.flat)
 
@@ -65,7 +67,7 @@ private struct TabletopSplitView: View {
                 .offset(x: flat.farEdge.minX, y: flat.farEdge.minY)
 
             HitZoneButton(title: "Correct", tint: Color.green.opacity(0.85), foreground: .white) {
-                engine.markCorrectWithFeedback()
+                coordinator.recordCorrect()
             }
             .frame(width: flat.correct.width, height: flat.correct.height)
             .offset(x: flat.correct.minX, y: flat.correct.minY)

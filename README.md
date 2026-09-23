@@ -1,4 +1,4 @@
-# Party Charades *(working title)*
+# CharaDUO
 
 A native iOS charades party game built for iPhone Duo's tabletop posture. The
 describer reads a word on the vertical inner half; the guessers watch a
@@ -11,14 +11,16 @@ outer-display features are an enhancement layer, never a requirement.
 **Full spec:** [`PRD v1 - Fun Duo Party Game.md`](./PRD%20v1%20-%20Fun%20Duo%20Party%20Game.md)
 **Working contract:** [`CLAUDE.md`](./CLAUDE.md)
 
-> "Party Charades" and the `com.ryopang.partycharades` bundle ID are
-> placeholders — see PRD §7.5. Final naming is an open item before App Store
-> submission.
+> **Name:** the app ships as **CharaDUO** (chosen 2026-09-23). The Xcode
+> project, target, module and bundle ID `com.ryopang.partycharades` keep the
+> old `PartyCharades` code name on purpose — brand-neutral identifiers make
+> any future rename a display-name change only. The "Duo" trademark risk
+> (Guideline 5.2.1) is a known, accepted risk.
 
 ## Status
 
-`v0.1.0` — 6 of 8 milestones complete. Not yet submitted; no hardware
-validation has been done (see M6/M8 below).
+`v0.1.0` — 7 of 8 milestones complete. Not yet submitted; no hardware
+validation has been done (see M8 below).
 
 Since the initial M7 pass, a second playtest-driven polish round tightened
 layout across the launch screen, Custom Game setup, in-round gameplay, and
@@ -36,9 +38,9 @@ re-rendering the digit even while `TimelineView` kept firing. The fix threads
 | M3 | Single-screen game — complete and shippable on any iPhone | ✅ |
 | M4 | Tabletop layout (hinge detection, crease-aware split, 180° far edge) | ✅ |
 | M5 | Outer display (accessory scene, scoreboard, availability handling) | ✅ |
-| M6 | Reaction camera (capture + audio, highlights, export, auto-delete) | ⬜ Needs real Duo hardware |
+| M6 | Reaction camera (capture + audio, highlights, export, auto-delete) | ✅ Simulator-verified; hardware pass in M8 |
 | M7 | Polish & accessibility | ✅ |
-| M8 | Submission (hardware validation, review notes, demo video, final name) | ⬜ Blocked on M6 |
+| M8 | Submission (hardware validation, review notes, demo video) | ⬜ |
 
 ## Requirements
 
@@ -109,16 +111,15 @@ settled and shouldn't be relitigated).
 
 ## Known gaps
 
-- **M6 (reaction camera)** is unbuilt. The outer display currently runs a
-  video-only capture session (just enough to make `CameraCaptureAccessory`
-  available, now kept alive for the whole match — including round summary
-  and Game Over — rather than just each timed round); there is no rolling
-  buffer, highlight extraction, or export yet. "Save Video" on the Game Over
-  screen is a visible but disabled stub until M6 lands.
+- **M6 (reaction camera) is verified on the simulator only**, through
+  `-uiTestSyntheticCamera` (generated frames + tone through the production
+  recorder, composer and exporter). Still needs a real Duo:
+  `AVCaptureDeviceDirectionCoordinator` resolution in the accessory scene,
+  the input swap when the hinge moves, horizon-level rotation of the
+  footage, and thermal step-down over a full 4-team match.
 - **Sound effects are placeholders.** Correct/Skip/countdown-tick haptics are
   fully implemented per spec; the accompanying chimes use built-in system
   sound IDs standing in for real designed audio assets.
-- **Final app name is undecided** (PRD §7.5).
 - Several Duo-specific paths (a real fold event through `onHingeChange`, the
   outer display actually being presented, real mid-round accessory
   revocation) have only been verified via DEBUG-only overrides on the iPhone

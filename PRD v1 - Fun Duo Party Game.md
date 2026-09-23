@@ -39,7 +39,7 @@ documentation or blog posts. **Do not design around anything not on this list.**
 | `AVCaptureDeviceDirectionCoordinator(view:deviceTypes:changeHandler:)` | AVKit | Resolve which cameras face the guessers, live as the device folds |
 | `AVCaptureDeviceDirectionMap.forwardFacingDeviceDescriptors` | AVKit | The cameras pointing at whatever is in front of a given view |
 | `AVCaptureDeviceTypeBuiltInOuterUltraWideCamera` / `...InnerUltraWideCamera` | AVFoundation | Duo's two camera clusters |
-| `AVCaptureSession.systemPressureCost` | AVFoundation | Thermal budget monitoring during long rounds |
+| `AVCaptureDevice.systemPressureState` | AVFoundation | Thermal budget monitoring during long rounds (*corrected in M6: `systemPressureCost` exists only on `AVCaptureMultiCamSession`*) |
 | `AVAudioTimePitchAlgorithmVarispeed` | AVFoundation | 2×/3× speed-up with pitch shift |
 | `UIHingeInteraction`, `UIHinge`, `UIHingeStatus` | UIKit | UIKit hinge equivalent (not needed; SwiftUI path is complete) |
 | `ArrangementView` / `UIArrangementViewController` | SwiftUI / UIKit | Adaptive two-pane container (used in setup, not gameplay) |
@@ -281,7 +281,7 @@ Three states, resolved at match start. Each degrades silently:
 The outer display requires a **video** capture session, not audio — so denying
 the microphone costs you sound on the reel and nothing else.
 
-Observe `systemPressureCost` throughout a round. If it climbs under thermal
+Observe the camera's `systemPressureState` throughout a round. If it climbs under thermal
 load, step down to 540p, then shorten the rolling buffer, then drop to **None**
 rather than letting the timer stutter. Gameplay smoothness outranks the reel.
 

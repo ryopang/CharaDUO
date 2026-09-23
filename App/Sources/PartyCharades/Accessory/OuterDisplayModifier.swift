@@ -29,6 +29,7 @@ struct OuterDisplayModifier: ViewModifier {
     let isActive: Bool
     let content: () -> OuterDisplayContent?
     let availability: AccessoryAvailability
+    let onForwardCameras: @MainActor ([CameraDirectionResolver.Candidate]) -> Void
 
     func body(content hostContent: Content) -> some View {
         #if os(iOS)
@@ -49,6 +50,9 @@ struct OuterDisplayModifier: ViewModifier {
                             Color.black.ignoresSafeArea()
                         }
                     }
+                    // PRD §1.3 — the camera facing the guessers is, by
+                    // definition, whatever faces *this* scene's view.
+                    .background { CameraDirectionProbe(onChange: onForwardCameras) }
                 }
                 .onAvailabilityChange { isAvailable in
                     // PRD §3.4: record it and do nothing else. No error, no
@@ -72,8 +76,75 @@ extension View {
     func outerDisplay(
         isActive: Bool,
         availability: AccessoryAvailability,
+        onForwardCameras: @escaping @MainActor ([CameraDirectionResolver.Candidate]) -> Void,
         content: @escaping () -> OuterDisplayContent?
     ) -> some View {
-        modifier(OuterDisplayModifier(isActive: isActive, content: content, availability: availability))
+        modifier(OuterDisplayModifier(
+            isActive: isActive,
+            content: content,
+            availability: availability,
+            onForwardCameras: onForwardCameras
+        ))
     }
 }
+
+#if os(iOS)
+import AVKit
+
+/// Hosts an `AVCaptureDeviceDirectionCoordinator` bound to a view inside the
+/// **outer accessory scene** (PRD §1.3). Its `forwardFacingDeviceDescriptors`
+/// are the cameras pointed at whatever is in front of the outer display —
+/// the guessers — recomputed live as the hinge moves.
+///
+/// Verified in the iOS 27.1 SDK, AVKit/AVCaptureDeviceDirectionCoordinator.h:
+///   - initWithView:deviceTypes:changeHandler: — "Initialize the coordinator
+///     only on the main thread"; the handler "is called on the main queue".
+///   - deviceDirections "Returns an empty map until the coordinator fires
+///     its first callback" — so nothing is read eagerly; we wait to be told.
+///
+/// The coordinator is created in `didMoveToWindow`, not `init`: until the
+/// view is in the accessory scene's window there is no display for the
+/// directions to be relative to.
+private struct CameraDirectionProbe: UIViewRepresentable {
+    let onChange: @MainActor ([CameraDirectionResolver.Candidate]) -> Void
+
+    func makeUIView(context: Context) -> ProbeView {
+        let view = ProbeView()
+        view.isUserInteractionEnabled = false
+        view.onChange = onChange
+        return view
+    }
+
+    func updateUIView(_ view: ProbeView, context: Context) {
+        view.onChange = onChange
+    }
+
+    final class ProbeView: UIView {
+        var onChange: (@MainActor ([CameraDirectionResolver.Candidate]) -> Void)?
+        private var coordinator: AnyObject?
+
+        override func didMoveToWindow() {
+            super.didMoveToWindow()
+            guard window != nil else {
+                coordinator = nil
+                return
+            }
+            guard coordinator == nil, #available(iOS 27.1, *) else { return }
+            coordinator = AVCaptureDeviceDirectionCoordinator(
+                view: self,
+                deviceTypes: [
+                    .builtInOuterUltraWideCamera,
+                    .builtInInnerUltraWideCamera,
+                    .builtInUltraWideCamera,
+                    .builtInWideAngleCamera,
+                ]
+            ) { [weak self] directions in
+                let candidates = directions.forwardFacingDeviceDescriptors.map {
+                    CameraDirectionResolver.Candidate(uniqueID: $0.uniqueID, deviceType: $0.deviceType.rawValue)
+                }
+                MainActor.assumeIsolated { self?.onChange?(candidates) }
+            }
+        }
+    }
+}
+#endif

@@ -1,3 +1,4 @@
+import Capture
 import Core
 import SwiftUI
 
@@ -9,6 +10,14 @@ import SwiftUI
 /// renders, off the same `MatchEndSnapshot`.
 struct MatchEndView: View {
     @Environment(AppCoordinator.self) private var coordinator
+    @State private var presentedReel: PresentedReel?
+
+    /// PRD §4.2 — per-round clips, or the whole reel.
+    struct PresentedReel: Identifiable {
+        let id = UUID()
+        let title: String
+        let reels: [RoundReel]
+    }
 
     var body: some View {
         if let engine = coordinator.engine {
@@ -22,6 +31,10 @@ struct MatchEndView: View {
                         VStack(spacing: 20) {
                             MatchEndHeaderView(snapshot: snapshot)
                             Standings(snapshot: snapshot)
+                            ReactionReelList(
+                                entries: reelEntries(engine: engine),
+                                onSelect: { presentedReel = $0 }
+                            )
                         }
                         .padding(.horizontal, 24)
                         .padding(.bottom, 16)
@@ -30,19 +43,24 @@ struct MatchEndView: View {
 
                     // Lower half: nothing but the next actions.
                     VStack(spacing: 12) {
-                        // M6 hasn't landed yet — there's no reel to save.
-                        // Kept visible (not hidden) so the option reads as
-                        // "coming soon," not missing.
-                        Button {
-                        } label: {
-                            Text("Save Video")
-                                .font(.title3.bold())
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 8)
+                        // PRD §4.2 — explicit Save for the whole reel.
+                        // Hidden when nothing was captured (PRD §5.7: the
+                        // clip section is simply omitted).
+                        if !coordinator.matchReels.isEmpty {
+                            Button {
+                                presentedReel = PresentedReel(
+                                    title: "Reaction Reel",
+                                    reels: coordinator.matchReels.map(\.reel)
+                                )
+                            } label: {
+                                Label("Save Reaction Reel", systemImage: "film.stack")
+                                    .font(.title3.bold())
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 8)
+                            }
+                            .buttonStyle(.glass)
+                            .controlSize(.large)
                         }
-                        .buttonStyle(.glass)
-                        .controlSize(.large)
-                        .disabled(true)
 
                         Button {
                             coordinator.rematch()
@@ -78,6 +96,50 @@ struct MatchEndView: View {
                     .padding(.horizontal, 24)
                     .padding(.vertical, 16)
                     .frame(height: proxy.size.height / 2)
+                }
+            }
+            .sheet(item: $presentedReel) { presented in
+                ReelSheet(title: presented.title, reels: presented.reels)
+            }
+        }
+    }
+
+    private func reelEntries(engine: GameEngine) -> [PresentedReel] {
+        coordinator.matchReels.map { turn, reel in
+            let team = engine.configuration.teams[turn.teamIndex].displayName(index: turn.teamIndex)
+            return PresentedReel(title: "\(team) · Round \(turn.roundIndex + 1)", reels: [reel])
+        }
+    }
+}
+
+/// PRD §4.2 — "all rounds' clips, playable per-round."
+private struct ReactionReelList: View {
+    let entries: [MatchEndView.PresentedReel]
+    let onSelect: (MatchEndView.PresentedReel) -> Void
+
+    var body: some View {
+        if !entries.isEmpty {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Reaction Replays")
+                    .font(.headline)
+                ForEach(entries) { entry in
+                    Button {
+                        onSelect(entry)
+                    } label: {
+                        HStack {
+                            Image(systemName: "play.circle.fill")
+                            Text(entry.title)
+                                .font(.subheadline.bold())
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 10)
+                        .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 10))
+                    }
+                    .buttonStyle(.plain)
                 }
             }
         }

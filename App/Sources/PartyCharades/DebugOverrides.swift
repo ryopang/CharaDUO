@@ -1,4 +1,5 @@
 #if DEBUG
+import Capture
 import CoreGraphics
 import Foundation
 import Posture
@@ -56,6 +57,25 @@ enum DebugOverrides {
     /// the same layout).
     static var contentLanguageRawValue: String? {
         value(for: "-uiTestContentLanguage")
+    }
+
+    /// `-uiTestCaptureState full|silent|none` — forces the PRD §5.3 capture
+    /// state, so Silent and None are exercisable without revoking real
+    /// permissions (CLAUDE.md §6).
+    static var captureState: CaptureState? {
+        switch value(for: "-uiTestCaptureState") {
+        case "full": return .full
+        case "silent": return .silent
+        case "none": return CaptureState.none
+        default: return nil
+        }
+    }
+
+    /// `-uiTestSyntheticCamera` — generated frames and tone through the real
+    /// recorder, so the whole reel path (segments, highlights, playback,
+    /// 1×/2×/3× export, deletion) runs on a simulator with no camera.
+    static var syntheticCamera: Bool {
+        arguments.contains("-uiTestSyntheticCamera")
     }
 
     private static func value(for flag: String) -> String? {

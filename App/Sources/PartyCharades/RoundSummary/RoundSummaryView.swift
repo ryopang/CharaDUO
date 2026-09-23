@@ -3,8 +3,9 @@ import Core
 import SwiftUI
 
 /// PRD §4.1 — score this round + running total, expandable list of every
-/// word with Correct/Skipped colour coding. No highlight-clip player until
-/// M6 wires up the reaction camera.
+/// word with Correct/Skipped colour coding, and — when the reaction camera
+/// caught any Corrects — the round's highlight clip (PRD §5.6), which never
+/// blocks "Next Team".
 ///
 /// Top half / bottom half split: the header (team, this round's correct
 /// count, game total, category) fills the upper half exactly as it does on
@@ -27,6 +28,18 @@ struct RoundSummaryView: View {
                     // stays pinned near the bottom edge so it's reachable
                     // without hunting through the word lists first.
                     VStack(spacing: 0) {
+                        // Arrives a beat after the round ends (the last
+                        // segment finishes writing); absent entirely when
+                        // capture was off or failed — no placeholder, no
+                        // explanation (PRD §5.7).
+                        if let reel = coordinator.lastTurnReel {
+                            HighlightClipCard(reel: reel, title: snapshot.teamName)
+                                .frame(height: min(150, proxy.size.height * 0.16))
+                                .padding(.horizontal, 16)
+                                .padding(.top, 8)
+                                .transition(.opacity)
+                        }
+
                         HStack(spacing: 0) {
                             WordColumn(
                                 title: "Correct Answers",
@@ -58,6 +71,7 @@ struct RoundSummaryView: View {
                         .padding(.top, 12)
                     }
                     .frame(height: proxy.size.height / 2)
+                    .animation(.easeOut(duration: 0.25), value: coordinator.lastTurnReel?.id)
                 }
             }
         }

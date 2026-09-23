@@ -41,12 +41,14 @@ targets:
     info:
       path: App/Info.plist
       properties:
-        CFBundleDisplayName: "Party Charades"
+        CFBundleDisplayName: "CharaDUO"
         CFBundleDevelopmentRegion: "en"
         # PRD §7.1 — explicit and honest: what is recorded, and that it
         # stays on the device.
-        NSCameraUsageDescription: "Party Charades records the guessing team's reactions during a round so you can watch the highlights together at the end of the match. Video stays on this device and is never uploaded."
-        NSMicrophoneUsageDescription: "Party Charades records the table's audio so the highlight reel has sound. Audio stays on this device, is never uploaded, and is never analysed."
+        NSCameraUsageDescription: "CharaDUO records the guessing team's reactions during a round so you can watch the highlights together at the end of the match. Video stays on this device and is never uploaded."
+        NSMicrophoneUsageDescription: "CharaDUO records the table's audio so the highlight reel has sound. Audio stays on this device, is never uploaded, and is never analysed."
+        # PRD §7.1 — requested only at the moment a player taps Save.
+        NSPhotoLibraryAddUsageDescription: "CharaDUO saves the reaction reel you choose to your photo library. Nothing is saved unless you tap Save."
         UILaunchScreen: {}
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait

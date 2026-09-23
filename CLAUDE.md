@@ -1,4 +1,11 @@
-# Project: Fun Duo Party Game (working title)
+# Project: CharaDUO
+
+> **Name history:** working title "Fun Duo Party Game" → code name
+> `PartyCharades` (M1–M7) → final name **CharaDUO** (2026-09-23; always Latin
+> script, every language). Only user-visible surfaces carry the new name. The
+> Xcode project/target/module and bundle ID `com.ryopang.partycharades` stay
+> `PartyCharades` **deliberately** — do not rename them. The "Duo" trademark
+> risk (Guideline 5.2.1, §7) is accepted by the owner; note it in M8 review notes.
 
 Native iOS charades party game for iPhone Duo's tabletop posture.
 **Full spec: [`PRD v1 - Fun Duo Party Game.md`](./PRD%20v1%20-%20Fun%20Duo%20Party%20Game.md)** — read the
@@ -107,7 +114,8 @@ around anything not on this list without verifying it first.**
 | `AVCaptureDeviceDirectionCoordinator(view:deviceTypes:changeHandler:)` | AVKit | Which cameras face a given view, live as the device folds |
 | `AVCaptureDeviceDirectionMap.forwardFacingDeviceDescriptors` | AVKit | The cameras pointing at the guessers |
 | `AVCaptureDeviceTypeBuiltInOuterUltraWideCamera` / `...InnerUltraWideCamera` | AVFoundation | Duo camera clusters |
-| `AVCaptureSession.systemPressureCost` | AVFoundation | Thermal monitoring during long rounds |
+| `AVCaptureDevice.systemPressureState.level` | AVFoundation | Thermal monitoring during long rounds. ⚠️ `systemPressureCost` is **`AVCaptureMultiCamSession`-only** (AVCaptureSession.h:847) — not on the single-camera `AVCaptureSession` used here |
+| `AVCaptureSession.synchronizationClock` | AVFoundation | Stamps Correct taps on the same clock as the recorded frames |
 | `AVMutableComposition.scaleTimeRange(_:toDuration:)` | AVFoundation | 2×/3× export |
 | `AVAudioTimePitchAlgorithmVarispeed` | AVFoundation | Speed-up with pitch shift (intentional — see §4) |
 
@@ -155,12 +163,27 @@ around anything not on this list without verifying it first.**
   inner camera can't frame them usefully in tabletop posture. Audio already
   carries their performance. Do not add a second camera feed.
 - The capture session (what makes the outer display available at all — it
-  requires an active `AVCaptureSession`) now spans a whole match, not just
-  each timed round: it starts at match begin and stays running through round
+  requires an active `AVCaptureSession`) spans a whole match, not just each
+  timed round: it starts at match begin and stays running through round
   summary and Game Over, so the outer display can mirror those screens too.
   It only tears down when the player actually leaves the match (home, a new
-  custom game) or pauses. No footage is written to disk yet (M6), so this
-  only extends how long a live, unsaved preview session runs.
+  custom game, rematch) or pauses.
+- **Recording** is narrower than the session: only during a live, unpaused
+  round, only after the direction coordinator in the accessory scene has
+  named the camera facing the guessers, and never after thermal pressure
+  hits `.critical`. The mic input and `.playAndRecord` are attached per round
+  and removed at round end. The session only starts on Duo hardware
+  (detected via the outer ultra-wide device type), so non-Duo iPhones never
+  light the camera indicator.
+- The rolling buffer is rotating ~2s `AVAssetWriter` segment files, pruned
+  live; at round end only segments under highlight windows survive. All
+  footage lives in `tmp/ReactionReel`, purged on launch and whenever the
+  match is left.
+- **Swift 6 trap:** a closure written inside a `@MainActor` type that
+  AVFoundation/Photos calls on its own queue (KVO handlers, `performChanges`)
+  is inferred main-actor isolated and **traps at runtime**. Build such
+  closures in `nonisolated` functions. This already crashed once (Photos
+  save); the capture KVO paths only run on hardware.
 - Export is **deferred to Save**, never live. Speed is a render parameter.
 - Varispeed pitch shift at 2×/3× is **intentional**. Chipmunked audio is the joke.
   Do not "fix" it with pitch correction.
@@ -169,8 +192,10 @@ around anything not on this list without verifying it first.**
 - Countdown is **descending digits** with a **green → amber → red** background ramp.
   Never green→red directly — that's the one palette red-green colour deficiency
   can't read. Digits are the primary channel; colour is never the only cue.
-- Full gradient on the flat far edge and outer display. **Restrained on the
-  describer's lid** — a colour wash would fight the word's legibility.
+- The countdown colour is **one flat colour filling the whole area**, migrating
+  green → amber → red (no bottom-up wipe). Applies to the single-screen top half,
+  the flat far edge, the outer display **and the entire describer lid** (changed
+  2026-09-23) — keep the word legible on the lid with a high-contrast card.
 
 **Failure handling**
 - Capture, accessory availability and posture changes all degrade **silently**.
@@ -188,7 +213,8 @@ Update the status marks as work lands.
 - [x] **M3** Single-screen game — **complete and shippable on any iPhone**
 - [x] **M4** Tabletop layout — hinge detection, crease-aware split, 180° far edge
 - [x] **M5** Outer display — accessory scene, mid-round revocation handling
-- [ ] **M6** Reaction camera — capture + audio, highlights, 1×/2×/3× export, auto-delete
+- [x] **M6** Reaction camera — capture + audio, highlights, 1×/2×/3× export, auto-delete
+  *(simulator-verified via `-uiTestSyntheticCamera`; direction resolution, camera swap on hinge move and thermal step-down need a real Duo — M8)*
 - [x] **M7** Polish & accessibility
 - [ ] **M8** Submission — hardware validation, review notes, demo video, final name
 
@@ -204,6 +230,12 @@ two-sided version will not save it. Do not start M4 until M3 stands alone.
 - Capture states (Full / Silent / None) and accessory availability must be
   **forceable by a debug setting**, so every path is exercisable without real
   permission revocation or real hardware failure.
+  `-uiTestCaptureState full|silent|none` forces the state;
+  `-uiTestSyntheticCamera` feeds generated frames + tone through the real
+  recorder so the whole reel path runs on the simulator.
+- Package tests: `swift test --package-path Packages/X --scratch-path "$TMPDIR/sb-X"`.
+  The scratch path matters — building inside `~/Documents` fails codesign on
+  iCloud file attributes ("resource fork … not allowed").
 - Unit-test: scoring incl. skip penalty, deck exhaustion and reshuffle, timer
   correctness across background/foreground, highlight window extraction, gradient
   colour at arbitrary elapsed fractions.

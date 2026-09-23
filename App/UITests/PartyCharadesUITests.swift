@@ -57,6 +57,12 @@ final class PartyCharadesUITests: XCTestCase {
 
         app.buttons["30s"].tap()
 
+        // Categories start unselected (setup rework), which leaves Start
+        // Game disabled until at least one is on.
+        let animal = app.switches.matching(NSPredicate(format: "label CONTAINS 'Animal'")).firstMatch
+        XCTAssertTrue(animal.waitForExistence(timeout: 5))
+        animal.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5)).tap()
+
         let startMatch = app.buttons["Start Game"]
         let form = app.collectionViews.firstMatch
         for _ in 0..<10 where !startMatch.isHittable {

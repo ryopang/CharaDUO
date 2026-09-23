@@ -1,8 +1,15 @@
+import Capture
 import Content
 import SwiftUI
 
 @main
 struct PartyCharadesApp: App {
+    init() {
+        // PRD §7.2.3 — a crash must never leave footage of someone's friends
+        // on the device. Whatever a previous launch left behind goes now.
+        ReelStore().purgeAll()
+    }
+
     var body: some Scene {
         WindowGroup {
             RootView()

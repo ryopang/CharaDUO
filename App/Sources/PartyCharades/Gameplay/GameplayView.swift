@@ -30,6 +30,16 @@ struct GameplayView: View {
                 PausedView()
             } else {
                 layout(for: engine, now: now)
+                    // PRD §7.3 — a smaller recording indicator on the inner
+                    // display too: the describer's voice is captured even
+                    // though their picture isn't.
+                    .overlay(alignment: .topLeading) {
+                        if coordinator.isRecording {
+                            InnerRecordingIndicator()
+                                .padding(.top, 20)
+                                .padding(.leading, 16)
+                        }
+                    }
                     // PRD §3.2 — the lid carries the word and nothing else;
                     // the system clock sitting on top of it is exactly the
                     // kind of competing element that costs legibility
@@ -57,5 +67,25 @@ struct GameplayView: View {
         case .flat, .closed, .noHinge:
             SingleScreenGameplayView(engine: engine, now: now)
         }
+    }
+}
+
+/// Deliberately small: on the describer's side it's a disclosure, not a
+/// feature, and it must not compete with the word.
+private struct InnerRecordingIndicator: View {
+    var body: some View {
+        HStack(spacing: 4) {
+            Circle()
+                .fill(.red)
+                .frame(width: 7, height: 7)
+            Text("REC")
+                .font(.caption2.bold())
+                .foregroundStyle(.secondary)
+        }
+        .padding(.horizontal, 7)
+        .padding(.vertical, 4)
+        .background(.black.opacity(0.35), in: Capsule())
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text("Recording"))
     }
 }
