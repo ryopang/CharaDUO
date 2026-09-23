@@ -19,8 +19,14 @@ outer-display features are an enhancement layer, never a requirement.
 
 ## Status
 
-`v0.1.0` — 7 of 8 milestones complete. Not yet submitted; no hardware
-validation has been done (see M8 below).
+`v1.0.0` (build 1) — M1–M7 complete plus the 2026-09-23 design refresh (icon,
+launch screen, always-dark purple theme, SF Rounded, full-area countdown
+colour, tick sound, four-language UI). M8 is partly done: privacy manifest,
+export-compliance key, review notes, App Store metadata draft, demo shot list
+and hardware checklist are in [`Submission/`](./Submission). **Still needs a
+real iPhone Duo** (hardware validation, demo video) and the owner's QA of the
+translations in `CharaDUO-UI-strings.xlsx` (re-import with
+`Scripts/l10n/xcstrings_xlsx.py import`).
 
 Since the initial M7 pass, a second playtest-driven polish round tightened
 layout across the launch screen, Custom Game setup, in-round gameplay, and
@@ -40,7 +46,7 @@ re-rendering the digit even while `TimelineView` kept firing. The fix threads
 | M5 | Outer display (accessory scene, scoreboard, availability handling) | ✅ |
 | M6 | Reaction camera (capture + audio, highlights, export, auto-delete) | ✅ Simulator-verified; hardware pass in M8 |
 | M7 | Polish & accessibility | ✅ |
-| M8 | Submission (hardware validation, review notes, demo video) | ⬜ |
+| M8 | Submission (hardware validation, review notes, demo video) | 🟨 Docs + manifests done; hardware pass and video pending |
 
 ## Requirements
 

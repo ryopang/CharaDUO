@@ -26,6 +26,7 @@
 		5C72BE5FEB86CA0F9E3E8469 /* CaptureConsentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9EEE0FBF144B1A7332E3C4 /* CaptureConsentView.swift */; };
 		65D25BCC75709A6FFFF5D6C7 /* RoundSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198052BA4B073265A3EC5459 /* RoundSummaryView.swift */; };
 		7A591568BB16B05158620BD9 /* CountdownPulseModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA71BABBF4BC9AB926245821 /* CountdownPulseModifier.swift */; };
+		87F02FD684222DCBA77B67A9 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 07DD83FB50DF50E1C13B7E84 /* PrivacyInfo.xcprivacy */; };
 		8E433E792CC1CD0D1732F3A3 /* ScoreFeedbackOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3013EC1B05836CA16FCAF9C /* ScoreFeedbackOverlay.swift */; };
 		92B7206261213AD2FACF86E1 /* Posture in Frameworks */ = {isa = PBXBuildFile; productRef = E438210B9F6D056287FA6712 /* Posture */; };
 		94EB2E3649E591A6786C3BBB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92E868E3DB844ADCC62E383 /* HomeView.swift */; };
@@ -63,6 +64,7 @@
 
 /* Begin PBXFileReference section */
 		03624074A219976D1AA73E91 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		07DD83FB50DF50E1C13B7E84 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		0F9EEE0FBF144B1A7332E3C4 /* CaptureConsentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureConsentView.swift; sourceTree = "<group>"; };
 		10BBB8B83A32F2F61F9BB713 /* MatchEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchEndView.swift; sourceTree = "<group>"; };
 		142AD7A50FA4032F2013A74D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				B6FFDCD3519F08BE40B795A3 /* Assets.xcassets */,
 				1D7C401FBDFD5A3FC125F9AA /* InfoPlist.xcstrings */,
 				03624074A219976D1AA73E91 /* Localizable.xcstrings */,
+				07DD83FB50DF50E1C13B7E84 /* PrivacyInfo.xcprivacy */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				CBBF1463696A7E4A9DD15C47 /* Assets.xcassets in Resources */,
 				B4C76C086C828316BAF77045 /* InfoPlist.xcstrings in Resources */,
 				0F1BE1A3BE6F12BB81C63BB4 /* Localizable.xcstrings in Resources */,
+				87F02FD684222DCBA77B67A9 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,7 +463,7 @@
 					"@executable_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryopang.partycharades;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -585,7 +589,7 @@
 					"@executable_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryopang.partycharades;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
