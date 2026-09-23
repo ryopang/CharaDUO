@@ -21,9 +21,13 @@ outer-display features are an enhancement layer, never a requirement.
 
 ## Status
 
-`v1.2.1` (build 4). M1–M7 are complete, M8 is in progress. **Still needs a real
+`v1.2.2` (build 5). M1–M7 are complete, M8 is in progress. **Still needs a real
 iPhone Duo** for the hardware pass and the demo video; the checklist is in
 [`Submission/HARDWARE-VALIDATION.md`](./Submission/HARDWARE-VALIDATION.md).
+
+### 1.2.2 (2026-09-23)
+
+- **Category emoji:** Food is now 🍽️ and Sightseeing is 📸.
 
 ### 1.2.1 (2026-09-23)
 
@@ -41,7 +45,7 @@ iPhone Duo** for the hardware pass and the demo video; the checklist is in
 
 - **Outer display redesign.** Top to bottom: category name, countdown, one
   category emoji per letter or CJK character of the answer ("Avengers" → 8 🦸,
-  "蛋撻" → 2 🍔) with gaps between words, then a team/score pill. The emoji row
+  "蛋撻" → 2 🍽️) with gaps between words, then a team/score pill. The emoji row
   is the biggest element and shrinks to fit long titles. Only the answer's
   shape reaches the outer display, never the word.
 - **Outer display turns a quarter turn clockwise in tabletop**, so it reads
