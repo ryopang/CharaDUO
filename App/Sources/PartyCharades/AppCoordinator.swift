@@ -40,10 +40,33 @@ final class AppCoordinator {
     private var pendingConfiguration: MatchConfiguration?
 
     /// PRD §3.4 — what the outer display draws, or nil when there's nothing
-    /// to show. Read-only projection; see `ScoreboardSnapshot`.
-    var scoreboardSnapshot: ScoreboardSnapshot? {
-        guard screen == .gameplay, let engine, !engine.isPaused else { return nil }
-        return engine.scoreboardSnapshot(isRecording: isRecording)
+    /// to show. Read-only projection; see `OuterDisplayContent`. Stays lit
+    /// through round summary and Game Over now, not just the live round, so
+    /// the capture session that makes the accessory available has to
+    /// survive that long too — see `endCurrentTurn()`.
+    var outerDisplayContent: OuterDisplayContent? {
+        switch screen {
+        case .gameplay:
+            guard let engine, !engine.isPaused,
+                  let snapshot = engine.scoreboardSnapshot(isRecording: isRecording) else { return nil }
+            return .liveRound(snapshot)
+        case .roundSummary:
+            guard let engine, let lastTurnResult else { return nil }
+            return .roundSummary(engine.roundSummarySnapshot(for: lastTurnResult))
+        case .matchEnd:
+            guard let engine else { return nil }
+            return .matchEnd(engine.matchState.matchEndSnapshot)
+        case .home, .customGame, .captureConsent:
+            return nil
+        }
+    }
+
+    /// Whether the outer-display scene accessory should be presented at all.
+    var isOuterDisplayActive: Bool {
+        switch screen {
+        case .gameplay, .roundSummary, .matchEnd: return true
+        case .home, .customGame, .captureConsent: return false
+        }
     }
 
     var isRecording: Bool {
@@ -80,6 +103,16 @@ final class AppCoordinator {
         engine.resumeTurn()
         setIdleTimerDisabled(true)
         startCapture()
+    }
+
+    /// The pause button on the gameplay screens — a manual counterpart to
+    /// `postureChanged(to: .closed)`. Lands on the same `PausedView`, which
+    /// now offers both Resume and Exit regardless of which triggered it.
+    func pauseMatch() {
+        guard let engine, !engine.isPaused, screen == .gameplay else { return }
+        engine.pauseTurn()
+        setIdleTimerDisabled(false)
+        stopCapture()
     }
 
     /// PRD §5.2 — capture runs only during an active round; the session is
@@ -125,14 +158,36 @@ final class AppCoordinator {
         stopCapture()
     }
 
-    /// PRD §2.4 Quick Play: one tap, 2 teams, all categories, 60s, 3 rounds,
-    /// last-used language. No naming, no toggles.
+    /// Game Over → "New Custom Game": leaves the finished match behind (same
+    /// cleanup as `returnHome()`) but lands on Custom Game instead of Home.
+    func startNewCustomGame() {
+        engine = nil
+        lastTurnResult = nil
+        startError = nil
+        pendingConfiguration = nil
+        screen = .customGame
+        setIdleTimerDisabled(false)
+        stopCapture()
+    }
+
+    /// Game Over → "Rematch": same configuration, fresh scores. Safe to
+    /// reuse `engine.configuration` directly — `MatchState` copies
+    /// `configuration.teams` on init rather than mutating them in place, so
+    /// the original teams are still sitting at `score: 0`.
+    func rematch() {
+        guard let engine else { return }
+        start(with: engine.configuration)
+    }
+
+    /// PRD §2.4 Quick Play: one tap, 2 teams, 1 random category, 60s, 2
+    /// rounds, last-used language. No naming, no toggles.
     func startQuickPlay() {
+        let category = GameCategory.allCases.randomElement() ?? .movie
         start(with: MatchConfiguration(
             teams: [Team(), Team()],
-            roundsPerTeam: 3,
+            roundsPerTeam: 2,
             roundDuration: .default,
-            categories: Set(GameCategory.allCases),
+            categories: [category],
             language: settings.lastUsedLanguage,
             skipPenaltyEnabled: false
         ))
@@ -219,7 +274,10 @@ final class AppCoordinator {
         lastTurnResult = engine.endTurn()
         screen = .roundSummary
         setIdleTimerDisabled(false)
-        stopCapture()
+        // Capture keeps running through round summary and Game Over now —
+        // the outer display needs an active session to stay lit that whole
+        // time (§1.2.2). It only stops in `returnHome()` /
+        // `startNewCustomGame()`, or implicitly restarts for the next match.
     }
 
     func continueAfterRoundSummary() {

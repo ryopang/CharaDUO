@@ -75,7 +75,28 @@ private struct TabletopSplitView: View {
             }
             .frame(width: flat.skip.width, height: flat.skip.height)
             .offset(x: flat.skip.minX, y: flat.skip.minY)
+
+            // Centered over the flat half (where the describer is actually
+            // looking when they tap) rather than the whole container.
+            ScoreFeedbackOverlay(feedback: engine.lastFeedback)
+                .frame(width: split.flat.width, height: split.flat.height)
+                .offset(x: split.flat.minX, y: split.flat.minY)
         }
+    }
+}
+
+private struct TabletopPauseButton: View {
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Image(systemName: "pause.circle.fill")
+                .font(.title2)
+                .foregroundStyle(.white, .black.opacity(0.35))
+                .background(.ultraThinMaterial, in: Circle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel(Text("Pause"))
     }
 }
 
@@ -85,6 +106,8 @@ private struct TabletopSplitView: View {
 /// border inset, never a full background wash that would fight the word.
 private struct DescriberLidView: View {
     let engine: GameEngine
+
+    @Environment(AppCoordinator.self) private var coordinator
 
     // PRD §11.1 / §3.2 — the word is "the single most important element in
     // the app", sized to fill the surface; Dynamic Type has to grow it
@@ -106,7 +129,7 @@ private struct DescriberLidView: View {
 
             VStack(spacing: 16) {
                 if let word = engine.currentWord {
-                    Text(word.category.displayName.uppercased())
+                    Text(word.category.emojiDisplayName.uppercased())
                         .font(.caption.bold())
                         .foregroundStyle(.secondary)
 
@@ -138,6 +161,10 @@ private struct DescriberLidView: View {
                 .strokeBorder(urgency, lineWidth: 5)
                 .padding(6)
         )
+        .overlay(alignment: .topTrailing) {
+            TabletopPauseButton { coordinator.pauseMatch() }
+                .padding(12)
+        }
     }
 }
 
@@ -147,6 +174,7 @@ private struct DescriberLidView: View {
 private struct GuesserFarEdgeView: View {
     let engine: GameEngine
 
+    @Environment(AppCoordinator.self) private var coordinator
     @ScaledMetric(relativeTo: .largeTitle) private var timerSize: CGFloat = 64
     @Environment(\.colorSchemeContrast) private var colorSchemeContrast
 
@@ -181,6 +209,10 @@ private struct GuesserFarEdgeView: View {
                 }
                 .foregroundStyle(foreground.opacity(0.75))
             }
+        }
+        .overlay(alignment: .topTrailing) {
+            TabletopPauseButton { coordinator.pauseMatch() }
+                .padding(12)
         }
     }
 }

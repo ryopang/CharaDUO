@@ -1,66 +1,121 @@
+import Content
 import Core
 import SwiftUI
 
 /// PRD §4.1 — score this round + running total, expandable list of every
 /// word with Correct/Skipped colour coding. No highlight-clip player until
 /// M6 wires up the reaction camera.
+///
+/// Top half / bottom half split: the header (team, this round's correct
+/// count, game total, category) fills the upper half exactly as it does on
+/// the outer display's mirror (`GuesserRoundSummaryView`) — both render the
+/// same `RoundSummaryHeaderView` off the same `RoundSummarySnapshot` so the
+/// two surfaces never drift apart.
 struct RoundSummaryView: View {
     @Environment(AppCoordinator.self) private var coordinator
 
     var body: some View {
         if let engine = coordinator.engine, let result = coordinator.lastTurnResult {
-            let team = engine.matchState.teams[result.teamIndex]
+            let snapshot = engine.roundSummarySnapshot(for: result)
 
-            VStack(spacing: 0) {
-                VStack(spacing: 8) {
-                    Text(team.displayName(index: result.teamIndex))
-                        .font(.title.bold())
-                    Text("+\(result.score) this round")
-                        .font(.title3)
-                        .foregroundStyle(.secondary)
-                    Text("Total: \(team.score)")
-                        .font(.headline)
-                    if result.deckReshuffled {
-                        Text("Deck reshuffled")
-                            .font(.footnote)
-                            .foregroundStyle(.secondary)
+            GeometryReader { proxy in
+                VStack(spacing: 0) {
+                    RoundSummaryHeaderView(snapshot: snapshot)
+                        .frame(height: proxy.size.height / 2)
+
+                    ZStack {
+                        HStack(spacing: 0) {
+                            WordColumn(
+                                title: "Correct Answers",
+                                words: snapshot.correctWords,
+                                language: snapshot.language,
+                                tint: .green
+                            )
+                            Divider()
+                            WordColumn(
+                                title: "Skipped",
+                                words: snapshot.skippedWords,
+                                language: snapshot.language,
+                                tint: .secondary
+                            )
+                        }
+
+                        // Centered over both columns rather than docked to
+                        // an edge, so both stay fully visible/scrollable.
+                        Button {
+                            coordinator.continueAfterRoundSummary()
+                        } label: {
+                            Text(snapshot.isMatchComplete ? "See Results" : "Next Team")
+                                .font(.title3.bold())
+                                .padding(.horizontal, 28)
+                                .padding(.vertical, 14)
+                        }
+                        .buttonStyle(.glassProminent)
+                        .controlSize(.large)
                     }
+                    .frame(height: proxy.size.height / 2)
                 }
-                .padding()
-
-                List(Array(result.events.enumerated()), id: \.offset) { _, event in
-                    let wordText = event.word.localizations[engine.configuration.language] ?? event.word.localizations[.english] ?? ""
-                    HStack {
-                        Text(wordText)
-                        Spacer()
-                        Image(systemName: event.kind == .correct ? "checkmark.circle.fill" : "xmark.circle")
-                            .foregroundStyle(event.kind == .correct ? .green : .secondary)
-                            .accessibilityHidden(true)
-                    }
-                    // PRD §11.1 — round results must be readable by
-                    // VoiceOver. The icon carries no text on its own, so the
-                    // row combines into one statement ("Titanic, Correct")
-                    // with an explicit label rather than relying on the
-                    // icon's default SF Symbol name.
-                    .accessibilityElement(children: .ignore)
-                    .accessibilityLabel(Text("\(wordText), \(event.kind == .correct ? "Correct" : "Skipped")"))
-                }
-                .listStyle(.plain)
-
-                Button {
-                    coordinator.continueAfterRoundSummary()
-                } label: {
-                    Text(engine.matchState.isMatchComplete ? "See Results" : "Next Team")
-                        .font(.title3.bold())
-                        .multilineTextAlignment(.center)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 8)
-                }
-                .buttonStyle(.glassProminent)
-                .controlSize(.large)
-                .padding()
             }
         }
+    }
+}
+
+/// Shared by `RoundSummaryView`'s upper half and `GuesserRoundSummaryView`
+/// (the outer-display mirror) — one view, so "both will show exactly the
+/// same thing" is structural rather than two copies that can drift.
+struct RoundSummaryHeaderView: View {
+    let snapshot: RoundSummarySnapshot
+
+    var body: some View {
+        VStack(spacing: 12) {
+            Text(snapshot.teamName)
+                .font(.system(size: 40, weight: .bold, design: .rounded))
+            Text("\(snapshot.correctThisRound) correct answer\(snapshot.correctThisRound == 1 ? "" : "s") this round")
+                .font(.system(size: 32, weight: .heavy, design: .rounded))
+            HStack(spacing: 20) {
+                Text("Total: \(snapshot.totalCorrectForGame)")
+                if let category = snapshot.categoryLabel {
+                    Text(category.emojiDisplayName)
+                } else {
+                    Text("Multiple Categories")
+                }
+            }
+            .font(.title3.bold())
+            .foregroundStyle(.secondary)
+        }
+        .multilineTextAlignment(.center)
+        .fixedSize(horizontal: false, vertical: true)
+        .padding(24)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
+
+private struct WordColumn: View {
+    let title: String
+    let words: [GameWord]
+    let language: ContentLanguage
+    let tint: Color
+
+    var body: some View {
+        VStack(spacing: 0) {
+            Text("\(title) (\(words.count))")
+                .font(.headline)
+                .foregroundStyle(tint)
+                .padding(.top, 12)
+                .padding(.bottom, 4)
+
+            List(Array(words.enumerated()), id: \.offset) { _, word in
+                let wordText = word.text(in: language)
+                Text(wordText)
+                    // PRD §11.1 — round results must be readable by
+                    // VoiceOver; the column header alone isn't announced per
+                    // row, so each row states its own status explicitly.
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(Text("\(wordText), \(title)"))
+            }
+            .listStyle(.plain)
+            .scrollContentBackground(.hidden)
+        }
+        .frame(maxWidth: .infinity)
     }
 }

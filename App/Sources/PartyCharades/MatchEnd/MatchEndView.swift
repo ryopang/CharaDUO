@@ -1,82 +1,149 @@
+import Core
 import SwiftUI
 
-/// PRD §4.2 — final standings and winner celebration. No reaction reel or
-/// save prompt until M6.
+/// PRD §4.2 — final standings and winner celebration.
+///
+/// Top half / bottom half split, mirroring `RoundSummaryView`: the header
+/// ("Game Over" + winner) fills the upper half and is the exact same view
+/// (`MatchEndHeaderView`) the outer display's mirror (`GuesserMatchEndView`)
+/// renders, off the same `MatchEndSnapshot`.
 struct MatchEndView: View {
     @Environment(AppCoordinator.self) private var coordinator
+    @State private var showingSettings = false
 
     var body: some View {
         if let engine = coordinator.engine {
-            let teams = engine.matchState.teams
-            let winners = engine.matchState.winningTeams
+            let snapshot = engine.matchState.matchEndSnapshot
 
-            ScrollableCenteredColumn {
-                Spacer(minLength: 16)
+            GeometryReader { proxy in
+                VStack(spacing: 0) {
+                    MatchEndHeaderView(snapshot: snapshot)
+                        .frame(height: proxy.size.height / 2)
 
-                Text("Match Complete")
-                    .font(.largeTitle.bold())
-                    .multilineTextAlignment(.center)
-                    .fixedSize(horizontal: false, vertical: true)
+                    ScrollView {
+                        VStack(spacing: 24) {
+                            Standings(snapshot: snapshot)
 
-                if winners.count == 1, let winner = winners.first,
-                   let index = teams.firstIndex(where: { $0.id == winner.id }) {
-                    Text("\(winner.displayName(index: index)) wins!")
-                        .font(.title2)
-                        .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
-                        .fixedSize(horizontal: false, vertical: true)
-                } else if winners.count > 1 {
-                    Text("It's a tie!")
-                        .font(.title2)
-                        .foregroundStyle(.secondary)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
+                            VStack(spacing: 12) {
+                                // M6 hasn't landed yet — there's no reel to
+                                // save. Kept visible (not hidden) so the
+                                // option reads as "coming soon," not missing.
+                                Button {
+                                } label: {
+                                    Text("Save Video")
+                                        .font(.title3.bold())
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 8)
+                                }
+                                .buttonStyle(.glass)
+                                .controlSize(.large)
+                                .disabled(true)
 
-                // PRD §11 — native Liquid Glass via the system's own glass
-                // APIs, not a hand-rolled translucency effect.
-                // GlassEffectContainer groups the per-team cards so nearby
-                // glass shapes merge/morph correctly instead of each
-                // rendering its own independent effect.
-                GlassEffectContainer(spacing: 12) {
-                    VStack(spacing: 12) {
-                        ForEach(Array(teams.enumerated()), id: \.element.id) { index, team in
-                            HStack {
-                                Text(team.displayName(index: index))
-                                    .font(.headline)
-                                    .fixedSize(horizontal: false, vertical: true)
-                                Spacer()
-                                Text("\(team.score)")
-                                    .font(.headline.monospacedDigit())
+                                Button {
+                                    coordinator.rematch()
+                                } label: {
+                                    Text("Rematch")
+                                        .font(.title3.bold())
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 8)
+                                }
+                                .buttonStyle(.glassProminent)
+                                .controlSize(.large)
+
+                                Button {
+                                    coordinator.startNewCustomGame()
+                                } label: {
+                                    Text("New Custom Game")
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 4)
+                                }
+                                .buttonStyle(.glass)
+                                .controlSize(.large)
+
+                                Button {
+                                    showingSettings = true
+                                } label: {
+                                    Text("Settings")
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 4)
+                                }
+                                .buttonStyle(.glass)
+                                .controlSize(.large)
+
+                                Button {
+                                    coordinator.returnHome()
+                                } label: {
+                                    Text("Back to Home")
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 4)
+                                }
+                                .buttonStyle(.glass)
+                                .controlSize(.large)
                             }
-                            .padding()
-                            .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 12))
-                            // PRD §11.1 — scores must be readable by
-                            // VoiceOver. Combined so it reads as one
-                            // statement ("Team 1, score 5") rather than two
-                            // separate swipe stops.
-                            .accessibilityElement(children: .combine)
                         }
+                        .padding(.horizontal, 24)
+                        .padding(.vertical, 16)
                     }
+                    .frame(height: proxy.size.height / 2)
                 }
-                .padding(.horizontal, 24)
+            }
+            .sheet(isPresented: $showingSettings) {
+                SettingsView()
+            }
+        }
+    }
+}
 
-                Spacer(minLength: 16)
+/// Shared by `MatchEndView`'s upper half and `GuesserMatchEndView` (the
+/// outer-display mirror).
+struct MatchEndHeaderView: View {
+    let snapshot: MatchEndSnapshot
 
-                Button {
-                    coordinator.returnHome()
-                } label: {
-                    Text("Back to Home")
-                        .font(.title3.bold())
-                        .multilineTextAlignment(.center)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 8)
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("Game Over")
+                .font(.system(size: 44, weight: .heavy, design: .rounded))
+            let winnerText = matchEndWinnerText(snapshot: snapshot)
+            if !winnerText.isEmpty {
+                Text(winnerText)
+                    .font(.system(size: 30, weight: .bold, design: .rounded))
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .multilineTextAlignment(.center)
+        .fixedSize(horizontal: false, vertical: true)
+        .padding(24)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
+
+private struct Standings: View {
+    let snapshot: MatchEndSnapshot
+
+    var body: some View {
+        // PRD §11 — native Liquid Glass via the system's own glass APIs, not
+        // a hand-rolled translucency effect. GlassEffectContainer groups the
+        // per-team cards so nearby glass shapes merge/morph correctly
+        // instead of each rendering its own independent effect.
+        GlassEffectContainer(spacing: 8) {
+            VStack(spacing: 8) {
+                ForEach(Array(snapshot.teams.enumerated()), id: \.element.id) { index, team in
+                    HStack {
+                        Text(team.displayName(index: index))
+                            .font(.subheadline.bold())
+                            .fixedSize(horizontal: false, vertical: true)
+                        Spacer()
+                        Text("\(team.score)")
+                            .font(.subheadline.bold().monospacedDigit())
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                    .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 10))
+                    // PRD §11.1 — scores must be readable by VoiceOver.
+                    // Combined so it reads as one statement ("Team 1, score
+                    // 5") rather than two separate swipe stops.
+                    .accessibilityElement(children: .combine)
                 }
-                .buttonStyle(.glassProminent)
-                .controlSize(.large)
-                .padding(.horizontal, 24)
-
-                Spacer(minLength: 16)
             }
         }
     }

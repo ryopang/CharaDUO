@@ -27,21 +27,25 @@ import SwiftUI
 /// the accessory runs its own tick.
 struct OuterDisplayModifier: ViewModifier {
     let isActive: Bool
-    let snapshot: () -> ScoreboardSnapshot?
+    let content: () -> OuterDisplayContent?
     let availability: AccessoryAvailability
 
-    func body(content: Content) -> some View {
+    func body(content hostContent: Content) -> some View {
         #if os(iOS)
         if #available(iOS 27.1, *) {
-            content.sceneAccessory {
+            hostContent.sceneAccessory {
                 CameraCaptureAccessory(isEnabled: .constant(isActive)) {
                     TimelineView(.periodic(from: .now, by: 0.1)) { _ in
-                        if let snapshot = snapshot() {
+                        switch content() {
+                        case .liveRound(let snapshot):
                             GuesserScoreboard(snapshot: snapshot)
-                        } else {
-                            // Between rounds there is nothing for the
-                            // guessers to watch; drawing nothing is the
-                            // whole behaviour.
+                        case .roundSummary(let snapshot):
+                            GuesserRoundSummaryView(snapshot: snapshot)
+                        case .matchEnd(let snapshot):
+                            GuesserMatchEndView(snapshot: snapshot)
+                        case nil:
+                            // Nothing to show right now (e.g. mid-pause);
+                            // drawing nothing is the whole behaviour.
                             Color.black.ignoresSafeArea()
                         }
                     }
@@ -54,10 +58,10 @@ struct OuterDisplayModifier: ViewModifier {
                 }
             }
         } else {
-            content
+            hostContent
         }
         #else
-        content
+        hostContent
         #endif
     }
 }
@@ -68,8 +72,8 @@ extension View {
     func outerDisplay(
         isActive: Bool,
         availability: AccessoryAvailability,
-        snapshot: @escaping () -> ScoreboardSnapshot?
+        content: @escaping () -> OuterDisplayContent?
     ) -> some View {
-        modifier(OuterDisplayModifier(isActive: isActive, snapshot: snapshot, availability: availability))
+        modifier(OuterDisplayModifier(isActive: isActive, content: content, availability: availability))
     }
 }

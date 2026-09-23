@@ -2,6 +2,9 @@ import SwiftUI
 
 /// PRD §2.4 — Quick Play is the primary button; everything else lives behind
 /// the secondary Custom Game path. No naming, no toggles on this screen.
+/// Quick Play's actual defaults (2 teams, 2 rounds each, 1 random topic) live
+/// in `AppCoordinator.startQuickPlay()` — the caption text here just states
+/// them.
 struct HomeView: View {
     @Environment(AppCoordinator.self) private var coordinator
 
@@ -22,29 +25,48 @@ struct HomeView: View {
 
             Spacer(minLength: 24)
 
-            VStack(spacing: 16) {
-                Button {
-                    coordinator.startQuickPlay()
-                } label: {
-                    Text("Quick Play")
-                        .font(.title2.bold())
-                        .multilineTextAlignment(.center)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 8)
-                }
-                .buttonStyle(.glassProminent)
-                .controlSize(.large)
+            VStack(spacing: 20) {
+                VStack(spacing: 8) {
+                    Button {
+                        coordinator.startQuickPlay()
+                    } label: {
+                        Text("Quick Play")
+                            .font(.title2.bold())
+                            .multilineTextAlignment(.center)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 8)
+                    }
+                    .buttonStyle(.glassProminent)
+                    .controlSize(.large)
 
-                Button {
-                    coordinator.presentCustomGame()
-                } label: {
-                    Text("Custom Game")
+                    // 2 teams / 2 rounds each / 1 random topic — PRD §2.4.
+                    Text("2 teams · 2 rounds each · 1 random topic")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
                 }
-                .buttonStyle(.glass)
-                .controlSize(.large)
+
+                VStack(spacing: 8) {
+                    Button {
+                        coordinator.presentCustomGame()
+                    } label: {
+                        Text("Custom Game")
+                            .multilineTextAlignment(.center)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 8)
+                    }
+                    .buttonStyle(.glass)
+                    .controlSize(.large)
+
+                    Text("Choose your own teams, rounds, topics, and language")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
 
                 if let startError = coordinator.startError {
                     Text(startError)

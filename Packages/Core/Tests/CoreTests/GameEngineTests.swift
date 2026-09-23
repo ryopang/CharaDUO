@@ -84,4 +84,20 @@ struct GameEngineTests {
             _ = try GameEngine(configuration: config, words: [])
         }
     }
+
+    @Test func postFeedbackRecordsTheLatestEventWithAFreshID() throws {
+        let engine = try makeEngine()
+        #expect(engine.lastFeedback == nil)
+
+        engine.postFeedback(delta: 1)
+        let first = try #require(engine.lastFeedback)
+        #expect(first.delta == 1)
+
+        engine.postFeedback(delta: -1)
+        let second = try #require(engine.lastFeedback)
+        #expect(second.delta == -1)
+        // A fresh id each time — the App layer keys its fade animation off
+        // this changing, even when two events happen to share a delta.
+        #expect(second.id != first.id)
+    }
 }

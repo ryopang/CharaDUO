@@ -84,11 +84,17 @@ extension GameEngine {
     func markCorrectWithFeedback() {
         markCorrect()
         FeedbackPlayer.shared.play(.correct)
+        postFeedback(delta: 1)
     }
 
     @MainActor
     func markSkipWithFeedback() {
         markSkip()
         FeedbackPlayer.shared.play(.skip)
+        // Only post a "-1" overlay when the skip actually costs a point —
+        // otherwise skipping would misleadingly look penalized.
+        if configuration.skipPenaltyEnabled {
+            postFeedback(delta: -1)
+        }
     }
 }

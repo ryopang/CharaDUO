@@ -30,7 +30,7 @@ struct GuesserScoreboard: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 12) {
-                Text(snapshot.category.displayName.uppercased())
+                Text(snapshot.category.emojiDisplayName.uppercased())
                     .font(.title3.bold())
                     .foregroundStyle(foreground.opacity(0.7))
 
@@ -65,6 +65,8 @@ struct GuesserScoreboard: View {
                 }
             }
             .padding()
+
+            ScoreFeedbackOverlay(feedback: snapshot.lastFeedback)
         }
     }
 }

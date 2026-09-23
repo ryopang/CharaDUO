@@ -27,18 +27,31 @@ struct PausedView: View {
 
             Spacer(minLength: 16)
 
-            Button {
-                coordinator.resumeFromPause()
-            } label: {
-                Text("Resume Round")
-                    .font(.title3.bold())
-                    .multilineTextAlignment(.center)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 8)
+            VStack(spacing: 12) {
+                Button {
+                    coordinator.resumeFromPause()
+                } label: {
+                    Text("Resume Round")
+                        .font(.title3.bold())
+                        .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 8)
+                }
+                .buttonStyle(.glassProminent)
+                .controlSize(.large)
+
+                Button {
+                    coordinator.returnHome()
+                } label: {
+                    Text("Exit Game")
+                        .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.glass)
+                .controlSize(.large)
             }
-            .buttonStyle(.glassProminent)
-            .controlSize(.large)
             .padding(.horizontal, 32)
 
             Spacer(minLength: 16)

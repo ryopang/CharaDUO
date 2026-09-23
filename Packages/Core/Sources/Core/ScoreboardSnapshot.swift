@@ -12,6 +12,7 @@ public struct ScoreboardSnapshot: Sendable, Equatable {
     public let teamName: String
     public let score: Int
     public let isRecording: Bool
+    public let lastFeedback: ScoreFeedback?
 
     public init(
         category: GameCategory,
@@ -19,7 +20,8 @@ public struct ScoreboardSnapshot: Sendable, Equatable {
         fractionElapsed: Double,
         teamName: String,
         score: Int,
-        isRecording: Bool
+        isRecording: Bool,
+        lastFeedback: ScoreFeedback? = nil
     ) {
         self.category = category
         self.secondsRemaining = secondsRemaining
@@ -27,6 +29,7 @@ public struct ScoreboardSnapshot: Sendable, Equatable {
         self.teamName = teamName
         self.score = score
         self.isRecording = isRecording
+        self.lastFeedback = lastFeedback
     }
 }
 
@@ -48,7 +51,8 @@ extension GameEngine {
             fractionElapsed: timer.fractionElapsed(now: now),
             teamName: matchState.teams[index].displayName(index: index),
             score: matchState.teams[index].score + currentTurnScore,
-            isRecording: isRecording
+            isRecording: isRecording,
+            lastFeedback: lastFeedback
         )
     }
 }

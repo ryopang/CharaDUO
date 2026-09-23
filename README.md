@@ -102,8 +102,10 @@ settled and shouldn't be relitigated).
 
 - **M6 (reaction camera)** is unbuilt. The outer display currently runs a
   video-only capture session (just enough to make `CameraCaptureAccessory`
-  available); there is no rolling buffer, highlight extraction, or export
-  yet.
+  available, now kept alive for the whole match — including round summary
+  and Game Over — rather than just each timed round); there is no rolling
+  buffer, highlight extraction, or export yet. "Save Video" on the Game Over
+  screen is a visible but disabled stub until M6 lands.
 - **Sound effects are placeholders.** Correct/Skip/countdown-tick haptics are
   fully implemented per spec; the accompanying chimes use built-in system
   sound IDs standing in for real designed audio assets.

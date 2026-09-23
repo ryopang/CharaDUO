@@ -154,6 +154,13 @@ around anything not on this list without verifying it first.**
 - **Guessers only, with audio.** The describer is deliberately not filmed — the
   inner camera can't frame them usefully in tabletop posture. Audio already
   carries their performance. Do not add a second camera feed.
+- The capture session (what makes the outer display available at all — it
+  requires an active `AVCaptureSession`) now spans a whole match, not just
+  each timed round: it starts at match begin and stays running through round
+  summary and Game Over, so the outer display can mirror those screens too.
+  It only tears down when the player actually leaves the match (home, a new
+  custom game) or pauses. No footage is written to disk yet (M6), so this
+  only extends how long a live, unsaved preview session runs.
 - Export is **deferred to Save**, never live. Speed is a render parameter.
 - Varispeed pitch shift at 2×/3× is **intentional**. Chipmunked audio is the joke.
   Do not "fix" it with pitch correction.

@@ -34,10 +34,10 @@ struct RootView: View {
         // main scene. When the system isn't presenting it, this draws
         // nothing and the match neither knows nor cares.
         .outerDisplay(
-            isActive: coordinator.screen == .gameplay,
+            isActive: coordinator.isOuterDisplayActive,
             availability: coordinator.accessoryAvailability
         ) {
-            coordinator.scoreboardSnapshot
+            coordinator.outerDisplayContent
         }
         // Below iOS 27.1, or on a device with no hinge, this is a no-op and
         // posture stays `.noHinge` — the single-screen path (PRD §8).

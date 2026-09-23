@@ -51,16 +51,16 @@ final class PartyCharadesUITests: XCTestCase {
 
         // Shrink to the fastest possible match: 2 teams (default), 1 round,
         // the minimum 30s round length.
-        let decrementRounds = app.buttons["roundsPerTeamStepper-Decrement"]
-        XCTAssertTrue(decrementRounds.waitForExistence(timeout: 5))
-        decrementRounds.tap()
-        decrementRounds.tap()
+        let oneRound = app.segmentedControls["roundsPerTeamPicker"].buttons["1"]
+        XCTAssertTrue(oneRound.waitForExistence(timeout: 5))
+        oneRound.tap()
 
         app.buttons["30s"].tap()
 
-        let startMatch = app.buttons["Start Match"]
-        for _ in 0..<5 where !startMatch.isHittable {
-            app.swipeUp()
+        let startMatch = app.buttons["Start Game"]
+        let form = app.collectionViews.firstMatch
+        for _ in 0..<10 where !startMatch.isHittable {
+            form.swipeUp()
         }
         XCTAssertTrue(startMatch.waitForExistence(timeout: 5))
         startMatch.tap()
@@ -81,7 +81,7 @@ final class PartyCharadesUITests: XCTestCase {
         XCTAssertTrue(seeResults.waitForExistence(timeout: 35))
         seeResults.tap()
 
-        XCTAssertTrue(app.staticTexts["Match Complete"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Game Over"].waitForExistence(timeout: 5))
         app.buttons["Back to Home"].tap()
 
         XCTAssertTrue(app.buttons["Quick Play"].waitForExistence(timeout: 5), "should return cleanly to Home")
