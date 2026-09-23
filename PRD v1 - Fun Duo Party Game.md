@@ -106,7 +106,7 @@ This has two design consequences:
 - **Fixed rounds:** each team describes an equal number of times. Default 3
   rounds each; configurable 1–5.
 - Running total carries across rounds. Highest total at the end wins.
-- **Time Limit mode only in v1.** Round length 30 / 60 / 90 / 120s, default 60s.
+- **Time Limit mode only in v1.** Round length 30 / 60 / 90 / 120 / 180s, default 60s (180s added 2026-09-23).
 - Target Mode (race to N words) is **deferred to v2**.
 
 ### 2.3 Scoring
@@ -629,7 +629,7 @@ two-sided version will not save it.
 
 1. **Final app name** — blocking submission, not development (§7.5).
 2. **Thermal validation** — camera + microphone + dual display + ProMotion
-   across repeated 120s rounds. If it throttles: drop to 540p, then shorten the
+   across repeated 180s rounds (the longest option). If it throttles: drop to 540p, then shorten the
    rolling buffer, then disable capture. Validate on a hot device at the end of
    a full 4-team match, not a cold one on round one. Materially lower risk now
    that only one camera runs, but still unverified without hardware.

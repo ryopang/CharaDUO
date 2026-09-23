@@ -35,7 +35,7 @@ exercise degraded paths.
 - [ ] Save to Photos permission asked only at Save; unsaved footage gone after leaving match; `tmp/ReactionReel` purged on relaunch (kill app mid-round to test).
 
 ## Thermal (PRD §13.2)
-- [ ] Hot device, end of a full 4-team match, 120 s rounds: watch `systemPressureState`.
+- [ ] Hot device, end of a full 4-team match, 180 s rounds: watch `systemPressureState`.
 - [ ] Confirm step-down: 540p → shorter buffer → capture off, all silent, game unaffected.
 - [ ] No recording after `.critical`.
 
