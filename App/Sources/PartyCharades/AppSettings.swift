@@ -18,8 +18,13 @@ final class AppSettings {
     private let defaults: UserDefaults
 
     /// PRD §2.4 — Quick Play uses the last-used language.
+    /// Design refresh — this one setting is both the word language and the
+    /// UI language.
     var lastUsedLanguage: ContentLanguage {
-        didSet { defaults.set(lastUsedLanguage.rawValue, forKey: Key.language) }
+        didSet {
+            defaults.set(lastUsedLanguage.rawValue, forKey: Key.language)
+            L10n.apply(lastUsedLanguage)
+        }
     }
 
     /// PRD §7.3 — the Reaction Camera master toggle. Turning it off means
@@ -52,7 +57,7 @@ final class AppSettings {
         if let raw = defaults.string(forKey: Key.language), let language = ContentLanguage(rawValue: raw) {
             self.lastUsedLanguage = language
         } else {
-            self.lastUsedLanguage = .english
+            self.lastUsedLanguage = L10n.initialLanguage()
         }
 
         // Both capture toggles default on; consent is what actually gates
@@ -61,6 +66,8 @@ final class AppSettings {
         self.reactionAudioEnabled = defaults.object(forKey: Key.reactionAudio) as? Bool ?? true
         self.hasShownCaptureConsent = defaults.bool(forKey: Key.consentShown)
         self.tickSoundEnabled = defaults.object(forKey: Key.tickSound) as? Bool ?? true
+
+        L10n.apply(lastUsedLanguage)
 
         #if DEBUG
         // UserDefaults outlives a launch in the simulator, so tests pin this

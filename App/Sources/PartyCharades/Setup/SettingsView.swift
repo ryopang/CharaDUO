@@ -1,3 +1,4 @@
+import Content
 import SwiftUI
 
 /// A minimal stand-in for a real Settings screen — the app doesn't have one
@@ -11,6 +12,20 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             Form {
+                Section {
+                    Picker("Language", selection: languageBinding) {
+                        ForEach(ContentLanguage.allCases, id: \.self) { language in
+                            Text(language.worldLabel).tag(language)
+                        }
+                    }
+                    .pickerStyle(.inline)
+                    .labelsHidden()
+                } header: {
+                    Text("Language")
+                } footer: {
+                    Text("Sets the words and the app's language together.")
+                }
+
                 Section {
                     Toggle("Reaction Camera", isOn: reactionCameraBinding)
                     if coordinator.settings.reactionCameraEnabled {
@@ -38,6 +53,13 @@ struct SettingsView: View {
                 }
             }
         }
+    }
+
+    private var languageBinding: Binding<ContentLanguage> {
+        Binding(
+            get: { coordinator.settings.lastUsedLanguage },
+            set: { coordinator.settings.lastUsedLanguage = $0 }
+        )
     }
 
     private var reactionCameraBinding: Binding<Bool> {

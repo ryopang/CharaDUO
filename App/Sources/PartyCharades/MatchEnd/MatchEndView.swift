@@ -49,7 +49,7 @@ struct MatchEndView: View {
                         if !coordinator.matchReels.isEmpty {
                             Button {
                                 presentedReel = PresentedReel(
-                                    title: "Reaction Reel",
+                                    title: tr("Reaction Reel"),
                                     reels: coordinator.matchReels.map(\.reel)
                                 )
                             } label: {
@@ -107,7 +107,7 @@ struct MatchEndView: View {
     private func reelEntries(engine: GameEngine) -> [PresentedReel] {
         coordinator.matchReels.map { turn, reel in
             let team = engine.configuration.teams[turn.teamIndex].displayName(index: turn.teamIndex)
-            return PresentedReel(title: "\(team) · Round \(turn.roundIndex + 1)", reels: [reel])
+            return PresentedReel(title: tr("\(team) · Round \(turn.roundIndex + 1)"), reels: [reel])
         }
     }
 }

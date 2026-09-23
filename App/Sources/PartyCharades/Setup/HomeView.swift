@@ -7,6 +7,7 @@ import SwiftUI
 /// them.
 struct HomeView: View {
     @Environment(AppCoordinator.self) private var coordinator
+    @State private var showSettings = false
 
     var body: some View {
         GeometryReader { proxy in
@@ -33,6 +34,22 @@ struct HomeView: View {
         }
         .padding()
         .background { homeBackground }
+        .overlay(alignment: .topTrailing) {
+            Button {
+                showSettings = true
+            } label: {
+                Image(systemName: "gearshape.fill")
+                    .font(.title2)
+                    .foregroundStyle(.white)
+                    .padding(12)
+                    .background(.ultraThinMaterial, in: Circle())
+            }
+            .padding()
+            .accessibilityLabel(Text("Settings"))
+        }
+        .sheet(isPresented: $showSettings) {
+            SettingsView()
+        }
     }
 
     private var buttons: some View {
@@ -72,7 +89,7 @@ struct HomeView: View {
                     .buttonStyle(.glass)
                     .controlSize(.large)
 
-                    Text("Choose your own teams, rounds, topics, and language")
+                    Text("Choose your own teams, rounds, and topics")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)

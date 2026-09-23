@@ -155,7 +155,7 @@ private struct PauseButton: View {
 /// (each is half the flat surface); Correct/Skip differ by position, haptic,
 /// sound, and icon/label, not colour alone.
 struct HitZoneButton: View {
-    let title: String
+    let title: LocalizedStringKey
     let tint: Color
     let foreground: Color
     let action: () -> Void

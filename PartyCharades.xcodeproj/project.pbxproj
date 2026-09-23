@@ -35,6 +35,7 @@
 		A7B82466FA62DB33FDD837EA /* TickSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = E643F3321D387529105BD6CF /* TickSound.swift */; };
 		A9DA88473FA1416ED51B0B8F /* Content in Frameworks */ = {isa = PBXBuildFile; productRef = 1BB0FD5FE388F9374E77E18C /* Content */; };
 		B401E064F8B8FBA50A5CA88C /* ReactionReelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE5248B042C59B4162E703 /* ReactionReelUITests.swift */; };
+		B4C76C086C828316BAF77045 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1D7C401FBDFD5A3FC125F9AA /* InfoPlist.xcstrings */; };
 		B6B38FD81A8C95D52759051F /* CaptureConsentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21846A1C3700CCF45FE6269 /* CaptureConsentUITests.swift */; };
 		BF4BE1CFA9B305CCC6988AC4 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B12B3B3C13ABBF20745D24F /* RootView.swift */; };
 		CBBF1463696A7E4A9DD15C47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6FFDCD3519F08BE40B795A3 /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 		DC20840E52C0FB0F32FB3B68 /* ReelPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F20E4E87440C8E166DB381 /* ReelPlayback.swift */; };
 		E03EA5B6C1A9551B51F52E28 /* GuesserMatchEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCE01D34F62DE8A15280628 /* GuesserMatchEndView.swift */; };
 		E2A9792C6947C674FEB7C800 /* GuesserRoundSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F354A136934F8FBCC825D4A /* GuesserRoundSummaryView.swift */; };
+		E7D5073C81B12C61BDF3C14C /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD328964FC6047BA529DE1D /* L10n.swift */; };
 		EDB6A5B8D0A485BA0E15E908 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C434C43B6D72CCBE2B5556 /* AppCoordinator.swift */; };
 		F172F0BA5D1F5E4A62CE90ED /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142AD7A50FA4032F2013A74D /* SettingsView.swift */; };
 		F796F1C4CF3CE8E8C1923D73 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1215216DB3F102A8663BDA /* Theme.swift */; };
@@ -67,6 +69,7 @@
 		161387472036C3EF36E71020 /* OuterDisplayContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OuterDisplayContent.swift; sourceTree = "<group>"; };
 		19705E31128122000ED7B254 /* CustomGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGameView.swift; sourceTree = "<group>"; };
 		198052BA4B073265A3EC5459 /* RoundSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundSummaryView.swift; sourceTree = "<group>"; };
+		1D7C401FBDFD5A3FC125F9AA /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		28F20E4E87440C8E166DB381 /* ReelPlayback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReelPlayback.swift; sourceTree = "<group>"; };
 		2AF2C20FB6E7EE34810CA960 /* PartyCharadesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyCharadesUITests.swift; sourceTree = "<group>"; };
 		2B12B3B3C13ABBF20745D24F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -94,6 +97,7 @@
 		CEFE5248B042C59B4162E703 /* ReactionReelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionReelUITests.swift; sourceTree = "<group>"; };
 		DA71BABBF4BC9AB926245821 /* CountdownPulseModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownPulseModifier.swift; sourceTree = "<group>"; };
 		DCCE01D34F62DE8A15280628 /* GuesserMatchEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuesserMatchEndView.swift; sourceTree = "<group>"; };
+		DFD328964FC6047BA529DE1D /* L10n.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
 		E21846A1C3700CCF45FE6269 /* CaptureConsentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureConsentUITests.swift; sourceTree = "<group>"; };
 		E2B0B6878F6C8BF330F572F1 /* Capture */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Capture; path = Packages/Capture; sourceTree = SOURCE_ROOT; };
 		E643F3321D387529105BD6CF /* TickSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickSound.swift; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 				F978B83DCD95B370848F83BC /* AppSettings.swift */,
 				862D413110D247993465DCF7 /* DebugOverrides.swift */,
 				FE0C65AFA04249EFC1905385 /* DisplayNames.swift */,
+				DFD328964FC6047BA529DE1D /* L10n.swift */,
 				A97E7DF0BDF55AA409CBFD24 /* PartyCharadesApp.swift */,
 				2B12B3B3C13ABBF20745D24F /* RootView.swift */,
 				62F4510E635B2B502B88006F /* ScrollableCenteredColumn.swift */,
@@ -248,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				B6FFDCD3519F08BE40B795A3 /* Assets.xcassets */,
+				1D7C401FBDFD5A3FC125F9AA /* InfoPlist.xcstrings */,
 				03624074A219976D1AA73E91 /* Localizable.xcstrings */,
 			);
 			path = Resources;
@@ -341,6 +347,9 @@
 			knownRegions = (
 				Base,
 				en,
+				"zh-HK",
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 193FDCFCDCEA35EDD79EB25A;
 			minimizedProjectReferenceProxies = 1;
@@ -368,6 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBBF1463696A7E4A9DD15C47 /* Assets.xcassets in Resources */,
+				B4C76C086C828316BAF77045 /* InfoPlist.xcstrings in Resources */,
 				0F1BE1A3BE6F12BB81C63BB4 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -404,6 +414,7 @@
 				E2A9792C6947C674FEB7C800 /* GuesserRoundSummaryView.swift in Sources */,
 				F83F804CE7688F27268B6E67 /* GuesserScoreboard.swift in Sources */,
 				94EB2E3649E591A6786C3BBB /* HomeView.swift in Sources */,
+				E7D5073C81B12C61BDF3C14C /* L10n.swift in Sources */,
 				453C16DD30FF9C07BCBEC2D5 /* MatchEndView.swift in Sources */,
 				0B16A39FB4769534DE604585 /* OuterDisplayContent.swift in Sources */,
 				535AE444BE8A263596B32105 /* OuterDisplayModifier.swift in Sources */,
@@ -447,9 +458,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryopang.partycharades;
 				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -571,9 +584,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryopang.partycharades;
 				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 1;

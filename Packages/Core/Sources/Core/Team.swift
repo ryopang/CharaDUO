@@ -13,10 +13,15 @@ public struct Team: Sendable, Identifiable, Equatable {
         self.score = score
     }
 
+    /// Builds the "Team N" fallback. The app swaps this for a localized
+    /// version when the player's language changes; the package default keeps
+    /// Core self-contained and testable.
+    nonisolated(unsafe) public static var defaultName: @Sendable (Int) -> String = { "Team \($0)" }
+
     public func displayName(index: Int) -> String {
         if let name, !name.isEmpty {
             return name
         }
-        return "Team \(index + 1)"
+        return Team.defaultName(index + 1)
     }
 }

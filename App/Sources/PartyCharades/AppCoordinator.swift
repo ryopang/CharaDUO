@@ -352,7 +352,7 @@ final class AppCoordinator {
             FeedbackPlayer.shared.resetTickTracking()
             #endif
         } catch {
-            startError = "Not enough words in the selected categories to start a match."
+            startError = tr("Not enough words in the selected categories to start a match.")
         }
     }
 

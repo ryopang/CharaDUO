@@ -16,9 +16,9 @@ extension GameWord {
 func matchEndWinnerText(snapshot: MatchEndSnapshot) -> String {
     if snapshot.winners.count == 1, let winner = snapshot.winners.first,
        let index = snapshot.teams.firstIndex(where: { $0.id == winner.id }) {
-        return "\(winner.displayName(index: index)) wins!"
+        return tr("\(winner.displayName(index: index)) wins!")
     } else if snapshot.winners.count > 1 {
-        return "It's a tie!"
+        return tr("It's a tie!")
     }
     return ""
 }
@@ -42,15 +42,15 @@ extension RoundTimer {
 extension GameCategory {
     var displayName: String {
         switch self {
-        case .movie: return String(localized: "Movie")
-        case .tvShow: return String(localized: "TV Show")
-        case .celebrity: return String(localized: "Celebrity")
-        case .animal: return String(localized: "Animal")
-        case .food: return String(localized: "Food")
-        case .country: return String(localized: "Country")
-        case .sightseeing: return String(localized: "Sightseeing")
-        case .superhero: return String(localized: "Superhero")
-        case .sport: return String(localized: "Sport")
+        case .movie: return tr("Movie")
+        case .tvShow: return tr("TV Show")
+        case .celebrity: return tr("Celebrity")
+        case .animal: return tr("Animal")
+        case .food: return tr("Food")
+        case .country: return tr("Country")
+        case .sightseeing: return tr("Sightseeing")
+        case .superhero: return tr("Superhero")
+        case .sport: return tr("Sport")
         }
     }
 
@@ -87,10 +87,10 @@ extension GameCategory {
 extension ContentLanguage {
     var displayName: String {
         switch self {
-        case .english: return String(localized: "English")
-        case .cantonese: return String(localized: "Cantonese")
-        case .taiwanChinese: return String(localized: "Taiwan Chinese")
-        case .mainlandChinese: return String(localized: "Mainland Chinese")
+        case .english: return tr("English")
+        case .cantonese: return tr("Cantonese")
+        case .taiwanChinese: return tr("Taiwan Chinese")
+        case .mainlandChinese: return tr("Mainland Chinese")
         }
     }
 

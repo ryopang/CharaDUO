@@ -42,14 +42,14 @@ struct RoundSummaryView: View {
 
                         HStack(spacing: 0) {
                             WordColumn(
-                                title: "Correct Answers",
+                                title: tr("Correct Answers"),
                                 words: snapshot.correctWords,
                                 language: snapshot.language,
                                 tint: .green
                             )
                             Divider()
                             WordColumn(
-                                title: "Skipped",
+                                title: tr("Skipped"),
                                 words: snapshot.skippedWords,
                                 language: snapshot.language,
                                 tint: .secondary
@@ -88,7 +88,7 @@ struct RoundSummaryHeaderView: View {
         VStack(spacing: 12) {
             Text(snapshot.teamName)
                 .font(.system(size: 40, weight: .bold, design: .rounded))
-            Text("\(snapshot.correctThisRound) correct answer\(snapshot.correctThisRound == 1 ? "" : "s") this round")
+            Text("\(snapshot.correctThisRound) correct answers this round")
                 .font(.system(size: 32, weight: .heavy, design: .rounded))
             HStack(spacing: 20) {
                 Text("Total: \(snapshot.totalCorrectForGame)")

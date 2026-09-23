@@ -79,7 +79,7 @@ struct CaptureConsentView: View {
 
 private struct ConsentPoint: View {
     let icon: String
-    let text: String
+    let text: LocalizedStringKey
 
     var body: some View {
         HStack(alignment: .top, spacing: 12) {

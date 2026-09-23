@@ -10,14 +10,7 @@ struct CustomGameView: View {
     @State private var roundsPerTeam = 2
     @State private var roundDuration = RoundDuration.default
     @State private var selectedCategories = Set<GameCategory>()
-    @State private var language: ContentLanguage
     @State private var skipPenaltyEnabled = false
-
-    init() {
-        // Placeholder; corrected in `.onAppear` to the coordinator's
-        // last-used language once the environment object is available.
-        _language = State(initialValue: .english)
-    }
 
     var body: some View {
         Form {
@@ -65,15 +58,6 @@ struct CustomGameView: View {
                 }
             }
 
-            Section("Local Language") {
-                Picker("Local Language", selection: $language) {
-                    ForEach(ContentLanguage.allCases, id: \.self) { language in
-                        Text(language.worldLabel).tag(language)
-                    }
-                }
-                .pickerStyle(.segmented)
-            }
-
             Section {
                 Picker("Penalty on Skipping?", selection: $skipPenaltyEnabled) {
                     Text("No").tag(false)
@@ -114,9 +98,6 @@ struct CustomGameView: View {
                 }
             }
         }
-        .onAppear {
-            language = coordinator.settings.lastUsedLanguage
-        }
     }
 
     private var reactionCameraBinding: Binding<Bool> {
@@ -156,7 +137,7 @@ struct CustomGameView: View {
             roundsPerTeam: roundsPerTeam,
             roundDuration: roundDuration,
             categories: selectedCategories,
-            language: language,
+            language: coordinator.settings.lastUsedLanguage,
             skipPenaltyEnabled: skipPenaltyEnabled
         )
         coordinator.startCustomGame(configuration)

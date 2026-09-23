@@ -1,6 +1,8 @@
 name: PartyCharades
 options:
   bundleIdPrefix: com.ryopang
+  developmentLanguage: en
+  knownRegions: [en, zh-HK, zh-Hant, zh-Hans, Base]
   deploymentTarget:
     iOS: "27.0"
   createIntermediateGroups: true
@@ -42,6 +44,7 @@ targets:
       properties:
         CFBundleDisplayName: "CharaDUO"
         CFBundleDevelopmentRegion: "en"
+        CFBundleLocalizations: [en, zh-HK, zh-Hant, zh-Hans]
         # PRD §7.1 — explicit and honest: what is recorded, and that it
         # stays on the device.
         NSCameraUsageDescription: "CharaDUO records the guessing team's reactions during a round so you can watch the highlights together at the end of the match. Video stays on this device and is never uploaded."
@@ -62,6 +65,8 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.ryopang.partycharades
         SWIFT_VERSION: "6.0"
         SWIFT_STRICT_CONCURRENCY: complete
+        SWIFT_EMIT_LOC_STRINGS: YES
+        LOCALIZATION_PREFERS_STRING_CATALOGS: YES
         MARKETING_VERSION: "0.1.0"
         CURRENT_PROJECT_VERSION: "1"
         TARGETED_DEVICE_FAMILY: "1"
