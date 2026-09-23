@@ -43,6 +43,10 @@ targets:
       path: App/Info.plist
       properties:
         CFBundleDisplayName: "CharaDUO"
+        # Read from the build settings below, so MARKETING_VERSION /
+        # CURRENT_PROJECT_VERSION are the one place the version lives.
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         CFBundleDevelopmentRegion: "en"
         CFBundleLocalizations: [en, zh-HK, zh-Hant, zh-Hans]
         # No custom cryptography — the app has no networking at all.
@@ -69,8 +73,8 @@ targets:
         SWIFT_STRICT_CONCURRENCY: complete
         SWIFT_EMIT_LOC_STRINGS: YES
         LOCALIZATION_PREFERS_STRING_CATALOGS: YES
-        MARKETING_VERSION: "1.0.0"
-        CURRENT_PROJECT_VERSION: "1"
+        MARKETING_VERSION: "1.1.0"
+        CURRENT_PROJECT_VERSION: "2"
         TARGETED_DEVICE_FAMILY: "1"
         DEVELOPMENT_TEAM: ""
         CODE_SIGN_STYLE: Automatic
