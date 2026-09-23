@@ -2843,13 +2843,13 @@
         }
       }
     },
-    "Yes (−1)": {
+    "Yes": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yes (−1)"
+            "value": "Yes"
           }
         },
         "zh-HK": {

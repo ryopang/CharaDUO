@@ -61,7 +61,7 @@ struct CustomGameView: View {
             Section {
                 Picker("Penalty on Skipping?", selection: $skipPenaltyEnabled) {
                     Text("No").tag(false)
-                    Text("Yes (−1)").tag(true)
+                    Text("Yes").tag(true)
                 }
                 .pickerStyle(.segmented)
             } header: {
