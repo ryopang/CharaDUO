@@ -160,17 +160,17 @@ around it.
 - Urgency gradient: **restrained on this surface only** — a colour wash behind
   the word would fight its legibility, which is this half's entire job. Apply the
   gradient to the timer's own container and a thin border inset, not the full
-  background. The other two surfaces (§3.2 far edge, §3.4) carry the full wash.
+  background. The outer display (§3.4) carries the full wash.
 - Nothing else.
 
-**Flat half (on the table) — shared surface, split by distance:**
-- **Near edge (describer side):** two full-width hit zones, 50% each, Correct
-  (top, toward the crease) and Skip (bottom, toward the player). Large, high
-  contrast, designed for blind tapping.
-- **Far edge:** timer and live score, **rotated 180°** so it reads right-side-up
-  to the guessers across the table. Full urgency gradient (§3.3).
-- Rotating the far edge is what makes the flat half serve both audiences at
-  once. It is the signature layout idea of this app — get it right.
+**Flat half (on the table) — describer only:**
+- Two full-width hit zones filling the whole half, 50% each: Correct (top,
+  toward the crease) and Skip (bottom, toward the player). Large, high contrast,
+  designed for blind tapping.
+- **No guesser-facing far edge** (removed 2026-09-23). The whole inner display
+  faces the describer; the guessers never see it. Everything for the guessers
+  is on the outer display (§3.4). With no outer display (camera denied,
+  revoked), the guessers simply have no timer of their own.
 
 ### 3.3 Countdown treatment
 
@@ -614,7 +614,7 @@ One theme in v1, executed properly. The other three from the draft are cut.
 | M1 | Content pipeline | ✅ xlsx→JSON with Simplified conversion, validator failing the build on bad data, decoded and queryable |
 | M2 | Core engine | ✅ Deck, scoring, timer, match structure — fully unit tested, no UI |
 | M3 | Single-screen game | ✅ Complete playable game on any iPhone. **Shippable on its own.** |
-| M4 | Tabletop layout | ✅ Hinge detection, crease-aware split, 180°-rotated far edge, blind-tap zones |
+| M4 | Tabletop layout | ✅ Hinge detection, crease-aware split, blind-tap zones (180° far edge removed 2026-09-23) |
 | M5 | Outer display | ✅ Accessory scene, scoreboard, availability handling incl. mid-round revocation |
 | M6 | Reaction camera | Direction resolution, capture with audio, state handling (§5.3), highlight extraction, playback, 1×/2×/3× export, save/auto-delete |
 | M7 | Polish & a11y | ✅ Theme, motion, haptics, Dynamic Type, VoiceOver |

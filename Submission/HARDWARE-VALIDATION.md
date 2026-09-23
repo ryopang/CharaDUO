@@ -7,7 +7,7 @@ exercise degraded paths.
 
 ## Posture & layout (M4)
 - [ ] Tabletop: split follows the real crease (`reservedRegions`); no hardcoded 50/50.
-- [ ] Far edge reads upright from the guessers' side; blind-tap zones reachable while standing.
+- [ ] Blind-tap zones (Correct/Skip filling the flat half) reachable while standing.
 - [ ] Fold to `.closed` mid-round pauses the match; reopening resumes.
 - [ ] Flat / partial postures fall back to single-screen without losing the round.
 

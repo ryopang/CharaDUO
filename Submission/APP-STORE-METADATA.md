@@ -39,6 +39,6 @@ charades,party,game,guess,family,word,team,duo,friends,describe
 
 ## Screenshots needed (owner)
 6.9" iPhone set + iPhone Duo inner-display set: Home, Quick Play round
-(single-screen), tabletop lid + far edge, round summary, Game Over with reel.
+(single-screen), tabletop lid + Correct/Skip, round summary, Game Over with reel.
 Capture with `-uiTestPosture tabletop` / `-uiTestAutoStart` in the simulator, or
 on hardware.

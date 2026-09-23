@@ -38,38 +38,23 @@ struct FoldGeometryTests {
         #expect(FoldGeometry.split(container: .zero, division: division) == nil)
     }
 
-    @Test func flatHalfPutsFarEdgeAtTheCreaseAndSplitsHitZonesEvenly() {
+    @Test func flatHalfSplitsIntoTwoEvenHitZones() {
         let flat = CGRect(x: 0, y: 420, width: 400, height: 480)
-        let layout = FoldGeometry.flatHalfLayout(flat: flat, farEdgeFraction: 0.25)
+        let layout = FoldGeometry.flatHalfLayout(flat: flat)
 
-        // Far edge is adjacent to the crease (PRD §3.2), rotated 180° for the
-        // guessers by the view layer.
-        #expect(layout.farEdge == CGRect(x: 0, y: 420, width: 400, height: 120))
         // Correct sits toward the crease, Skip toward the describer.
-        #expect(layout.correct == CGRect(x: 0, y: 540, width: 400, height: 180))
-        #expect(layout.skip == CGRect(x: 0, y: 720, width: 400, height: 180))
+        #expect(layout.correct == CGRect(x: 0, y: 420, width: 400, height: 240))
+        #expect(layout.skip == CGRect(x: 0, y: 660, width: 400, height: 240))
     }
 
-    @Test func hitZonesConsumeEverythingLeftWithNoDeadSpace() {
+    @Test func hitZonesConsumeTheWholeFlatHalfWithNoDeadSpace() {
         // PRD §2.1 — no margins or dead space; a blind, angled stab must land.
         let flat = CGRect(x: 0, y: 100, width: 400, height: 500)
         let layout = FoldGeometry.flatHalfLayout(flat: flat)
 
-        #expect(layout.farEdge.minY == flat.minY)
-        #expect(layout.correct.minY == layout.farEdge.maxY)
+        #expect(layout.correct.minY == flat.minY)
         #expect(layout.skip.minY == layout.correct.maxY)
         #expect(layout.skip.maxY == flat.maxY)
         #expect(layout.correct.height == layout.skip.height)
-    }
-
-    @Test func farEdgeFractionIsClamped() {
-        let flat = CGRect(x: 0, y: 0, width: 400, height: 400)
-        let negative = FoldGeometry.flatHalfLayout(flat: flat, farEdgeFraction: -1)
-        #expect(negative.farEdge.height == 0)
-        #expect(negative.correct.height == 200)
-
-        let huge = FoldGeometry.flatHalfLayout(flat: flat, farEdgeFraction: 5)
-        #expect(huge.farEdge.height == 240) // clamped to 0.6
-        #expect(huge.skip.height == 80)
     }
 }

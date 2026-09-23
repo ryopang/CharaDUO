@@ -12,12 +12,11 @@ public struct FoldSplit: Sendable, Equatable {
     public let crease: CGRect
 }
 
-/// How the flat half divides between the describer's blind-tap zones and the
-/// far edge the guessers read (PRD §3.2).
+/// How the flat half divides between the describer's two blind-tap zones
+/// (PRD §3.2). The whole inner display is the describer's; the guessers only
+/// ever see the outer display, so the flat half carries nothing for them.
 public struct FlatHalfLayout: Sendable, Equatable {
-    /// Adjacent to the crease: timer + live score, rotated 180°.
-    public let farEdge: CGRect
-    /// Toward the crease, directly below the far edge.
+    /// Toward the crease.
     public let correct: CGRect
     /// Toward the describer — the outermost edge, easiest to reach.
     public let skip: CGRect
@@ -62,25 +61,22 @@ public enum FoldGeometry {
         )
     }
 
-    /// PRD §3.2/§2.1 — the two hit zones split what's left of the flat half
-    /// evenly, edge to edge, with no margins or competing controls, because
-    /// they're tapped blind at an angle from a standing reach.
-    public static func flatHalfLayout(flat: CGRect, farEdgeFraction: Double = 0.28) -> FlatHalfLayout {
-        let fraction = min(0.6, max(0, farEdgeFraction))
-        let farEdgeHeight = flat.height * fraction
-        let zoneHeight = (flat.height - farEdgeHeight) / 2
+    /// PRD §3.2/§2.1 — the two hit zones split the flat half evenly, edge to
+    /// edge, with no margins or competing controls, because they're tapped
+    /// blind at an angle from a standing reach.
+    public static func flatHalfLayout(flat: CGRect) -> FlatHalfLayout {
+        let zoneHeight = flat.height / 2
 
         return FlatHalfLayout(
-            farEdge: CGRect(x: flat.minX, y: flat.minY, width: flat.width, height: farEdgeHeight),
             correct: CGRect(
                 x: flat.minX,
-                y: flat.minY + farEdgeHeight,
+                y: flat.minY,
                 width: flat.width,
                 height: zoneHeight
             ),
             skip: CGRect(
                 x: flat.minX,
-                y: flat.minY + farEdgeHeight + zoneHeight,
+                y: flat.minY + zoneHeight,
                 width: flat.width,
                 height: zoneHeight
             )

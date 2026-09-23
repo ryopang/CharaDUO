@@ -2,10 +2,10 @@ import Core
 import Posture
 import SwiftUI
 
-/// PRD §3.2 — the two-sided tabletop layout. The lid is describer-private;
-/// the flat half serves the describer (blind-tap zones) and the guessers (a
-/// 180°-rotated far edge) at the same time. That rotation is the signature
-/// idea of the app.
+/// PRD §3.2 — the tabletop layout. The whole inner display faces the
+/// describer: the lid shows the word, the flat half is two blind-tap zones.
+/// The guessers never see the inner display; everything for them is on the
+/// outer display.
 struct TabletopGameplayView: View {
     let engine: GameEngine
     let now: ContinuousClock.Instant
@@ -57,14 +57,6 @@ private struct TabletopSplitView: View {
             DescriberLidView(engine: engine, now: now)
                 .frame(width: split.lid.width, height: split.lid.height)
                 .offset(x: split.lid.minX, y: split.lid.minY)
-
-            // Rotated a half turn so it reads right-side-up from across the
-            // table. 180° about the centre leaves the bounding box alone, so
-            // the offset still positions it correctly.
-            GuesserFarEdgeView(engine: engine, now: now)
-                .frame(width: flat.farEdge.width, height: flat.farEdge.height)
-                .rotationEffect(.degrees(180))
-                .offset(x: flat.farEdge.minX, y: flat.farEdge.minY)
 
             HitZoneButton(kind: .correct) {
                 coordinator.recordCorrect()
@@ -158,54 +150,6 @@ private struct DescriberLidView: View {
                     .accessibilityLabel(Text("\(secondsRemaining) seconds remaining"))
             }
             .padding(24)
-        }
-        .overlay(alignment: .topTrailing) {
-            TabletopPauseButton { coordinator.pauseMatch() }
-                .padding(20)
-        }
-    }
-}
-
-/// The strip of the flat half nearest the crease, rotated to face the
-/// guessers. PRD §3.2/§3.3: this is a surface the whole room watches, so it
-/// carries the urgency gradient at **full** strength.
-private struct GuesserFarEdgeView: View {
-    let engine: GameEngine
-    let now: ContinuousClock.Instant
-
-    @Environment(AppCoordinator.self) private var coordinator
-    @ScaledMetric(relativeTo: .largeTitle) private var timerSize: CGFloat = 64
-    @Environment(\.colorSchemeContrast) private var colorSchemeContrast
-
-    var body: some View {
-        let state = engine.matchState
-        let index = state.currentTeamIndex
-        let team = state.teams[index]
-        let liveScore = team.score + engine.currentTurnScore
-        let fraction = engine.timer?.fractionElapsed(now: now) ?? 0
-        let increaseContrast = colorSchemeContrast == .increased
-        let secondsRemaining = engine.timer?.displaySecondsRemaining(now: now) ?? 0
-        let foreground = CountdownColor.foreground(fractionElapsed: fraction, increaseContrast: increaseContrast)
-
-        ZStack {
-            CountdownColor.background(fractionElapsed: fraction, increaseContrast: increaseContrast)
-
-            VStack(spacing: 4) {
-                Text("\(secondsRemaining)")
-                    .font(.system(size: timerSize, weight: .bold, design: .rounded))
-                    .monospacedDigit()
-                    .contentTransition(.numericText(countsDown: true))
-                    .foregroundStyle(foreground)
-                    .countdownPulse(secondsRemaining: secondsRemaining)
-
-                HStack(spacing: 8) {
-                    Text(team.displayName(index: index))
-                        .font(.headline)
-                    Text("\(liveScore)")
-                        .font(.headline.monospacedDigit())
-                }
-                .foregroundStyle(foreground.opacity(0.75))
-            }
         }
         .overlay(alignment: .topTrailing) {
             TabletopPauseButton { coordinator.pauseMatch() }

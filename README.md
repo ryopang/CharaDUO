@@ -42,7 +42,7 @@ re-rendering the digit even while `TimelineView` kept firing. The fix threads
 | M1 | Content pipeline (xlsx→JSON, Simplified conversion, validator) | ✅ |
 | M2 | Core engine (deck, scoring, timer, match structure) | ✅ |
 | M3 | Single-screen game — complete and shippable on any iPhone | ✅ |
-| M4 | Tabletop layout (hinge detection, crease-aware split, 180° far edge) | ✅ |
+| M4 | Tabletop layout (hinge detection, crease-aware split, blind-tap zones) | ✅ |
 | M5 | Outer display (accessory scene, scoreboard, availability handling) | ✅ |
 | M6 | Reaction camera (capture + audio, highlights, export, auto-delete) | ✅ Simulator-verified; hardware pass in M8 |
 | M7 | Polish & accessibility | ✅ |

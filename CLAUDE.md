@@ -194,7 +194,7 @@ around anything not on this list without verifying it first.**
   can't read. Digits are the primary channel; colour is never the only cue.
 - The countdown colour is **one flat colour filling the whole area**, migrating
   green → amber → red (no bottom-up wipe). Applies to the single-screen top half,
-  the flat far edge, the outer display **and the entire describer lid** (changed
+  the outer display **and the entire describer lid** (changed
   2026-09-23) — keep the word legible on the lid with a high-contrast card.
 
 **Failure handling**
@@ -211,7 +211,8 @@ Update the status marks as work lands.
 - [x] **M1** Content pipeline — xlsx→JSON, T→S conversion, build-failing validator
 - [x] **M2** Core engine — deck, scoring, timer, match structure; unit tested, no UI
 - [x] **M3** Single-screen game — **complete and shippable on any iPhone**
-- [x] **M4** Tabletop layout — hinge detection, crease-aware split, 180° far edge
+- [x] **M4** Tabletop layout — hinge detection, crease-aware split, blind-tap zones
+  *(the 180° guesser far edge was removed 2026-09-23: the inner display is describer-only)*
 - [x] **M5** Outer display — accessory scene, mid-round revocation handling
 - [x] **M6** Reaction camera — capture + audio, highlights, 1×/2×/3× export, auto-delete
   *(simulator-verified via `-uiTestSyntheticCamera`; direction resolution, camera swap on hinge move and thermal step-down need a real Duo — M8)*

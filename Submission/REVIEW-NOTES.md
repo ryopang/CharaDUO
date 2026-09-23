@@ -53,5 +53,5 @@ have kept the name distinct from Apple's marks. If you have concerns about the
 name we would like to discuss them rather than reject — please contact us.
 
 **Demo video.** A recording of tabletop gameplay on iPhone Duo (two-sided
-layout, the guessers' far edge rotated 180°, outer-display scoreboard, reaction
+layout, outer-display scoreboard for the guessers, reaction
 reel) is attached, since the two-sided layout is the part that needs seeing.
