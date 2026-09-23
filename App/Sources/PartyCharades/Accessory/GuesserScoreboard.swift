@@ -48,29 +48,48 @@ struct GuesserScoreboard: View {
                 WordShapeRow(emoji: snapshot.category.emoji, groups: snapshot.wordShape)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-                HStack(spacing: 10) {
+                // Scoreboard pill: who's up, then their live score in its
+                // own inset badge, so the number can't read as part of the
+                // team name.
+                HStack(spacing: 12) {
                     Text(snapshot.teamName)
-                        .font(.title2.bold())
+                        .font(.title3.weight(.semibold))
+                        .foregroundStyle(foreground.opacity(0.8))
                     Text("\(snapshot.score)")
-                        .font(.title2.bold().monospacedDigit())
-                    if snapshot.isRecording {
-                        // PRD §7.3 — a persistent recording indicator belongs
-                        // here, where the people being filmed are looking.
-                        HStack(spacing: 6) {
-                            Circle()
-                                .fill(.red)
-                                .frame(width: 10, height: 10)
-                            Text("REC")
-                                .font(.caption.bold())
-                        }
-                        .padding(.leading, 6)
-                    }
+                        .font(.title2.weight(.heavy).monospacedDigit())
+                        .contentTransition(.numericText())
+                        .foregroundStyle(foreground)
+                        .padding(.horizontal, 14)
+                        .padding(.vertical, 2)
+                        .background(foreground.opacity(0.14), in: Capsule())
                 }
                 .lineLimit(1)
                 .minimumScaleFactor(0.6)
-                .foregroundStyle(foreground.opacity(0.75))
+                .padding(.leading, 18)
+                .padding(.trailing, 6)
+                .padding(.vertical, 6)
+                .background(foreground.opacity(0.08), in: Capsule())
+                .accessibilityElement(children: .combine)
             }
             .padding()
+            .overlay(alignment: .topLeading) {
+                if snapshot.isRecording {
+                    // PRD §7.3 — a persistent recording indicator belongs
+                    // here, where the people being filmed are looking.
+                    HStack(spacing: 6) {
+                        Circle()
+                            .fill(.red)
+                            .frame(width: 10, height: 10)
+                        Text("REC")
+                            .font(.caption.bold())
+                    }
+                    .foregroundStyle(foreground.opacity(0.75))
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 5)
+                    .background(foreground.opacity(0.08), in: Capsule())
+                    .padding(16)
+                }
+            }
 
             ScoreFeedbackOverlay(feedback: snapshot.lastFeedback)
         }
