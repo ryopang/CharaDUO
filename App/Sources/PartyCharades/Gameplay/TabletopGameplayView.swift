@@ -106,9 +106,9 @@ private struct TabletopPauseButton: View {
 }
 
 /// The vertical half, seen only by the describer. PRD §3.2: the word at
-/// maximum legible size is this surface's entire job, so the urgency ramp is
-/// **restrained** here — it colours the timer's own container and a thin
-/// border inset, never a full background wash that would fight the word.
+/// maximum legible size is this surface's entire job. The whole lid is one
+/// flat countdown colour (design refresh 2026-09-23), so the word sits on a
+/// high-contrast card that stays legible on green, amber and red alike.
 private struct DescriberLidView: View {
     let engine: GameEngine
     let now: ContinuousClock.Instant
@@ -128,14 +128,17 @@ private struct DescriberLidView: View {
         let urgency = CountdownColor.background(fractionElapsed: fraction, increaseContrast: increaseContrast)
         let secondsRemaining = engine.timer?.displaySecondsRemaining(now: now) ?? 0
 
+        let foreground = CountdownColor.foreground(fractionElapsed: fraction, increaseContrast: increaseContrast)
+
         ZStack {
-            Color.black
+            urgency
+                .animation(.linear(duration: 0.1), value: fraction)
 
             VStack(spacing: 16) {
                 if let word = engine.currentWord {
                     Text(word.category.emojiDisplayName.uppercased())
                         .font(.caption.bold())
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(foreground.opacity(0.8))
 
                     Text(word.text(in: engine.configuration.language))
                         .font(.system(size: wordSize, weight: .bold))
@@ -143,7 +146,9 @@ private struct DescriberLidView: View {
                         .minimumScaleFactor(0.25)
                         .lineLimit(3)
                         .multilineTextAlignment(.center)
+                        .padding(20)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color.black.opacity(0.88), in: RoundedRectangle(cornerRadius: 28))
                 }
 
                 // Subordinate to the word, per §3.2.
@@ -151,20 +156,12 @@ private struct DescriberLidView: View {
                     .font(.system(size: timerSize, weight: .bold, design: .rounded))
                     .monospacedDigit()
                     .contentTransition(.numericText(countsDown: true))
-                    .foregroundStyle(CountdownColor.foreground(fractionElapsed: fraction, increaseContrast: increaseContrast))
+                    .foregroundStyle(foreground)
                     .countdownPulse(secondsRemaining: secondsRemaining)
-                    .padding(.horizontal, 18)
-                    .padding(.vertical, 6)
-                    .background(urgency, in: Capsule())
                     .accessibilityLabel(Text("\(secondsRemaining) seconds remaining"))
             }
             .padding(24)
         }
-        .overlay(
-            Rectangle()
-                .strokeBorder(urgency, lineWidth: 5)
-                .padding(6)
-        )
         .overlay(alignment: .topTrailing) {
             TabletopPauseButton { coordinator.pauseMatch() }
                 .padding(20)

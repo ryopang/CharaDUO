@@ -69,8 +69,7 @@ struct SingleScreenGameplayView: View {
     }
 }
 
-/// The top half: category + word, with a color-ramp fill that rises to
-/// cover more of this half as the round's time runs out.
+/// The top half: category + word on one flat countdown colour.
 private struct TopHalf: View {
     let engine: GameEngine
     let fraction: Double
@@ -86,29 +85,19 @@ private struct TopHalf: View {
             let urgency = CountdownColor.background(fractionElapsed: fraction, increaseContrast: increaseContrast)
             let foreground = CountdownColor.foreground(fractionElapsed: fraction, increaseContrast: increaseContrast)
 
-            ZStack(alignment: .bottom) {
-                // Rises from the bottom of this half as the round elapses —
-                // a proportional wipe rather than a flat color swap, capped
-                // at this half's own height (never spills into the button
-                // area below).
+            ZStack {
+                // One flat colour over the whole half, migrating
+                // green → amber → red; digits stay the primary cue.
                 urgency
-                    .frame(height: proxy.size.height * min(1, max(0, fraction)))
                     .animation(.linear(duration: 0.1), value: fraction)
 
                 VStack(spacing: 16) {
-                    // The digit carries its own pill background matching its
-                    // foreground's contrast — the rising wipe behind it only
-                    // covers part of this half, so the number can't rely on
-                    // that wipe actually being under it to stay legible.
                     Text("\(secondsRemaining)")
                         .font(.system(size: countdownSize, weight: .bold, design: .rounded))
                         .monospacedDigit()
                         .contentTransition(.numericText(countsDown: true))
                         .foregroundStyle(foreground)
                         .countdownPulse(secondsRemaining: secondsRemaining)
-                        .padding(.horizontal, 24)
-                        .padding(.vertical, 8)
-                        .background(urgency, in: Capsule())
                         .accessibilityLabel(Text("\(secondsRemaining) seconds remaining"))
 
                     Spacer(minLength: 0)
@@ -117,9 +106,10 @@ private struct TopHalf: View {
                         VStack(spacing: 8) {
                             Text(word.category.emojiDisplayName.uppercased())
                                 .font(.system(size: categorySize, weight: .bold))
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(foreground.opacity(0.75))
                             Text(word.text(in: engine.configuration.language))
                                 .font(.system(size: wordSize, weight: .bold))
+                                .foregroundStyle(foreground)
                                 .minimumScaleFactor(0.3)
                                 .lineLimit(3)
                                 .multilineTextAlignment(.center)
@@ -133,7 +123,7 @@ private struct TopHalf: View {
                     if engine.turnReshuffled {
                         Text("Deck reshuffled")
                             .font(.footnote)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(foreground.opacity(0.75))
                     }
                 }
                 .padding(.top, 12)
