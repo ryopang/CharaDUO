@@ -29,6 +29,12 @@ struct RootView: View {
                 MatchEndView()
             }
         }
+        .background {
+            // Gameplay paints its own countdown colours edge to edge.
+            if coordinator.screen != .gameplay {
+                Theme.backdrop.ignoresSafeArea()
+            }
+        }
         .environment(coordinator)
         .charaDuoTheme()
         .environment(\.locale, coordinator.settings.lastUsedLanguage.locale)

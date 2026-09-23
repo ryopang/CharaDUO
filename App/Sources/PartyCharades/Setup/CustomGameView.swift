@@ -98,6 +98,8 @@ struct CustomGameView: View {
                 }
             }
         }
+        .scrollContentBackground(.hidden)
+        .background(Theme.backdrop.ignoresSafeArea())
     }
 
     private var reactionCameraBinding: Binding<Bool> {

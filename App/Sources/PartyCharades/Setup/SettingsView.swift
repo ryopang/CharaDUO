@@ -46,6 +46,8 @@ struct SettingsView: View {
                     Text("A soft tick every second during a round, sharper in the last 10 seconds. Follows your silent switch.")
                 }
             }
+            .scrollContentBackground(.hidden)
+            .background(Theme.backdrop.ignoresSafeArea())
             .navigationTitle("Settings")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
