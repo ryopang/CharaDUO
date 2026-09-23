@@ -30,8 +30,10 @@ public enum HingeStatusKind: Sendable, Equatable {
 }
 
 public enum PostureResolver {
-    /// PRD §3.1 — tabletop is ≈75–115°.
-    public static let tabletopAngleRange: ClosedRange<Double> = 75...115
+    /// PRD §3.1 — tabletop is 70–150°. Widened from 75–115° on 2026-09-23:
+    /// the Device Hub Duo simulator's tabletop pose reports 127.8°, and a
+    /// phone propped on a table is as likely to sit open-ish as upright.
+    public static let tabletopAngleRange: ClosedRange<Double> = 70...150
 
     public static func resolve(status: HingeStatusKind, angleDegrees: Double) -> PostureState {
         switch status {

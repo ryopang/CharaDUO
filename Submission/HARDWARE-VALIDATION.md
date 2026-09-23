@@ -18,8 +18,10 @@ exercise degraded paths.
 - [ ] REC indicator visible on the outer display while recording.
 - [ ] **Tabletop:** outer-display text reads upright to the guessers (rotated a quarter turn
       clockwise). If it's sideways the other way or upside-down, change `QuarterTurn.angle`
-      in `OuterDisplayModifier.swift`. Simulator only shows `simctl` framebuffer captures,
-      which come out 180° turned and offset, so this has never been seen on real glass.
+      in `OuterDisplayModifier.swift`. Upright in the Device Hub simulator window (2026-09-23);
+      `simctl` framebuffer captures of that panel come out 180° turned and offset, so ignore those.
+- [ ] Tabletop detection: note the real hinge angle when propped on a table; the band is 70–150°
+      (`PostureResolver.tabletopAngleRange`). The simulator's tabletop pose reports 127.8°.
 - [ ] Flat: outer display unrotated, content clear of the camera cluster (82 pt top inset in the sim).
 - [ ] Emoji row: one category emoji per letter/character, gaps between words, fits long titles.
 

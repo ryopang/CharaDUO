@@ -7,16 +7,17 @@ struct PostureResolverTests {
     }
 
     @Test func tabletopBandMatchesThePRDRange() {
-        #expect(PostureResolver.resolve(status: .partiallyOpen, angleDegrees: 75) == .tabletop)
+        #expect(PostureResolver.resolve(status: .partiallyOpen, angleDegrees: 70) == .tabletop)
         #expect(PostureResolver.resolve(status: .partiallyOpen, angleDegrees: 90) == .tabletop)
-        #expect(PostureResolver.resolve(status: .partiallyOpen, angleDegrees: 115) == .tabletop)
+        #expect(PostureResolver.resolve(status: .partiallyOpen, angleDegrees: 128) == .tabletop) // the simulator's tabletop pose
+        #expect(PostureResolver.resolve(status: .partiallyOpen, angleDegrees: 150) == .tabletop)
     }
 
     @Test func partiallyOpenOutsideTheBandDegradesToFlat() {
         // Neither tabletop nor literally flat — single-screen is the
         // always-playable layout, so it degrades there.
         #expect(PostureResolver.resolve(status: .partiallyOpen, angleDegrees: 40) == .flat)
-        #expect(PostureResolver.resolve(status: .partiallyOpen, angleDegrees: 150) == .flat)
+        #expect(PostureResolver.resolve(status: .partiallyOpen, angleDegrees: 160) == .flat)
     }
 
     @Test func fullyOpenIsFlat() {

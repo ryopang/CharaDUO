@@ -137,7 +137,7 @@ The setup flow must reach "first word on screen" in under 30 seconds. Enforce by
 
 | Posture | Detection | Behavior |
 |---|---|---|
-| **Tabletop (target)** | `DeviceHingeContext` angle ≈ 75–115°, device roughly level | Full two-sided experience |
+| **Tabletop (target)** | `DeviceHingeContext` angle 70–150° (widened from 75–115° on 2026-09-23; the simulator's tabletop pose is ≈128°), device roughly level | Full two-sided experience |
 | **Flat / fully open** | angle ≈ 180° | Single-screen layout, outer display unavailable, game fully playable |
 | **Folded shut** | `.closed` | Pause match, show resume affordance on wake |
 | **Non-Duo iPhone** | No hinge context | Single-screen pass-the-phone mode (§8) |
