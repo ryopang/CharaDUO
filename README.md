@@ -41,6 +41,12 @@ iPhone Duo** for the hardware pass and the demo video; the checklist is in
   a parenthetical original ("湯姆克魯斯 (Tom Cruise)" → 5) and the English half
   of a bilingual brand ("Nike / 耐吉" → 2) are no longer counted.
 
+### 1.3.1 (2026-09-28)
+
+- **Custom Correct / Skip sounds** replace the system placeholders. Sources:
+  `Sound files/*.mp3`; the app bundles `App/Resources/Sounds/*.caf`
+  (`afconvert "Sound files/x.mp3" App/Resources/Sounds/x.caf -f caff -d LEI16`).
+
 ### 1.3.0 (2026-09-28)
 
 - **Japanese.** New UI language (`ja`, polite です/ます) and a fifth word

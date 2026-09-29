@@ -10,10 +10,9 @@ import UIKit
 /// haptics fire unconditionally; `AudioServicesPlaySystemSound` already
 /// respects the silent switch on its own.
 ///
-/// Sound is a placeholder: the PRD's "ascending chime" and "low buzz" want
-/// designed audio assets this project doesn't have, so these use built-in
-/// system sound IDs as a stand-in. Swap `chimeSoundID(for:)` for real bundled
-/// audio when that asset work happens; nothing else here changes.
+/// Correct and Skip play the bundled `correct.caf` / `skip.caf` (converted
+/// from `Sound files/*.mp3`, which stay as the editable sources). If a file
+/// fails to load, the built-in system sound IDs stand in.
 ///
 /// `UIImpactFeedbackGenerator(style:)` is soft-deprecated in this SDK in
 /// favor of `feedbackGeneratorWithStyle:forView:` (iOS 17.5+), which scopes
@@ -25,6 +24,8 @@ import UIKit
 final class FeedbackPlayer {
     static let shared = FeedbackPlayer()
 
+    private let correctSound = FeedbackPlayer.loadSound("correct")
+    private let skipSound = FeedbackPlayer.loadSound("skip")
     private let notificationGenerator = UINotificationFeedbackGenerator()
     private var lastTickSecond: Int?
 
@@ -73,10 +74,16 @@ final class FeedbackPlayer {
         }
     }
 
+    private nonisolated static func loadSound(_ name: String) -> SystemSoundID? {
+        guard let url = Bundle.main.url(forResource: name, withExtension: "caf") else { return nil }
+        var id: SystemSoundID = 0
+        return AudioServicesCreateSystemSoundID(url as CFURL, &id) == noErr ? id : nil
+    }
+
     private func chimeSoundID(for style: ChimeStyle) -> SystemSoundID {
         switch style {
-        case .ascending: return 1103
-        case .lowBuzz: return 1107
+        case .ascending: return correctSound ?? 1103
+        case .lowBuzz: return skipSound ?? 1107
         case .tick: return 1104
         }
     }

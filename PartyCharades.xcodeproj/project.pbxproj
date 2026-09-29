@@ -22,6 +22,7 @@
 		416CD983A073F8F65360065E /* Capture in Frameworks */ = {isa = PBXBuildFile; productRef = 6000B398F6DF8D8CD14C98CB /* Capture */; };
 		453C16DD30FF9C07BCBEC2D5 /* MatchEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BBB8B83A32F2F61F9BB713 /* MatchEndView.swift */; };
 		489AE0530C1919E94C7C5C99 /* Design in Frameworks */ = {isa = PBXBuildFile; productRef = 94607FBA1C0BD2F30E0119AA /* Design */; };
+		4BBDC434733FF05FD27C17FF /* correct.caf in Resources */ = {isa = PBXBuildFile; fileRef = FC2AB82A8F44C80D7A379A0D /* correct.caf */; };
 		4E9D469554FB2D612B725EF8 /* SingleScreenGameplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C13A1E605BA4750BCE5A5F9 /* SingleScreenGameplayView.swift */; };
 		535AE444BE8A263596B32105 /* OuterDisplayModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D350F94B5D85006223717C /* OuterDisplayModifier.swift */; };
 		5C72BE5FEB86CA0F9E3E8469 /* CaptureConsentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9EEE0FBF144B1A7332E3C4 /* CaptureConsentView.swift */; };
@@ -43,6 +44,7 @@
 		CBBF1463696A7E4A9DD15C47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6FFDCD3519F08BE40B795A3 /* Assets.xcassets */; };
 		D203CB7557C29F94D9ADF0B0 /* TabletopGameplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8182CC4A86E8E72A305E9118 /* TabletopGameplayView.swift */; };
 		DC20840E52C0FB0F32FB3B68 /* ReelPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F20E4E87440C8E166DB381 /* ReelPlayback.swift */; };
+		DEE524A449EF2A896CAF20D7 /* skip.caf in Resources */ = {isa = PBXBuildFile; fileRef = A3840DBB7D271C274C81123D /* skip.caf */; };
 		E03EA5B6C1A9551B51F52E28 /* GuesserMatchEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCE01D34F62DE8A15280628 /* GuesserMatchEndView.swift */; };
 		E2A9792C6947C674FEB7C800 /* GuesserRoundSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F354A136934F8FBCC825D4A /* GuesserRoundSummaryView.swift */; };
 		E7D5073C81B12C61BDF3C14C /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD328964FC6047BA529DE1D /* L10n.swift */; };
@@ -92,6 +94,7 @@
 		91204596D30448F4856D6625 /* FeedbackPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackPlayer.swift; sourceTree = "<group>"; };
 		98BE5860C2CF44BB77040605 /* Posture */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Posture; path = Packages/Posture; sourceTree = SOURCE_ROOT; };
 		98F1556BE5686E5246B52E27 /* TabletopLayoutUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabletopLayoutUITests.swift; sourceTree = "<group>"; };
+		A3840DBB7D271C274C81123D /* skip.caf */ = {isa = PBXFileReference; path = skip.caf; sourceTree = "<group>"; };
 		A97E7DF0BDF55AA409CBFD24 /* PartyCharadesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyCharadesApp.swift; sourceTree = "<group>"; };
 		AC59374A90522EF0B013BDF4 /* Design */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Design; path = Packages/Design; sourceTree = SOURCE_ROOT; };
 		B6FFDCD3519F08BE40B795A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -109,6 +112,7 @@
 		F8CE743539ABFB9A7800980A /* HitZoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitZoneButton.swift; sourceTree = "<group>"; };
 		F92E868E3DB844ADCC62E383 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		F978B83DCD95B370848F83BC /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		FC2AB82A8F44C80D7A379A0D /* correct.caf */ = {isa = PBXFileReference; path = correct.caf; sourceTree = "<group>"; };
 		FE0C65AFA04249EFC1905385 /* DisplayNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayNames.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -209,6 +213,15 @@
 			path = UITests;
 			sourceTree = "<group>";
 		};
+		6BFF6EA7A0854C12C722B031 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				FC2AB82A8F44C80D7A379A0D /* correct.caf */,
+				A3840DBB7D271C274C81123D /* skip.caf */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		744C91A861DF1166C7476390 /* Gameplay */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +274,7 @@
 				1D7C401FBDFD5A3FC125F9AA /* InfoPlist.xcstrings */,
 				03624074A219976D1AA73E91 /* Localizable.xcstrings */,
 				07DD83FB50DF50E1C13B7E84 /* PrivacyInfo.xcprivacy */,
+				6BFF6EA7A0854C12C722B031 /* Sounds */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -387,6 +401,8 @@
 				B4C76C086C828316BAF77045 /* InfoPlist.xcstrings in Resources */,
 				0F1BE1A3BE6F12BB81C63BB4 /* Localizable.xcstrings in Resources */,
 				87F02FD684222DCBA77B67A9 /* PrivacyInfo.xcprivacy in Resources */,
+				4BBDC434733FF05FD27C17FF /* correct.caf in Resources */,
+				DEE524A449EF2A896CAF20D7 /* skip.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,7 +475,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
@@ -468,7 +484,7 @@
 					"@executable_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryopang.partycharades;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -585,7 +601,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
@@ -594,7 +610,7 @@
 					"@executable_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryopang.partycharades;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
