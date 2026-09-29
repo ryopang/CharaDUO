@@ -21,25 +21,9 @@ outer-display features are an enhancement layer, never a requirement.
 
 ## Status
 
-`v1.2.3` (build 6). M1–M7 are complete, M8 is in progress. **Still needs a real
+`v1.3.1` (build 8). M1–M7 are complete, M8 is in progress. **Still needs a real
 iPhone Duo** for the hardware pass and the demo video; the checklist is in
 [`Submission/HARDWARE-VALIDATION.md`](./Submission/HARDWARE-VALIDATION.md).
-
-### 1.2.3 (2026-09-23)
-
-- **Outer display language:** the outer display now follows the in-app language
-  instead of the system language (e.g. Taiwan no longer shows Cantonese text).
-
-
-### 1.2.2 (2026-09-23)
-
-- **Category emoji:** Food is now 🍽️ and Sightseeing is 📸.
-
-### 1.2.1 (2026-09-23)
-
-- **Outer display emoji count fix.** Emoji now count only the answer itself:
-  a parenthetical original ("湯姆克魯斯 (Tom Cruise)" → 5) and the English half
-  of a bilingual brand ("Nike / 耐吉" → 2) are no longer counted.
 
 ### 1.3.1 (2026-09-28)
 
@@ -62,7 +46,23 @@ iPhone Duo** for the hardware pass and the demo video; the checklist is in
   one `ContentLanguage` case, one `sourceColumnHeader`, one sheet column.
   Fixed a parser bug where an empty cell inherited the previous cell's text.
 
-### 1.2.0 (2026-09-23) (2026-09-23)
+### 1.2.3 (2026-09-23)
+
+- **Outer display language:** the outer display now follows the in-app language
+  instead of the system language (e.g. Taiwan no longer shows Cantonese text).
+
+
+### 1.2.2 (2026-09-23)
+
+- **Category emoji:** Food is now 🍽️ and Sightseeing is 📸.
+
+### 1.2.1 (2026-09-23)
+
+- **Outer display emoji count fix.** Emoji now count only the answer itself:
+  a parenthetical original ("湯姆克魯斯 (Tom Cruise)" → 5) and the English half
+  of a bilingual brand ("Nike / 耐吉" → 2) are no longer counted.
+
+### 1.2.0 (2026-09-23)
 
 - **New category: Brand.** 100 words (Apple, …) in all four word languages,
   bringing the built-in set to **10 categories and 1,200 words**. Named 品牌 in
