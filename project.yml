@@ -2,7 +2,7 @@ name: PartyCharades
 options:
   bundleIdPrefix: com.ryopang
   developmentLanguage: en
-  knownRegions: [en, zh-HK, zh-Hant, zh-Hans, Base]
+  knownRegions: [en, zh-HK, zh-Hant, zh-Hans, ja, Base]
   deploymentTarget:
     iOS: "27.0"
   createIntermediateGroups: true
@@ -48,7 +48,7 @@ targets:
         CFBundleShortVersionString: "$(MARKETING_VERSION)"
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         CFBundleDevelopmentRegion: "en"
-        CFBundleLocalizations: [en, zh-HK, zh-Hant, zh-Hans]
+        CFBundleLocalizations: [en, zh-HK, zh-Hant, zh-Hans, ja]
         # No custom cryptography — the app has no networking at all.
         ITSAppUsesNonExemptEncryption: false
         # PRD §7.1 — explicit and honest: what is recorded, and that it
@@ -73,8 +73,8 @@ targets:
         SWIFT_STRICT_CONCURRENCY: complete
         SWIFT_EMIT_LOC_STRINGS: YES
         LOCALIZATION_PREFERS_STRING_CATALOGS: YES
-        MARKETING_VERSION: "1.2.3"
-        CURRENT_PROJECT_VERSION: "6"
+        MARKETING_VERSION: "1.3.0"
+        CURRENT_PROJECT_VERSION: "7"
         TARGETED_DEVICE_FAMILY: "1"
         DEVELOPMENT_TEAM: ""
         CODE_SIGN_STYLE: Automatic

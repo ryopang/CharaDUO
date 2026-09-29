@@ -40,6 +40,9 @@ final class SheetParser: NSObject, XMLParserDelegate {
             currentRow = []
         case "c":
             currentCellType = attributeDict["t"]
+            // An empty `<c/>` has no <v>/<t> to reset this, and would
+            // otherwise inherit the previous cell's text.
+            currentValue = ""
             if let ref = attributeDict["r"] {
                 currentCellIndex = Self.columnIndex(fromCellReference: ref)
             } else {

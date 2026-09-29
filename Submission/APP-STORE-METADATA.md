@@ -11,7 +11,7 @@
 | Privacy label | Data Not Collected |
 | Privacy manifest | `App/Resources/PrivacyInfo.xcprivacy` (UserDefaults CA92.1 only) |
 | Export compliance | `ITSAppUsesNonExemptEncryption = false` (no networking) |
-| Localizations | en, zh-Hant (Taiwan), zh-Hans, zh-HK (Cantonese) |
+| Localizations | en, zh-Hant (Taiwan), zh-Hans, zh-HK (Cantonese), ja |
 | Support URL / Privacy policy URL | **TODO — owner to provide** (privacy policy must state: no data collected, footage stays on device) |
 
 ## Description (English, draft)
@@ -24,9 +24,9 @@ standing up, phone flat on the table, everyone shouting.
 • Pass-the-phone or tabletop — works on any iPhone, and on iPhone Duo the fold
   splits the screen: the describer's word on the lid, a scoreboard facing the
   guessers.
-• 1,200 words across 10 categories — movies, TV, celebrities, animals, food,
+• 1,394 words across 10 categories — movies, TV, celebrities, animals, food,
   countries, sightseeing, superheroes, sport and brands.
-• Words in English, Cantonese, Taiwan Mandarin and Mainland Mandarin, with the
+• Words in English, Cantonese, Taiwan Mandarin, Mainland Mandarin and Japanese, with the
   whole app translated to match.
 • Reaction Reel — the guessing team's best moments, replayed at 1×, 2× or 3×
   (chipmunk voices included) and saved to Photos if you want them.

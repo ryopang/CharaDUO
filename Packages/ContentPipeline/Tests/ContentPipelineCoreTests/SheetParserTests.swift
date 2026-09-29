@@ -52,4 +52,14 @@ struct SheetParserTests {
 
         #expect(rows == [["1", nil, "3"]])
     }
+
+    @Test func emptyCellDoesNotInheritThePreviousCellsValue() throws {
+        let rows = try SheetParser(sharedStrings: []).parse(data: Data("""
+        <worksheet><sheetData><row r="1">
+          <c r="A1" t="inlineStr"><is><t>Text</t></is></c>
+          <c r="B1" t="inlineStr"></c>
+        </row></sheetData></worksheet>
+        """.utf8))
+        #expect(rows == [["Text", nil]])
+    }
 }

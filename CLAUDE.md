@@ -143,6 +143,14 @@ around anything not on this list without verifying it first.**
 **Data**
 - Word bank is **bundled JSON decoded into memory**. Not SwiftData, not Core Data.
   1,100 immutable rows do not justify a persistent store or its migration surface.
+- Source sheet is `Multilingual_Vocabulary.xlsx`; run `Scripts/regenerate-content.sh`
+  after editing it. Columns are found by header. Optional `Region` column
+  (HK/TW/CN/JP, blank = global) drives the 70/30 deck weighting in `Deck`.
+- **Adding a language:** a `ContentLanguage` case (+ `homeRegion`, `sourceColumnHeader`,
+  `catalogCode`, `locale`, names in `DisplayNames.swift`), a sheet column, a
+  `knownRegions`/`CFBundleLocalizations` entry in `project.yml`, and a column in
+  the xcstrings catalogs (`Scripts/l10n/xcstrings_xlsx.py` LANGS). The compiler
+  flags every exhaustive switch you missed.
 - SwiftData is for **user state only**: stats, settings, custom decks.
 - The `.xlsx` is a build-time input. **Never read it at runtime.**
 - The source spreadsheet's "Mainland Chinese" column is **Traditional script** —

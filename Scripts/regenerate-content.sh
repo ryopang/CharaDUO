@@ -1,6 +1,6 @@
 #!/bin/bash
 # Regenerates Packages/Content/Sources/Content/Resources/vocabulary.json from
-# Multilingual_Vocabulary_1100.xlsx via the xlsx2json build tool (PRD §6.3).
+# Multilingual_Vocabulary.xlsx via the xlsx2json build tool (PRD §6.3).
 #
 # Run this whenever the source spreadsheet changes. It is NOT part of the app
 # build itself — the .xlsx is a build-time-of-the-tool input, never read by
@@ -10,7 +10,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-XLSX="$(pwd)/Multilingual_Vocabulary_1100.xlsx"
+XLSX="$(pwd)/Multilingual_Vocabulary.xlsx"
 OUTPUT="$(pwd)/Packages/Content/Sources/Content/Resources/vocabulary.json"
 
 # This project directory is iCloud-synced; iCloud's file-provider extension

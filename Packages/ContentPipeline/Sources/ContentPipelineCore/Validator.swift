@@ -44,9 +44,14 @@ public enum Validator {
                 issues.append(ValidationIssue("Row \(lineNumber): unknown category '\(row.category)'"))
             }
 
-            let localizations = [row.english, row.cantonese, row.taiwanChinese, row.mainlandChineseTraditional]
-            if localizations.contains(where: \.isEmpty) {
-                issues.append(ValidationIssue("Row \(lineNumber): missing localization for '\(row.english)'"))
+            let missingLanguages = ContentLanguage.allCases.filter { (row.texts[$0] ?? "").isEmpty }
+            if !missingLanguages.isEmpty {
+                let names = missingLanguages.map(\.sourceColumnHeader).joined(separator: ", ")
+                issues.append(ValidationIssue("Row \(lineNumber): missing localization for '\(row.english)' (\(names))"))
+            }
+
+            if !row.region.isEmpty, ContentRegion(rawValue: row.region.lowercased()) == nil {
+                issues.append(ValidationIssue("Row \(lineNumber): unknown region '\(row.region)' for '\(row.english)'"))
             }
 
             let pairKey = "\(row.category)\u{0}\(row.english)"

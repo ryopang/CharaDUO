@@ -4,7 +4,7 @@ import Foundation
 
 extension GameWord {
     /// The word as the describer should see it. English is the backstop —
-    /// the build-time validator guarantees all four localizations exist, so
+    /// the build-time validator guarantees every language is present, so
     /// this only ever matters if that guarantee is broken.
     func text(in language: ContentLanguage) -> String {
         localizations[language] ?? localizations[.english] ?? ""
@@ -93,11 +93,12 @@ extension ContentLanguage {
         case .cantonese: return tr("Cantonese")
         case .taiwanChinese: return tr("Taiwan Chinese")
         case .mainlandChinese: return tr("Mainland Chinese")
+        case .japanese: return tr("Japanese")
         }
     }
 
     /// The label shown in the Word Language picker. Deliberately **not**
-    /// localized via the String Catalog — the user wants these four labels
+    /// localized via the String Catalog — the user wants these labels
     /// shown the same way regardless of the device's OS language, since
     /// they're naming the word variant (Hong Kong Cantonese, Taiwan
     /// Mandarin, Mainland Mandarin) rather than translating a UI string.
@@ -107,6 +108,7 @@ extension ContentLanguage {
         case .cantonese: return "香港"
         case .taiwanChinese: return "台灣"
         case .mainlandChinese: return "中国大陆"
+        case .japanese: return "日本語"
         }
     }
 }

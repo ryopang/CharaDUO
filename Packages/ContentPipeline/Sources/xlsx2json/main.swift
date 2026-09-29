@@ -29,15 +29,15 @@ do {
     let converter = try TraditionalToSimplifiedConverter.loadBundled()
 
     let words = rows.map { row -> GameWord in
-        GameWord(
+        var localizations = row.texts
+        if let traditional = row.texts[.mainlandChinese] {
+            localizations[.mainlandChinese] = converter.convert(traditional)
+        }
+        return GameWord(
             id: DeterministicID.uuid(category: row.category, english: row.english),
             category: Validator.knownCategories[row.category]!,
-            localizations: [
-                .english: row.english,
-                .cantonese: row.cantonese,
-                .taiwanChinese: row.taiwanChinese,
-                .mainlandChinese: converter.convert(row.mainlandChineseTraditional)
-            ]
+            localizations: localizations,
+            region: ContentRegion(rawValue: row.region.lowercased())
         )
     }
 

@@ -10,6 +10,18 @@
             "value" : "CharaDUO"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CharaDUO"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CharaDUO"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17,12 +29,6 @@
           }
         },
         "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CharaDUO"
-          }
-        },
-        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CharaDUO"
@@ -51,6 +57,18 @@
             "value" : "CharaDUO records the guessing team's reactions during a round so you can watch the highlights together at the end of the match. Video stays on this device and is never uploaded."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CharaDUOは、ラウンド中に回答チームのリアクションを撮影し、試合の最後にみんなでハイライトを見られるようにします。映像はこのデバイス内にとどまり、アップロードされることはありません。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CharaDUO 會喺每一輪拍低估緊嘅一隊嘅反應，完場一齊睇精華回放。片段只會留喺呢部機，唔會上傳。"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -61,12 +79,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CharaDUO 會在每一輪拍攝猜題隊伍的反應，讓大家在比賽結束時一起觀看精華回顧。影片只會保留在這支手機上，不會上傳。"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CharaDUO 會喺每一輪拍低估緊嘅一隊嘅反應，完場一齊睇精華回放。片段只會留喺呢部機，唔會上傳。"
           }
         }
       }
@@ -80,6 +92,18 @@
             "value" : "CharaDUO records the table's audio so the highlight reel has sound. Audio stays on this device, is never uploaded, and is never analysed."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CharaDUOは、ハイライトリールに音を付けるためにテーブルの音を録音します。音声はこのデバイス内にとどまり、アップロードや分析は一切行われません。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CharaDUO 會錄低枱面嘅聲音，令精華回放有聲。聲音只會留喺呢部機，唔會上傳，亦唔會被分析。"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -90,12 +114,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CharaDUO 會錄下桌面的聲音，讓精華回顧有聲音。錄音只會保留在這支手機上，不會上傳，也不會被分析。"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CharaDUO 會錄低枱面嘅聲音，令精華回放有聲。聲音只會留喺呢部機，唔會上傳，亦唔會被分析。"
           }
         }
       }
@@ -109,6 +127,18 @@
             "value" : "CharaDUO saves the reaction reel you choose to your photo library. Nothing is saved unless you tap Save."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CharaDUOは、あなたが選んだリアクションリールを写真ライブラリに保存します。「保存」をタップしない限り、何も保存されません。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CharaDUO 會將你揀嘅反應精華儲存到相簿。你冇㩒「儲存」就唔會儲存任何嘢。"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -119,12 +149,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CharaDUO 會將你選擇的反應精華儲存到照片圖庫。除非你點「儲存」，否則不會儲存任何內容。"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CharaDUO 會將你揀嘅反應精華儲存到相簿。你冇㩒「儲存」就唔會儲存任何嘢。"
           }
         }
       }

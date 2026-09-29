@@ -20,16 +20,35 @@ public enum DeckError: Error, Equatable {
 /// entire deck — fall back to the full word list as a last resort rather than
 /// returning nothing mid-round.
 public struct Deck: Sendable {
+    /// Share of draws taken from the favored region's words while both the
+    /// favored and the other pool still have cards (the 70/30 rule).
+    public static let defaultFavoredShare = 0.7
+
     private let allWords: [GameWord]
-    private var upcoming: [GameWord]
+    private let favoredRegion: ContentRegion?
+    private let favoredShare: Double
+    private var upcomingFavored: [GameWord] = []
+    private var upcomingOther: [GameWord] = []
     private var usedThisRound: Set<GameWord.ID> = []
     private var generator: SeededGenerator
 
-    public init(words: [GameWord], seed: UInt64 = .random(in: .min ... .max)) throws {
+    /// `favoredRegion` biases which words come up: with both kinds available,
+    /// `favoredShare` of draws are words tagged with that region and the rest
+    /// come from everything else. Nil (or a category mix with no tagged
+    /// words) means a plain uniform shuffle. Either way, no word repeats
+    /// until the deck runs dry.
+    public init(
+        words: [GameWord],
+        seed: UInt64 = .random(in: .min ... .max),
+        favoredRegion: ContentRegion? = nil,
+        favoredShare: Double = Deck.defaultFavoredShare
+    ) throws {
         guard !words.isEmpty else { throw DeckError.noWordsAvailable }
         self.allWords = words
+        self.favoredRegion = favoredRegion
+        self.favoredShare = favoredShare
         self.generator = SeededGenerator(seed: seed)
-        self.upcoming = words.shuffled(using: &generator)
+        refill(from: words)
     }
 
     public mutating func startRound() {
@@ -37,17 +56,35 @@ public struct Deck: Sendable {
     }
 
     public mutating func draw() -> DeckDraw {
-        if let word = upcoming.popLast() {
-            usedThisRound.insert(word.id)
-            return DeckDraw(word: word, reshuffled: false)
+        var reshuffled = false
+        if upcomingFavored.isEmpty && upcomingOther.isEmpty {
+            let unusedThisRound = allWords.filter { !usedThisRound.contains($0.id) }
+            refill(from: unusedThisRound.isEmpty ? allWords : unusedThisRound)
+            reshuffled = true
         }
 
-        let unusedThisRound = allWords.filter { !usedThisRound.contains($0.id) }
-        let pool = unusedThisRound.isEmpty ? allWords : unusedThisRound
-        upcoming = pool.shuffled(using: &generator)
+        let takeFavored: Bool
+        if upcomingFavored.isEmpty {
+            takeFavored = false
+        } else if upcomingOther.isEmpty {
+            takeFavored = true
+        } else {
+            takeFavored = Double.random(in: 0..<1, using: &generator) < favoredShare
+        }
 
-        let word = upcoming.removeLast()
+        let word = takeFavored ? upcomingFavored.removeLast() : upcomingOther.removeLast()
         usedThisRound.insert(word.id)
-        return DeckDraw(word: word, reshuffled: true)
+        return DeckDraw(word: word, reshuffled: reshuffled)
+    }
+
+    private mutating func refill(from pool: [GameWord]) {
+        let shuffled = pool.shuffled(using: &generator)
+        guard let favoredRegion else {
+            upcomingFavored = []
+            upcomingOther = shuffled
+            return
+        }
+        upcomingFavored = shuffled.filter { $0.region == favoredRegion }
+        upcomingOther = shuffled.filter { $0.region != favoredRegion }
     }
 }

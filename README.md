@@ -41,6 +41,21 @@ iPhone Duo** for the hardware pass and the demo video; the checklist is in
   a parenthetical original ("湯姆克魯斯 (Tom Cruise)" → 5) and the English half
   of a bilingual brand ("Nike / 耐吉" → 2) are no longer counted.
 
+### 1.3.0 (2026-09-28)
+
+- **Japanese.** New UI language (`ja`, polite です/ます) and a fifth word
+  language. Vocabulary grows to **1,394 words** (194 Japan-focused additions).
+  The word-language picker, Settings, Info.plist prompts and the outer display
+  all follow it; a Japanese phone starts in Japanese.
+- **Regional 70/30 deck.** Words can carry a `Region` tag (HK, TW, CN, JP). In
+  a match, the language's home region (Cantonese → HK, Taiwan → TW, Mainland →
+  CN, Japanese → JP) supplies ~70% of draws and everything else ~30%. English
+  and untagged mixes are unweighted. See `Deck` in `Packages/Core`.
+- **Content pipeline:** the spreadsheet is now `Multilingual_Vocabulary.xlsx`
+  (no count in the name). Columns are read by header, so adding a language is
+  one `ContentLanguage` case, one `sourceColumnHeader`, one sheet column.
+  Fixed a parser bug where an empty cell inherited the previous cell's text.
+
 ### 1.2.0 (2026-09-23) (2026-09-23)
 
 - **New category: Brand.** 100 words (Apple, …) in all four word languages,
@@ -118,7 +133,7 @@ regular iPhone.
 
 ### Regenerating the word bank
 
-`Multilingual_Vocabulary_1100.xlsx` is a build-time-only input — the app
+`Multilingual_Vocabulary.xlsx` is a build-time-only input — the app
 never reads it at runtime. To regenerate the bundled JSON after editing the
 spreadsheet:
 

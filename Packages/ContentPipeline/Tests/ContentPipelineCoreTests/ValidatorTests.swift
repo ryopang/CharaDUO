@@ -8,14 +8,20 @@ struct ValidatorTests {
         english: String = "Inception",
         cantonese: String = "潛行凶間",
         taiwanChinese: String = "全面啟動",
-        mainlandChinese: String = "盜夢空間"
+        mainlandChinese: String = "盜夢空間",
+        japanese: String = "インセプション",
+        region: String = ""
     ) -> RawRow {
         RawRow(
             category: category,
-            english: english,
-            cantonese: cantonese,
-            taiwanChinese: taiwanChinese,
-            mainlandChineseTraditional: mainlandChinese
+            texts: [
+                .english: english,
+                .cantonese: cantonese,
+                .taiwanChinese: taiwanChinese,
+                .mainlandChinese: mainlandChinese,
+                .japanese: japanese
+            ],
+            region: region
         )
     }
 
@@ -58,5 +64,20 @@ struct ValidatorTests {
         let rows = [row(category: "Movie", english: "Only One")]
         let issues = Validator.validate(rows)
         #expect(issues.contains { $0.description.contains("Category 'Movie' has 1 word(s)") })
+    }
+
+    @Test func missingJapaneseFailsValidation() {
+        let issues = Validator.validate([row(japanese: "")])
+        #expect(issues.contains { $0.description.contains("missing localization") && $0.description.contains("Japanese") })
+    }
+
+    @Test func unknownRegionFailsValidation() {
+        let issues = Validator.validate([row(region: "Mars")])
+        #expect(issues.contains { $0.description.contains("unknown region 'Mars'") })
+    }
+
+    @Test func knownRegionsAreCaseInsensitiveAndBlankIsGlobal() {
+        let issues = Validator.validate([row(region: "HK"), row(english: "B", region: "jp"), row(english: "C")])
+        #expect(!issues.contains { $0.description.contains("region") })
     }
 }

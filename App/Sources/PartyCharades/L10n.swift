@@ -9,7 +9,7 @@ import Foundation
 /// from the matching `.lproj` bundle directly.
 ///
 /// Catalog language codes: `en`, `zh-HK` (Cantonese), `zh-Hant` (Taiwan),
-/// `zh-Hans` (Mainland). "CharaDUO" stays Latin in every language.
+/// `zh-Hans` (Mainland), `ja` (Japanese). "CharaDUO" stays Latin in every language.
 enum L10n {
     // Written only on the main actor (AppSettings), read from view bodies.
     nonisolated(unsafe) private(set) static var bundle: Bundle = .main
@@ -38,12 +38,13 @@ enum L10n {
 
     /// Maps the device's preferred language to a starting `ContentLanguage`
     /// on first launch: zh-HK/yue → Cantonese, zh-TW → Taiwan, zh-CN →
-    /// Mainland, anything else → English.
+    /// Mainland, ja → Japanese, anything else → English.
     static func initialLanguage(preferred: [String] = Locale.preferredLanguages) -> ContentLanguage {
         guard let first = preferred.first?.lowercased() else { return .english }
         if first.hasPrefix("yue") || first.hasPrefix("zh-hk") || first.hasPrefix("zh-hant-hk") || first.hasPrefix("zh-mo") || first.hasPrefix("zh-hant-mo") {
             return .cantonese
         }
+        if first.hasPrefix("ja") { return .japanese }
         if first.hasPrefix("zh-tw") || first.hasPrefix("zh-hant") { return .taiwanChinese }
         if first.hasPrefix("zh") { return .mainlandChinese }
         return .english
@@ -57,6 +58,7 @@ extension ContentLanguage {
         case .cantonese: return "zh-HK"
         case .taiwanChinese: return "zh-Hant"
         case .mainlandChinese: return "zh-Hans"
+        case .japanese: return "ja"
         }
     }
 
@@ -66,6 +68,7 @@ extension ContentLanguage {
         case .cantonese: return Locale(identifier: "zh-HK")
         case .taiwanChinese: return Locale(identifier: "zh-Hant-TW")
         case .mainlandChinese: return Locale(identifier: "zh-Hans-CN")
+        case .japanese: return Locale(identifier: "ja-JP")
         }
     }
 }

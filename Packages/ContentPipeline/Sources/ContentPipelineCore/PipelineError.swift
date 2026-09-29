@@ -16,9 +16,9 @@ public enum PipelineError: Error, CustomStringConvertible {
         case .missingSheet:
             return "The workbook has no rows on the first sheet."
         case .headerMismatch(let expected, let actual):
-            return "Header row mismatch.\n  expected: \(expected)\n  actual:   \(actual)"
+            return "Header row is missing required column(s).\n  required: \(expected)\n  actual:   \(actual)"
         case .incompleteRow(let line, let row):
-            return "Row \(line) is missing one or more of the 5 expected columns: \(row)"
+            return "Row \(line) is missing its Category or English cell: \(row)"
         case .resourceMissing(let name):
             return "Missing bundled resource: \(name)"
         case .malformedConversionTable(let line):

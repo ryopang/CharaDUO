@@ -11,6 +11,12 @@
             "value": "%@ (%lld)"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@（%lld）"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -39,6 +45,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ wins!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@の勝ち！"
           }
         },
         "zh-HK": {
@@ -71,6 +83,12 @@
             "value": "%@ · Round %lld"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · 第%lldラウンド"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -95,6 +113,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 🎉"
+          }
+        },
+        "ja": {
           "stringUnit": {
             "state": "translated",
             "value": "%@ 🎉"
@@ -128,6 +152,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@, %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@、%@"
           }
         },
         "zh-HK": {
@@ -176,6 +206,12 @@
             }
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "このラウンドの正解: %lld問"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -206,6 +242,12 @@
             "value": "%lld seconds remaining"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "残り%lld秒"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -234,6 +276,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "%llds"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld秒"
           }
         },
         "zh-HK": {
@@ -270,6 +318,12 @@
             "value": "2 teams · 2 rounds each · 1 random topic"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2チーム · 各2ラウンド · ランダムなお題1つ"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -297,6 +351,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "A soft tick every second during a round, sharper in the last 10 seconds. Follows your silent switch."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ラウンド中は1秒ごとに小さなカチカチ音が鳴り、最後の10秒はより鋭い音になります。マナーモードの設定に従います。"
           }
         },
         "zh-HK": {
@@ -329,6 +389,12 @@
             "value": "About the reaction camera"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "リアクションカメラについて"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -358,6 +424,12 @@
             "value": "Allow Camera & Mic"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カメラとマイクを許可"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -385,6 +457,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Allow Photos access to save your reel."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "リールを保存するには、写真へのアクセスを許可してください。"
           }
         },
         "zh-HK": {
@@ -417,6 +495,12 @@
             "value": "Animal"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "動物"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -447,6 +531,12 @@
             "value": "Answer length: %lld"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "答えの文字数: %lld"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -474,6 +564,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Back to Home"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ホームに戻る"
           }
         },
         "zh-HK": {
@@ -506,6 +602,12 @@
             "value": "Brand"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ブランド"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -533,6 +635,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Camera On"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カメラON"
           }
         },
         "zh-HK": {
@@ -564,6 +672,12 @@
             "value": "Cancel"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "キャンセル"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -593,6 +707,12 @@
             "value": "Cantonese"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "広東語"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -620,6 +740,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Categories"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カテゴリ"
           }
         },
         "zh-HK": {
@@ -652,6 +778,12 @@
             "value": "Celebrity"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有名人"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -677,6 +809,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CharaDUO"
+          }
+        },
+        "ja": {
           "stringUnit": {
             "state": "translated",
             "value": "CharaDUO"
@@ -712,6 +850,12 @@
             "value": "Choose your own teams, rounds, and topics"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "チーム、ラウンド、お題を自由に選べます"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -740,6 +884,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Clips you don't save are deleted when the match ends."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保存しなかったクリップは、試合終了時に削除されます。"
           }
         },
         "zh-HK": {
@@ -772,6 +922,12 @@
             "value": "Correct"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正解"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -802,6 +958,12 @@
             "value": "Correct Answers"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正解"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -829,6 +991,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Couldn't save this clip. Try again."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "このクリップを保存できませんでした。もう一度お試しください。"
           }
         },
         "zh-HK": {
@@ -861,6 +1029,12 @@
             "value": "Country"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "国"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -888,6 +1062,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Custom Game"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カスタムゲーム"
           }
         },
         "zh-HK": {
@@ -920,6 +1100,12 @@
             "value": "Deck reshuffled"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "お題をシャッフルし直しました"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -948,6 +1134,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Describe it. Guess it. Don't say the word."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "説明して、当てよう。\n言葉そのものは言っちゃダメ！"
           }
         },
         "zh-HK": {
@@ -979,6 +1171,12 @@
             "value": "Done"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完了"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -1006,6 +1204,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "English"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "英語"
           }
         },
         "zh-HK": {
@@ -1038,6 +1242,12 @@
             "value": "Everything stays on this device. Nothing is uploaded, analysed, or shared."
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "すべてこのデバイス内にとどまります。アップロード、分析、共有は一切行いません。"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -1067,6 +1277,12 @@
             "value": "Exit Game"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ゲームを終了"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -1094,6 +1310,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Films the guessing team and records the table during a round, so you get a highlight reel at the end. Everything stays on this device. This is also what powers the scoreboard on the outer display."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ラウンド中に回答チームを撮影し、テーブルの音を録音して、最後にハイライトリールを作成します。すべてこのデバイス内にとどまります。外側ディスプレイのスコアボードにもこの機能が使われます。"
           }
         },
         "zh-HK": {
@@ -1126,6 +1348,12 @@
             "value": "Food"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "食べ物"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -1154,6 +1382,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Fun Cam"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ハイライト撮影"
           }
         },
         "zh-HK": {
@@ -1185,6 +1419,12 @@
             "value": "Game Over"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ゲーム終了"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -1214,6 +1454,12 @@
             "value": "It's a tie!"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "引き分け！"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -1234,6 +1480,42 @@
         }
       }
     },
+    "Japanese": {
+      "comment": "Language name",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Japanese"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日本語"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日文"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日语"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日文"
+          }
+        }
+      }
+    },
     "Language": {
       "extractionState": "manual",
       "localizations": {
@@ -1241,6 +1523,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Language"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "言語"
           }
         },
         "zh-HK": {
@@ -1270,6 +1558,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mainland Chinese"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "中国語（中国本土）"
           }
         },
         "zh-HK": {
@@ -1302,6 +1596,12 @@
             "value": "Movie"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "映画"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -1329,6 +1629,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Multiple Categories"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "複数のカテゴリ"
           }
         },
         "zh-HK": {
@@ -1360,6 +1666,12 @@
             "value": "New Custom Game"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新しいカスタムゲーム"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -1387,6 +1699,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Next Team"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "次のチーム"
           }
         },
         "zh-HK": {
@@ -1418,6 +1736,12 @@
             "value": "No"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "いいえ"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -1445,6 +1769,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Not enough words in the selected categories to start a match."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選択したカテゴリの言葉が足りず、ゲームを始められません。"
           }
         },
         "zh-HK": {
@@ -1476,6 +1806,12 @@
             "value": "Number of Teams"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "チーム数"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -1503,6 +1839,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Off: no highlight reel, and no scoreboard on the outer display. The game plays normally."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OFF: ハイライトリールも外側ディスプレイのスコアボードもなくなります。ゲームは通常どおり遊べます。"
           }
         },
         "zh-HK": {
@@ -1535,6 +1877,12 @@
             "value": "Only changes the words for this match. The app's language stays as it is."
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "この試合の言葉だけが変わります。アプリの言語は変わりません。"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -1562,6 +1910,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Open Settings"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "設定を開く"
           }
         },
         "zh-HK": {
@@ -1593,6 +1947,12 @@
             "value": "Pause"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一時停止"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -1620,6 +1980,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Paused"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一時停止中"
           }
         },
         "zh-HK": {
@@ -1651,6 +2017,12 @@
             "value": "Penalty on Skipping?"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スキップで減点しますか？"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -1678,6 +2050,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pick at least one category."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カテゴリを1つ以上選んでください。"
           }
         },
         "zh-HK": {
@@ -1710,6 +2088,12 @@
             "value": "Play Without It"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使わずに遊ぶ"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -1737,6 +2121,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Playback speed"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "再生速度"
           }
         },
         "zh-HK": {
@@ -1768,6 +2158,12 @@
             "value": "Quick Play"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "クイックプレイ"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -1793,6 +2189,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "REC"
+          }
+        },
+        "ja": {
           "stringUnit": {
             "state": "translated",
             "value": "REC"
@@ -1827,6 +2229,12 @@
             "value": "Reaction Camera"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "リアクションカメラ"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -1855,6 +2263,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Reaction Reel"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "リアクションリール"
           }
         },
         "zh-HK": {
@@ -1886,6 +2300,12 @@
             "value": "Reaction Replay"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "リアクションリプレイ"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -1913,6 +2333,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Reaction Replays"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "リアクションリプレイ"
           }
         },
         "zh-HK": {
@@ -1945,6 +2371,12 @@
             "value": "Reaction replay. Double-tap to watch with sound and save."
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "リアクションリプレイ。ダブルタップで音付きで再生し、保存できます。"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -1972,6 +2404,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Record Sound"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "音を録音"
           }
         },
         "zh-HK": {
@@ -2004,6 +2442,12 @@
             "value": "Recording"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "録画中"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -2031,6 +2475,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Rematch"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "再戦"
           }
         },
         "zh-HK": {
@@ -2062,6 +2512,12 @@
             "value": "Resume Round"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "再開"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -2089,6 +2545,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Round length"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ラウンドの長さ"
           }
         },
         "zh-HK": {
@@ -2120,6 +2582,12 @@
             "value": "Rounds"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ラウンド数"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -2147,6 +2615,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Rounds per team"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "チームごとのラウンド数"
           }
         },
         "zh-HK": {
@@ -2178,6 +2652,12 @@
             "value": "Save Reaction Reel"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "リアクションリールを保存"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -2205,6 +2685,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Save to Photos"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "写真に保存"
           }
         },
         "zh-HK": {
@@ -2237,6 +2723,12 @@
             "value": "Saved to Photos at %@"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@で写真に保存しました"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -2264,6 +2756,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "See Results"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "結果を見る"
           }
         },
         "zh-HK": {
@@ -2296,6 +2794,12 @@
             "value": "Sets the app's language only. To play with words in another language, pick it in Custom Game."
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アプリの表示言語だけが変わります。別の言語の言葉で遊ぶには、カスタムゲームで選んでください。"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -2323,6 +2827,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Settings"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "設定"
           }
         },
         "zh-HK": {
@@ -2355,6 +2865,12 @@
             "value": "Sightseeing"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "観光地"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -2383,6 +2899,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Skip"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スキップ"
           }
         },
         "zh-HK": {
@@ -2415,6 +2937,12 @@
             "value": "Skipped"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スキップ"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -2442,6 +2970,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sound"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サウンド"
           }
         },
         "zh-HK": {
@@ -2473,6 +3007,12 @@
             "value": "Sound On"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "音ON"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -2500,6 +3040,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Speed"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "速度"
           }
         },
         "zh-HK": {
@@ -2532,6 +3078,12 @@
             "value": "Sport"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スポーツ"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -2559,6 +3111,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Start Game"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ゲーム開始"
           }
         },
         "zh-HK": {
@@ -2591,6 +3149,12 @@
             "value": "Superhero"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スーパーヒーロー"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -2619,6 +3183,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "TV Show"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "テレビ番組"
           }
         },
         "zh-HK": {
@@ -2650,6 +3220,12 @@
             "value": "Taiwan Chinese"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "台湾華語"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -2679,6 +3255,12 @@
             "value": "Tapping Skip costs the describing team 1 point."
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "「スキップ」をタップすると、出題チームが1点減点されます。"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -2706,6 +3288,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tapping Skip is free — it just moves to the next word."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "「スキップ」は減点なしで、次の言葉に進むだけです。"
           }
         },
         "zh-HK": {
@@ -2738,6 +3326,12 @@
             "value": "Team %lld"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "チーム%lld"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -2765,6 +3359,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Team %lld name (optional)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "チーム%lldの名前（任意）"
           }
         },
         "zh-HK": {
@@ -2796,6 +3396,12 @@
             "value": "The round is on hold. Pick up where you left off when everyone's ready."
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ラウンドは一時停止中です。準備ができたら続きから再開しましょう。"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -2825,6 +3431,12 @@
             "value": "Tick Sound"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カチカチ音"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -2852,6 +3464,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Total: %lld"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "合計: %lld"
           }
         },
         "zh-HK": {
@@ -2884,6 +3502,12 @@
             "value": "While a round is running, the guessing team is filmed and the table is recorded with sound — so the describer's voice is captured too."
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ラウンド中は回答チームが撮影され、テーブルの音も録音されるため、説明する人の声も一緒に録音されます。"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -2912,6 +3536,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Word Language"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "言葉の言語"
           }
         },
         "zh-HK": {
@@ -2943,6 +3573,12 @@
             "value": "Yes"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "はい"
+          }
+        },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
@@ -2971,6 +3607,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "You can turn the camera off any time in Settings. The game plays fine without it."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カメラは設定からいつでもオフにできます。カメラがなくても問題なく遊べます。"
           }
         },
         "zh-HK": {

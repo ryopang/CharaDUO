@@ -1,49 +1,57 @@
+import Content
 import Foundation
 
-/// Reads `Multilingual_Vocabulary_1100.xlsx` at build time only (PRD §6.3 — the
+/// Reads `Multilingual_Vocabulary.xlsx` at build time only (PRD §6.3 — the
 /// `.xlsx` is never read at runtime). Extracts the two XML parts we need by
 /// shelling out to the system `unzip`, then parses them with `XMLParser`.
 public enum WorkbookReader {
-    public static let expectedHeader = [
-        "Category",
-        "English",
-        "Cantonese (Spoken Traditional)",
-        "Taiwan Chinese (Traditional)",
-        "Mainland Chinese (Traditional)"
-    ]
-
+    /// Columns are found by header name, so their order — and any extra
+    /// columns — don't matter. Every language column is required; `Region`
+    /// is optional.
     public static func readRows(fromXLSXAt path: String) throws -> [RawRow] {
-        let sharedStringsData = try extract(entry: "xl/sharedStrings.xml", fromZipAt: path)
         let sheetData = try extract(entry: "xl/worksheets/sheet1.xml", fromZipAt: path)
 
-        let sharedStrings = try SharedStringsParser().parse(data: sharedStringsData)
+        // Excel writes a shared-strings part; some writers (openpyxl) inline
+        // every string instead, so the part is optional.
+        let sharedStrings = try (try? extract(entry: "xl/sharedStrings.xml", fromZipAt: path))
+            .map { try SharedStringsParser().parse(data: $0) } ?? []
         let rawRows = try SheetParser(sharedStrings: sharedStrings).parse(data: sheetData)
 
         guard let header = rawRows.first else {
             throw PipelineError.missingSheet
         }
-        let headerValues = header.map { $0 ?? "" }
-        guard headerValues == expectedHeader else {
-            throw PipelineError.headerMismatch(expected: expectedHeader, actual: headerValues)
+        let headerValues = header.map { ($0 ?? "").trimmingCharacters(in: .whitespaces) }
+
+        let required = [RawRow.categoryHeader] + ContentLanguage.allCases.map(\.sourceColumnHeader)
+        let missing = required.filter { !headerValues.contains($0) }
+        guard missing.isEmpty else {
+            throw PipelineError.headerMismatch(expected: required, actual: headerValues)
+        }
+        let categoryColumn = headerValues.firstIndex(of: RawRow.categoryHeader)!
+        let languageColumns = ContentLanguage.allCases.map { ($0, headerValues.firstIndex(of: $0.sourceColumnHeader)!) }
+        let regionColumn = headerValues.firstIndex(of: RawRow.regionHeader)
+
+        func cell(_ row: [String?], _ column: Int?) -> String? {
+            guard let column, column < row.count else { return nil }
+            return row[column]?.trimmingCharacters(in: .whitespaces)
         }
 
         var result: [RawRow] = []
         result.reserveCapacity(rawRows.count - 1)
         for (offset, row) in rawRows.dropFirst().enumerated() {
             let lineNumber = offset + 2 // 1-based, plus the header row
-            guard row.count >= 5,
-                  let category = row[0], let english = row[1], let cantonese = row[2],
-                  let taiwanChinese = row[3], let mainlandChinese = row[4]
+            guard let category = cell(row, categoryColumn), !category.isEmpty,
+                  let english = cell(row, languageColumns.first { $0.0 == .english }?.1), !english.isEmpty
             else {
                 throw PipelineError.incompleteRow(line: lineNumber, row: row)
             }
-            result.append(RawRow(
-                category: category.trimmingCharacters(in: .whitespaces),
-                english: english.trimmingCharacters(in: .whitespaces),
-                cantonese: cantonese.trimmingCharacters(in: .whitespaces),
-                taiwanChinese: taiwanChinese.trimmingCharacters(in: .whitespaces),
-                mainlandChineseTraditional: mainlandChinese.trimmingCharacters(in: .whitespaces)
-            ))
+            // A blank translation is kept as "" so the validator can name the
+            // row and language instead of the reader aborting on the first gap.
+            var texts: [ContentLanguage: String] = [:]
+            for (language, column) in languageColumns {
+                texts[language] = cell(row, column) ?? ""
+            }
+            result.append(RawRow(category: category, texts: texts, region: cell(row, regionColumn) ?? ""))
         }
         return result
     }

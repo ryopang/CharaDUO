@@ -92,4 +92,62 @@ struct DeckTests {
         let drawsB = (0..<20).map { _ in deckB.draw().word.id }
         #expect(drawsA == drawsB)
     }
+
+    // MARK: - Regional 70/30 weighting
+
+    private func regionalPool(local: Int, other: Int) -> [GameWord] {
+        (0..<local).map { GameWord(id: UUID(), category: .movie, localizations: [.english: "L\($0)"], region: .hk) }
+        + (0..<other).map { GameWord(id: UUID(), category: .movie, localizations: [.english: "O\($0)"], region: $0 % 2 == 0 ? nil : .jp) }
+    }
+
+    @Test func favoredRegionGetsAboutSeventyPercentOfEarlyDraws() throws {
+        var total = 0
+        var local = 0
+        for seed in 1...40 as ClosedRange<UInt64> {
+            var deck = try Deck(words: regionalPool(local: 300, other: 300), seed: seed, favoredRegion: .hk)
+            deck.startRound()
+            for _ in 0..<60 {
+                total += 1
+                if deck.draw().word.region == .hk { local += 1 }
+            }
+        }
+        let share = Double(local) / Double(total)
+        #expect(abs(share - 0.7) < 0.04, "favored share was \(share)")
+    }
+
+    @Test func noFavoredRegionMeansUniformDraws() throws {
+        var local = 0
+        var total = 0
+        for seed in 1...40 as ClosedRange<UInt64> {
+            var deck = try Deck(words: regionalPool(local: 100, other: 300), seed: seed)
+            deck.startRound()
+            for _ in 0..<40 {
+                total += 1
+                if deck.draw().word.region == .hk { local += 1 }
+            }
+        }
+        // 25% of the pool is HK; nothing should push that toward 70%.
+        #expect(abs(Double(local) / Double(total) - 0.25) < 0.05)
+    }
+
+    @Test func regionalDeckStillNeverRepeatsBeforeExhaustion() throws {
+        let pool = regionalPool(local: 6, other: 14)
+        var deck = try Deck(words: pool, seed: 5, favoredRegion: .hk)
+        deck.startRound()
+        var seen = Set<GameWord.ID>()
+        for _ in 0..<20 {
+            let draw = deck.draw()
+            #expect(draw.reshuffled == false)
+            #expect(seen.insert(draw.word.id).inserted)
+        }
+        #expect(deck.draw().reshuffled == true)
+    }
+
+    @Test func favoredRegionWithNoTaggedWordsFallsBackToEverything() throws {
+        var deck = try Deck(words: words(8), seed: 9, favoredRegion: .jp)
+        deck.startRound()
+        var seen = Set<GameWord.ID>()
+        for _ in 0..<8 { seen.insert(deck.draw().word.id) }
+        #expect(seen.count == 8)
+    }
 }

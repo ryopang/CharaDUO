@@ -4,7 +4,7 @@
   Scripts/l10n/xcstrings_xlsx.py export  [out.xlsx]   # catalog -> xlsx
   Scripts/l10n/xcstrings_xlsx.py import  in.xlsx      # xlsx -> catalog (updates translations only)
 
-Columns: key | English | Cantonese (zh-HK) | Taiwan (zh-Hant) | Mainland (zh-Hans) | notes
+Columns: key | English | Cantonese (zh-HK) | Taiwan (zh-Hant) | Mainland (zh-Hans) | Japanese (ja) | notes
 Only translations and notes change on import; keys and the English source
 are never touched, and plural variations in the catalog are left alone.
 Requires: pip install openpyxl
@@ -14,7 +14,7 @@ import openpyxl
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 CATALOG = ROOT / "App/Resources/Localizable.xcstrings"
-LANGS = [("en", "English"), ("zh-HK", "Cantonese (zh-HK)"), ("zh-Hant", "Taiwan (zh-Hant)"), ("zh-Hans", "Mainland (zh-Hans)")]
+LANGS = [("en", "English"), ("zh-HK", "Cantonese (zh-HK)"), ("zh-Hant", "Taiwan (zh-Hant)"), ("zh-Hans", "Mainland (zh-Hans)"), ("ja", "Japanese (ja)")]
 
 
 def value(entry, lang):
@@ -37,7 +37,7 @@ def export(out):
     for key in sorted(cat["strings"]):
         entry = cat["strings"][key]
         ws.append([key] + [value(entry, code) for code, _ in LANGS] + [entry.get("comment", "")])
-    for col, width in zip("ABCDEF", (46, 46, 46, 46, 46, 40)):
+    for col, width in zip("ABCDEFG", (46, 46, 46, 46, 46, 46, 40)):
         ws.column_dimensions[col].width = width
     wb.save(out)
     print(f"wrote {out} ({len(cat['strings'])} strings)")
@@ -48,14 +48,14 @@ def import_(path):
     ws = openpyxl.load_workbook(path).active
     changed = 0
     for row in ws.iter_rows(min_row=2, values_only=True):
-        key, *cells = row[:6]
+        key, *cells = row[:7]
         if key not in cat["strings"]:
             print(f"skip unknown key: {key!r}")
             continue
         entry = cat["strings"][key]
         locs = entry.setdefault("localizations", {})
-        for (code, _), text in zip(LANGS[1:], cells[1:4]):
-            if not text or code not in ("zh-HK", "zh-Hant", "zh-Hans"):
+        for (code, _), text in zip(LANGS[1:], cells[1:5]):
+            if not text or code not in ("zh-HK", "zh-Hant", "zh-Hans", "ja"):
                 continue
             unit = {"state": "translated", "value": str(text)}
             if locs.get(code, {}).get("stringUnit") != unit:

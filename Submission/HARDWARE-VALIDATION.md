@@ -43,5 +43,5 @@ exercise degraded paths.
 - [ ] Touch ID device: no Face ID assumptions anywhere.
 - [ ] Inner display size classes (regular/regular) — every screen lays out.
 - [ ] Idle timer disabled only during a round.
-- [ ] All four languages: permission prompts (after relaunch), UI, word bank, CJK word fits on the lid ("陳奕迅", long English titles).
+- [ ] All five languages: permission prompts (after relaunch), UI, word bank, CJK word fits on the lid ("陳奕迅", long English titles).
 - [ ] Tick sound: audible with silent switch off, silent when on; toggle works.

@@ -42,7 +42,11 @@ public final class GameEngine {
     public init(configuration: MatchConfiguration, words: [GameWord], seed: UInt64 = .random(in: .min ... .max)) throws {
         self.configuration = configuration
         self.matchState = MatchState(configuration: configuration)
-        self.deck = try Deck(words: words, seed: seed)
+        self.deck = try Deck(
+            words: words,
+            seed: seed,
+            favoredRegion: configuration.language.homeRegion
+        )
     }
 
     /// Starts the current team's timed turn: resets the deck's per-round
