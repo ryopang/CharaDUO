@@ -13,12 +13,6 @@ outer-display features are an enhancement layer, never a requirement.
 **Full spec:** [`PRD v1 - Fun Duo Party Game.md`](./PRD%20v1%20-%20Fun%20Duo%20Party%20Game.md)
 **Working contract:** [`CLAUDE.md`](./CLAUDE.md)
 
-> **Name:** the app ships as **CharaDUO** (chosen 2026-09-23). The Xcode
-> project, target, module and bundle ID `com.ryopang.partycharades` keep the
-> old `PartyCharades` code name on purpose — brand-neutral identifiers make
-> any future rename a display-name change only. The "Duo" trademark risk
-> (Guideline 5.2.1) is a known, accepted risk.
-
 ## Status
 
 `v1.3.1` (build 8). M1–M7 are complete, M8 is in progress. **Still needs a real
