@@ -12,7 +12,7 @@
 | Privacy manifest | `App/Resources/PrivacyInfo.xcprivacy` (UserDefaults CA92.1 only) |
 | Export compliance | `ITSAppUsesNonExemptEncryption = false` (no networking) |
 | Localizations | en, zh-Hant (Taiwan), zh-Hans, zh-HK (Cantonese), ja |
-| Support URL / Privacy policy URL | **TODO — owner to provide** (privacy policy must state: no data collected, footage stays on device) |
+| Support URL / Privacy policy URL | Draft in `docs/` (GitHub Pages) — enable Pages, then paste URLs; (privacy policy must state: no data collected, footage stays on device) |
 
 ## Description (English, draft)
 

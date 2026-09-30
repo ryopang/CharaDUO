@@ -8,7 +8,7 @@ Party charades for iPhone Duo — and any iPhone.
 
 ## Support
 
-Questions, bug reports or feedback: **[YOUR CONTACT EMAIL]**
+Questions, bug reports or feedback: **ryopang@icloud.com**
 
 ## Quick answers
 

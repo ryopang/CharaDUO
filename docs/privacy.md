@@ -43,4 +43,4 @@ If this policy changes, the updated version will be posted here with a new date.
 
 ## Contact
 
-Questions: **[YOUR CONTACT EMAIL]**
+Questions: **ryopang@icloud.com**
