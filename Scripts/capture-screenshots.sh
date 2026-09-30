@@ -35,7 +35,7 @@ shot() { # lang scene delay extra-args...
   mkdir -p "$OUT/$lang"
   xcrun simctl terminate "$DEVICE" $BUNDLE 2>/dev/null || true
   xcrun simctl launch "$DEVICE" $BUNDLE -AppleLanguages "($lang)" -AppleLocale "${lang//-/_}" \
-    -uiTestSkipConsent -uiTestResetAppLanguage "$@" >/dev/null
+    -uiTestSkipConsent -uiTestResetAppLanguage -uiTestGamesPlayed 0 "$@" >/dev/null
   sleep "$delay"
   xcrun simctl io "$DEVICE" screenshot "$OUT/$lang/$scene.png" >/dev/null 2>&1
   echo "  $lang/$scene"
@@ -49,7 +49,7 @@ if [[ "$NAME" == *Duo* ]]; then
   # using the middle posture button at the bottom of the window. No posture
   # override here, so the real hinge path is what gets captured.
   for lang in $LANGS; do
-    shot $lang 01-home 3
+    shot $lang 01-home 6
     shot $lang 02-tabletop-round 8 -uiTestAutoStart -uiTestSyntheticCamera -uiTestCaptureState full
     # Outer display = the guessers' scoreboard, quarter-turned by design.
     # Verified 2026-09-30 (Xcode 27.1): the raw framebuffer already matches how
@@ -59,7 +59,7 @@ if [[ "$NAME" == *Duo* ]]; then
   done
 else
   for lang in $LANGS; do
-    shot $lang 01-home 3
+    shot $lang 01-home 6
     shot $lang 02-round 4 -uiTestAutoStart -uiTestPosture noHinge
   done
 fi

@@ -33,6 +33,13 @@ standing up, phone flat on the table, everyone shouting.
   (chipmunk voices included) and saved to Photos if you want them.
 • Private by design — video and audio never leave your phone. Unsaved clips are
   deleted when the match ends. The game plays fine with the camera off.
+• Free to try — your first 10 games are free. After that, unlock 10 more games or
+  go unlimited with an optional in-app purchase. No ads, no subscription.
+
+## What's New (1.4.0, English)
+
+Welcome to CharaDUO! Describe it, guess it, don't say the word. Your first 10 games
+are free — then unlock 10 more, or play unlimited.
 
 ## Keywords (≤100 chars)
 

@@ -1,7 +1,7 @@
 # App Review Notes — CharaDUO 1.3.1
 
 Paste into App Store Connect → App Review Information → Notes. No sign-in is
-required; the app has no accounts and no network access.
+required; the app has no accounts and makes no network requests of its own (purchases go through StoreKit).
 
 ---
 
@@ -26,7 +26,7 @@ benefit, not the reason for the capture.
 - App Privacy label: **Data Not Collected**.
 - In-app purchases: the first 10 games are free; "10 More Games" (consumable) and
   "Unlimited Games" (non-consumable) are offered when they run out, or any time from the
-  gear icon → Games. Restore Purchases is on the paywall and in Settings. Purchases are
+  gear icon → Games. Restore Purchases is on the paywall and in Settings. To see the purchase screen without playing 10 games, open the gear icon → Get More Games. Purchases are
   handled on-device with StoreKit 2; no account or server is involved.
 
 **Consent.** Before the first match every player sees a card stating plainly
