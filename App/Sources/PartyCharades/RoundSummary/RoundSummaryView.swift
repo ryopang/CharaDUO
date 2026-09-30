@@ -133,6 +133,9 @@ private struct WordColumn: View {
                     .accessibilityElement(children: .ignore)
                     .accessibilityLabel(Text("\(wordText), \(title)"))
                     .listRowSeparator(.hidden)
+                    // Rows default to the system background, which is opaque
+                    // black on the purple summary screen.
+                    .listRowBackground(Color.clear)
             }
             .listStyle(.plain)
             .scrollContentBackground(.hidden)
