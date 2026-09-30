@@ -15,14 +15,22 @@ outer-display features are an enhancement layer, never a requirement.
 
 ## Status
 
-`v1.3.1` (build 8) is what the App Store submission used. The game-count
-purchase model below is **unreleased** on `main` — it needs a version bump and
-the two IAPs created in App Store Connect before it ships. M1–M7 are complete, M8 (submission) is in progress.
-**Still needs a real iPhone Duo** for the hardware pass and the demo video; the
-checklist is in
+`v1.4.0` (build 11). M1–M7 are complete; M8 (submission) is **staged but
+blocked on Apple** — see [Submission status](#submission-status-2026-09-30)
+below. **Still needs a real iPhone Duo** for the hardware pass and the demo
+video; the checklist is in
 [`Submission/HARDWARE-VALIDATION.md`](./Submission/HARDWARE-VALIDATION.md).
 
-### Monetization: game-count model (2026-09-30, unreleased)
+### 1.4.0 (2026-09-30)
+
+- **Game-count purchase model** (below): 10 free games, then in-app purchases.
+- **Low-games warning** at 3 games left (Home and Game Over).
+- **Fix:** the round-summary answer lists had opaque black rows on the purple
+  screen (`.listRowBackground(.clear)`).
+- Build 11 is the one attached to the App Store Connect version. Builds 8–10
+  were earlier uploads and are superseded.
+
+### Monetization: game-count model (2026-09-30)
 
 - **10 free games**, then **$0.99 → 10 more** (consumable,
   `com.ryopang.partycharades.games10`) or **$2.99 → unlimited** (non-consumable,
@@ -39,8 +47,9 @@ checklist is in
 - Local testing: the scheme uses `App/StoreKit/Configuration.storekit`. Debug
   flags `-uiTestGamesPlayed N` / `-uiTestUnlimited` reach the paywall without
   playing ten games; UI-test launches use an in-memory allowance.
-- Still to do: create both products in App Store Connect, attach a paywall
-  screenshot for review (Settings → Get More Games), bump the version.
+- Both products exist in App Store Connect (READY_TO_SUBMIT), with a paywall
+  review screenshot (`Submission/screenshots/iap-review/paywall.png`, captured
+  from an Xcode Run so the StoreKit config supplies prices).
 
 ### Submission prep (2026-09-30)
 
@@ -53,9 +62,25 @@ checklist is in
 - **Privacy policy and support page:** `docs/` (GitHub Pages: publish from
   `main` → `/docs`; needs a public repo or a paid GitHub plan). Contact:
   ryopang@icloud.com.
-- **Release automation:** [`asc`](https://asccli.sh) (App Store Connect CLI).
-  Blocked on the Apple Developer membership finishing activation (needed for
-  the API key, app record and `DEVELOPMENT_TEAM` in `project.yml`).
+- **Release automation:** [`asc`](https://asccli.sh) (App Store Connect CLI),
+  logged in via the macOS Keychain. Archive/export/upload recipe and all App
+  Store Connect IDs are in the project memory notes.
+- **Screenshots** now include English Round Summary and Game Over (iPhone 6.9").
+
+### Submission status (2026-09-30)
+
+Everything is set up in App Store Connect: build 11, four listings (en, ja,
+zh-Hans, zh-Hant), screenshots, free price, availability (China mainland and
+Vietnam off — no licences), 4+ age rating, review details and notes, both
+purchases, App Privacy (Data Not Collected) and the EU DSA declaration.
+
+**Blocked:** adding the version to a review submission fails with *"Build SDK
+build is not yet supported / Build Xcode build is not yet supported"* — Apple
+does not yet accept builds made with Xcode 27.1 (27A9269). Nothing on our side
+changes that. App Store Connect also has no iPhone Duo screenshot slot yet, so
+the Duo screenshots in `Submission/screenshots/iPhone-Duo/` are kept for later.
+When Apple accepts these builds: add the version to the draft submission and
+submit (a rebuild/re-upload may be needed). No demo video is attached.
 
 ### 1.3.1 (2026-09-28)
 
