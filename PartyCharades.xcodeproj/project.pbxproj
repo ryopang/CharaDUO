@@ -29,6 +29,7 @@
 		5C72BE5FEB86CA0F9E3E8469 /* CaptureConsentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9EEE0FBF144B1A7332E3C4 /* CaptureConsentView.swift */; };
 		65D25BCC75709A6FFFF5D6C7 /* RoundSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198052BA4B073265A3EC5459 /* RoundSummaryView.swift */; };
 		7A591568BB16B05158620BD9 /* CountdownPulseModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA71BABBF4BC9AB926245821 /* CountdownPulseModifier.swift */; };
+		823B87EE52D64F18BBDE5ED3 /* LowGamesNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08152DAD5549A5E2BC2410E /* LowGamesNotice.swift */; };
 		87F02FD684222DCBA77B67A9 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 07DD83FB50DF50E1C13B7E84 /* PrivacyInfo.xcprivacy */; };
 		8E433E792CC1CD0D1732F3A3 /* ScoreFeedbackOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3013EC1B05836CA16FCAF9C /* ScoreFeedbackOverlay.swift */; };
 		92B7206261213AD2FACF86E1 /* Posture in Frameworks */ = {isa = PBXBuildFile; productRef = E438210B9F6D056287FA6712 /* Posture */; };
@@ -100,6 +101,7 @@
 		91204596D30448F4856D6625 /* FeedbackPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackPlayer.swift; sourceTree = "<group>"; };
 		98BE5860C2CF44BB77040605 /* Posture */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Posture; path = Packages/Posture; sourceTree = SOURCE_ROOT; };
 		98F1556BE5686E5246B52E27 /* TabletopLayoutUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabletopLayoutUITests.swift; sourceTree = "<group>"; };
+		A08152DAD5549A5E2BC2410E /* LowGamesNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowGamesNotice.swift; sourceTree = "<group>"; };
 		A3840DBB7D271C274C81123D /* skip.caf */ = {isa = PBXFileReference; path = skip.caf; sourceTree = "<group>"; };
 		A82C2E802C4FCBD3259CB328 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		A97E7DF0BDF55AA409CBFD24 /* PartyCharadesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyCharadesApp.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				360851DC78FEC48BCBB96512 /* AllowanceStorage.swift */,
+				A08152DAD5549A5E2BC2410E /* LowGamesNotice.swift */,
 				A82C2E802C4FCBD3259CB328 /* PaywallView.swift */,
 				7DD047FB0A8A3744059BAB41 /* StoreManager.swift */,
 			);
@@ -462,6 +465,7 @@
 				30DD21692E81BFF0E0757475 /* HitZoneButton.swift in Sources */,
 				94EB2E3649E591A6786C3BBB /* HomeView.swift in Sources */,
 				E7D5073C81B12C61BDF3C14C /* L10n.swift in Sources */,
+				823B87EE52D64F18BBDE5ED3 /* LowGamesNotice.swift in Sources */,
 				453C16DD30FF9C07BCBEC2D5 /* MatchEndView.swift in Sources */,
 				0B16A39FB4769534DE604585 /* OuterDisplayContent.swift in Sources */,
 				535AE444BE8A263596B32105 /* OuterDisplayModifier.swift in Sources */,

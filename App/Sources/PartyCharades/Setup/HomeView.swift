@@ -96,7 +96,9 @@ struct HomeView: View {
                         .fixedSize(horizontal: false, vertical: true)
                 }
 
-                if let remaining = coordinator.store.allowance.remaining {
+                if LowGamesNotice.isVisible(remaining: coordinator.store.allowance.remaining) {
+                    LowGamesNotice()
+                } else if let remaining = coordinator.store.allowance.remaining {
                     Text("Games left: \(remaining)")
                         .font(.footnote.weight(.semibold))
                         .foregroundStyle(.white.opacity(0.85))

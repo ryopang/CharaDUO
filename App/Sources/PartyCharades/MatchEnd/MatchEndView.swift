@@ -62,6 +62,8 @@ struct MatchEndView: View {
                             .controlSize(.large)
                         }
 
+                        LowGamesNotice()
+
                         Button {
                             coordinator.rematch()
                         } label: {

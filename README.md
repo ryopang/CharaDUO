@@ -33,6 +33,9 @@ checklist is in
   so reinstalling neither resets the free games nor loses paid packs (Apple
   can't restore consumables). Every match start goes through
   `AppCoordinator.start(with:)`, which shows the paywall when out of games.
+- **Low-games warning:** at 3 games left or fewer (`LowGamesNotice.threshold`),
+  Home and Game Over show a tappable "Only N games left · Get More" notice that
+  opens the store, so the paywall is never the first sign.
 - Local testing: the scheme uses `App/StoreKit/Configuration.storekit`. Debug
   flags `-uiTestGamesPlayed N` / `-uiTestUnlimited` reach the paywall without
   playing ten games; UI-test launches use an in-memory allowance.

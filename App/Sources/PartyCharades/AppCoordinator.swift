@@ -333,6 +333,12 @@ final class AppCoordinator {
         start(with: configuration)
     }
 
+    /// From the low-games notice: open the store with no match waiting.
+    func presentPaywall() {
+        paywallConfiguration = nil
+        isPaywallPresented = true
+    }
+
     func dismissPaywall() {
         isPaywallPresented = false
         paywallConfiguration = nil
