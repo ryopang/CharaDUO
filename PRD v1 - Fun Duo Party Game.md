@@ -17,7 +17,7 @@ at 2× or 3× — at the end of the match.
 
 **Platform:** iOS 27.1+ · Xcode 27.1 · SwiftUI · Swift 6 strict concurrency
 **Hero device:** iPhone Duo (7.6" inner / 5.4" outer, ships 2026-10-23)
-**v1 monetization:** free, no IAP — but architected for it (§9)
+**Monetization (updated 2026-09-30):** 10 free games, then $0.99 for 10 more or $2.99 unlimited (§9)
 
 ---
 
@@ -499,15 +499,24 @@ requirement (§1.2.3). It gets real design attention, not a stub.
 
 ## 9. Monetization foundation (v1 ships free)
 
-No IAP in v1, but do not paint into a corner:
+**Update 2026-09-30 — game-count model shipped.** A "game" is one match started
+(Rematch included), spent at match start. First 10 are free; `com.ryopang.partycharades.games10`
+(consumable, $0.99) adds 10; `com.ryopang.partycharades.unlimited` (non-consumable, $2.99)
+removes the limit. Logic is `Core.GameAllowance` (pure, tested); StoreKit 2 lives in
+`App/.../Store/StoreManager`; the allowance is kept in the Keychain so it survives
+reinstall. Consumables can't be restored by Apple — that is why the Keychain copy matters.
+No server, receipt validator or account. The pack model below is still the plan for
+*content* packs and is untouched.
+
+Original v1 guidance, kept for content packs:
 
 - Model content as **packs** from day one. The 9 built-in categories are a pack
   with `price: .free`. Adding a paid pack later is data, not refactoring.
 - Route every content-availability check through a single
   `ContentEntitlementStore` protocol. v1 ships an `AlwaysUnlocked` implementation.
 - Keep a stable `packID` in the bundled JSON schema.
-- Do **not** add StoreKit, a paywall, a receipt validator, or an account system
-  in v1. The abstraction is the whole investment.
+- Superseded for the game-count model above; still do not add a receipt
+  validator or an account system.
 
 ---
 

@@ -2,7 +2,10 @@ import Posture
 import SwiftUI
 
 struct RootView: View {
-    @State private var coordinator = AppCoordinator(contentStore: loadBundledContentStoreOrFail())
+    @State private var coordinator = AppCoordinator(
+        contentStore: loadBundledContentStoreOrFail(),
+        store: makeStoreManager()
+    )
 
     var body: some View {
         Group {
@@ -35,6 +38,12 @@ struct RootView: View {
                 Theme.backdrop.ignoresSafeArea()
             }
         }
+        .sheet(isPresented: Bindable(coordinator).isPaywallPresented) {
+            PaywallView(
+                onUnlocked: { coordinator.paywallUnlocked() },
+                onDismiss: { coordinator.dismissPaywall() }
+            )
+        }
         .environment(coordinator)
         .charaDuoTheme()
         .environment(\.locale, coordinator.settings.appLanguage.locale)
@@ -56,6 +65,7 @@ struct RootView: View {
         // posture stays `.noHinge` — the single-screen path (PRD §8).
         .observingHinge(coordinator.hinge)
         .task {
+            coordinator.store.start()
             #if DEBUG
             if DebugOverrides.autoStartMatch, coordinator.screen == .home {
                 coordinator.startQuickPlay()

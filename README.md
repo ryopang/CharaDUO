@@ -15,11 +15,29 @@ outer-display features are an enhancement layer, never a requirement.
 
 ## Status
 
-`v1.3.1` (build 8) — no app code has changed since; the App Store submission
-uses this version. M1–M7 are complete, M8 (submission) is in progress.
+`v1.3.1` (build 8) is what the App Store submission used. The game-count
+purchase model below is **unreleased** on `main` — it needs a version bump and
+the two IAPs created in App Store Connect before it ships. M1–M7 are complete, M8 (submission) is in progress.
 **Still needs a real iPhone Duo** for the hardware pass and the demo video; the
 checklist is in
 [`Submission/HARDWARE-VALIDATION.md`](./Submission/HARDWARE-VALIDATION.md).
+
+### Monetization: game-count model (2026-09-30, unreleased)
+
+- **10 free games**, then **$0.99 → 10 more** (consumable,
+  `com.ryopang.partycharades.games10`) or **$2.99 → unlimited** (non-consumable,
+  `com.ryopang.partycharades.unlimited`). A game is one match started; Rematch
+  counts.
+- Pure logic in `Core.GameAllowance` (tested). StoreKit 2 + paywall in
+  `App/Sources/PartyCharades/Store/`. The allowance is stored in the **Keychain**
+  so reinstalling neither resets the free games nor loses paid packs (Apple
+  can't restore consumables). Every match start goes through
+  `AppCoordinator.start(with:)`, which shows the paywall when out of games.
+- Local testing: the scheme uses `App/StoreKit/Configuration.storekit`. Debug
+  flags `-uiTestGamesPlayed N` / `-uiTestUnlimited` reach the paywall without
+  playing ten games; UI-test launches use an in-memory allowance.
+- Still to do: create both products in App Store Connect, attach a paywall
+  screenshot for review (Settings → Get More Games), bump the version.
 
 ### Submission prep (2026-09-30)
 

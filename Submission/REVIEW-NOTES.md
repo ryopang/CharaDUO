@@ -24,6 +24,10 @@ benefit, not the reason for the capture.
   when the match is left, and the directory is purged again at every launch.
 - Photos access is requested only when the player taps Save.
 - App Privacy label: **Data Not Collected**.
+- In-app purchases: the first 10 games are free; "10 More Games" (consumable) and
+  "Unlimited Games" (non-consumable) are offered when they run out, or any time from the
+  gear icon → Games. Restore Purchases is on the paywall and in Settings. Purchases are
+  handled on-device with StoreKit 2; no account or server is involved.
 
 **Consent.** Before the first match every player sees a card stating plainly
 that the guessing team is filmed and the table is recorded with sound, that

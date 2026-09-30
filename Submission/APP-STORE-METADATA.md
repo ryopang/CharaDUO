@@ -7,7 +7,8 @@
 | Bundle ID | com.ryopang.partycharades (intentionally brand-neutral) |
 | Primary category | Games → Party (Family/Word as secondary) |
 | Age rating | 4+ (no objectionable content; camera is local-only) — answer the questionnaire honestly re: user-generated content = none |
-| Price | Free, no IAP (v1) |
+| Price | Free to download. 10 free games, then IAP (below) |
+| In-app purchases | `com.ryopang.partycharades.games10` — **Consumable**, "10 More Games", Tier $0.99 · `com.ryopang.partycharades.unlimited` — **Non-Consumable**, "Unlimited Games", Tier $2.99. Create both in App Store Connect, add a review screenshot of the paywall (Settings → Get More Games) and submit them with the build. |
 | Privacy label | Data Not Collected |
 | Privacy manifest | `App/Resources/PrivacyInfo.xcprivacy` (UserDefaults CA92.1 only) |
 | Export compliance | `ITSAppUsesNonExemptEncryption = false` (no networking) |

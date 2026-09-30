@@ -1,5 +1,6 @@
 #if DEBUG
 import Capture
+import Core
 import CoreGraphics
 import Foundation
 import Posture
@@ -79,6 +80,20 @@ enum DebugOverrides {
     /// 1×/2×/3× export, deletion) runs on a simulator with no camera.
     static var syntheticCamera: Bool {
         arguments.contains("-uiTestSyntheticCamera")
+    }
+
+    /// `-uiTestGamesPlayed 10` / `-uiTestUnlimited` — an in-memory allowance
+    /// for this launch, so the paywall is reachable without playing ten
+    /// games and UI tests never spend the simulator's real Keychain games.
+    /// Any UI-test launch that names neither gets a fresh allowance.
+    static var allowance: GameAllowance? {
+        if arguments.contains("-uiTestUnlimited") {
+            return GameAllowance(hasUnlimited: true)
+        }
+        if let raw = value(for: "-uiTestGamesPlayed"), let played = Int(raw) {
+            return GameAllowance(gamesPlayed: played)
+        }
+        return arguments.contains(where: { $0.hasPrefix("-uiTest") }) ? GameAllowance() : nil
     }
 
     private static func value(for flag: String) -> String? {

@@ -1,0 +1,48 @@
+{
+  "identifier" : "3F1A7C52",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "6B8E2A10",
+      "localizations" : [
+        {
+          "description" : "Adds 10 more games.",
+          "displayName" : "10 More Games",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.ryopang.partycharades.games10",
+      "referenceName" : "10 More Games",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "2.99",
+      "familyShareable" : false,
+      "internalID" : "9D4C5E77",
+      "localizations" : [
+        {
+          "description" : "Play as many games as you like.",
+          "displayName" : "Unlimited Games",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.ryopang.partycharades.unlimited",
+      "referenceName" : "Unlimited Games",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

@@ -28,6 +28,7 @@ final class AppCoordinator {
     var startError: String?
 
     let settings: AppSettings
+    let store: StoreManager
     let hinge = HingeObserver()
     let accessoryAvailability = AccessoryAvailability()
     private let contentStore: ContentStore
@@ -59,6 +60,11 @@ final class AppCoordinator {
     /// A pending configuration held while the consent card is up, so
     /// accepting or declining resumes the exact match the player asked for.
     private var pendingConfiguration: MatchConfiguration?
+
+    /// The match the player asked for when the paywall stopped them; it
+    /// starts as soon as they have a game again.
+    private var paywallConfiguration: MatchConfiguration?
+    var isPaywallPresented = false
 
     /// PRD §3.4 — what the outer display draws, or nil when there's nothing
     /// to show. Read-only projection; see `OuterDisplayContent`. Stays lit
@@ -107,9 +113,10 @@ final class AppCoordinator {
         return hinge.posture
     }
 
-    init(contentStore: ContentStore, settings: AppSettings = AppSettings()) {
+    init(contentStore: ContentStore, settings: AppSettings = AppSettings(), store: StoreManager) {
         self.contentStore = contentStore
         self.settings = settings
+        self.store = store
         #if os(iOS) && DEBUG
         captureSession.usesSyntheticCamera = DebugOverrides.syntheticCamera
         #endif
@@ -303,12 +310,32 @@ final class AppCoordinator {
     /// never mid-round. After that the camera is governed by the settings
     /// toggle alone.
     private func start(with configuration: MatchConfiguration) {
+        // Checked first, so the player learns they're out of games before
+        // the consent card or a camera prompt, not after.
+        guard store.canStartGame else {
+            paywallConfiguration = configuration
+            isPaywallPresented = true
+            return
+        }
         if !settings.hasShownCaptureConsent, settings.reactionCameraEnabled {
             pendingConfiguration = configuration
             screen = .captureConsent
             return
         }
         beginMatch(with: configuration)
+    }
+
+    /// The paywall gave the player a game: resume the match it interrupted.
+    func paywallUnlocked() {
+        isPaywallPresented = false
+        guard let configuration = paywallConfiguration else { return }
+        paywallConfiguration = nil
+        start(with: configuration)
+    }
+
+    func dismissPaywall() {
+        isPaywallPresented = false
+        paywallConfiguration = nil
     }
 
     func acceptCaptureConsent() async {
@@ -343,6 +370,7 @@ final class AppCoordinator {
             self.engine = engine
             self.startError = nil
             engine.startTurn()
+            store.consumeGame()
             screen = .gameplay
             setIdleTimerDisabled(true)
             beginMatchCapture()

@@ -12,6 +12,7 @@
 		09984B438788BFD9E2DEB4E0 /* DebugOverrides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862D413110D247993465DCF7 /* DebugOverrides.swift */; };
 		0AFB568980AF1B9D32301AFB /* GameplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606F24823AD67C34B68D7D7F /* GameplayView.swift */; };
 		0B16A39FB4769534DE604585 /* OuterDisplayContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161387472036C3EF36E71020 /* OuterDisplayContent.swift */; };
+		0CBB2500E846E1184C1AC6A8 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD047FB0A8A3744059BAB41 /* StoreManager.swift */; };
 		0E918DB245BA2B59B4C76E14 /* TabletopLayoutUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F1556BE5686E5246B52E27 /* TabletopLayoutUITests.swift */; };
 		0F1BE1A3BE6F12BB81C63BB4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 03624074A219976D1AA73E91 /* Localizable.xcstrings */; };
 		11E603273C39A67F2A1277AB /* CustomGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19705E31128122000ED7B254 /* CustomGameView.swift */; };
@@ -34,12 +35,14 @@
 		94EB2E3649E591A6786C3BBB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92E868E3DB844ADCC62E383 /* HomeView.swift */; };
 		94F03D77F994D120A3ECA4EA /* FeedbackPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91204596D30448F4856D6625 /* FeedbackPlayer.swift */; };
 		9754025BF110FD621676F854 /* PartyCharadesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF2C20FB6E7EE34810CA960 /* PartyCharadesUITests.swift */; };
+		A22D119E38712CD1A6FAB7C9 /* AllowanceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360851DC78FEC48BCBB96512 /* AllowanceStorage.swift */; };
 		A5D36D178F5FDDBEBFA35B1C /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978B83DCD95B370848F83BC /* AppSettings.swift */; };
 		A7B82466FA62DB33FDD837EA /* TickSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = E643F3321D387529105BD6CF /* TickSound.swift */; };
 		A9DA88473FA1416ED51B0B8F /* Content in Frameworks */ = {isa = PBXBuildFile; productRef = 1BB0FD5FE388F9374E77E18C /* Content */; };
 		B401E064F8B8FBA50A5CA88C /* ReactionReelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE5248B042C59B4162E703 /* ReactionReelUITests.swift */; };
 		B4C76C086C828316BAF77045 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1D7C401FBDFD5A3FC125F9AA /* InfoPlist.xcstrings */; };
 		B6B38FD81A8C95D52759051F /* CaptureConsentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21846A1C3700CCF45FE6269 /* CaptureConsentUITests.swift */; };
+		BC9E9E3E9A008C8C7C2B830C /* PaywallUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9F62E85A6781363529C695 /* PaywallUITests.swift */; };
 		BF4BE1CFA9B305CCC6988AC4 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B12B3B3C13ABBF20745D24F /* RootView.swift */; };
 		CBBF1463696A7E4A9DD15C47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6FFDCD3519F08BE40B795A3 /* Assets.xcassets */; };
 		D203CB7557C29F94D9ADF0B0 /* TabletopGameplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8182CC4A86E8E72A305E9118 /* TabletopGameplayView.swift */; };
@@ -50,6 +53,7 @@
 		E7D5073C81B12C61BDF3C14C /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD328964FC6047BA529DE1D /* L10n.swift */; };
 		EDB6A5B8D0A485BA0E15E908 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C434C43B6D72CCBE2B5556 /* AppCoordinator.swift */; };
 		F172F0BA5D1F5E4A62CE90ED /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142AD7A50FA4032F2013A74D /* SettingsView.swift */; };
+		F5B5A4DFAEF4DB9D1ABDCA6C /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82C2E802C4FCBD3259CB328 /* PaywallView.swift */; };
 		F796F1C4CF3CE8E8C1923D73 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1215216DB3F102A8663BDA /* Theme.swift */; };
 		F7C162168680CCB95C9E6E53 /* PartyCharadesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97E7DF0BDF55AA409CBFD24 /* PartyCharadesApp.swift */; };
 		F83F804CE7688F27268B6E67 /* GuesserScoreboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8D82767762C0E9E8F18C5 /* GuesserScoreboard.swift */; };
@@ -80,6 +84,7 @@
 		2B12B3B3C13ABBF20745D24F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		2C13A1E605BA4750BCE5A5F9 /* SingleScreenGameplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleScreenGameplayView.swift; sourceTree = "<group>"; };
 		2DBD2992B92A0469F5ADE72D /* PartyCharades.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = PartyCharades.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		360851DC78FEC48BCBB96512 /* AllowanceStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowanceStorage.swift; sourceTree = "<group>"; };
 		4A1E4D280222D107FFC0C67D /* PartyCharadesUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = PartyCharadesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		59C434C43B6D72CCBE2B5556 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		606F24823AD67C34B68D7D7F /* GameplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayView.swift; sourceTree = "<group>"; };
@@ -88,6 +93,7 @@
 		676D542EBAF1AE9D5A5D5CF8 /* CountdownColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownColor.swift; sourceTree = "<group>"; };
 		6F354A136934F8FBCC825D4A /* GuesserRoundSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuesserRoundSummaryView.swift; sourceTree = "<group>"; };
 		7CB8D82767762C0E9E8F18C5 /* GuesserScoreboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuesserScoreboard.swift; sourceTree = "<group>"; };
+		7DD047FB0A8A3744059BAB41 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		815A55B3AD93729359A2B32D /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Core; path = Packages/Core; sourceTree = SOURCE_ROOT; };
 		8182CC4A86E8E72A305E9118 /* TabletopGameplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabletopGameplayView.swift; sourceTree = "<group>"; };
 		862D413110D247993465DCF7 /* DebugOverrides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugOverrides.swift; sourceTree = "<group>"; };
@@ -95,9 +101,11 @@
 		98BE5860C2CF44BB77040605 /* Posture */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Posture; path = Packages/Posture; sourceTree = SOURCE_ROOT; };
 		98F1556BE5686E5246B52E27 /* TabletopLayoutUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabletopLayoutUITests.swift; sourceTree = "<group>"; };
 		A3840DBB7D271C274C81123D /* skip.caf */ = {isa = PBXFileReference; path = skip.caf; sourceTree = "<group>"; };
+		A82C2E802C4FCBD3259CB328 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		A97E7DF0BDF55AA409CBFD24 /* PartyCharadesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyCharadesApp.swift; sourceTree = "<group>"; };
 		AC59374A90522EF0B013BDF4 /* Design */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Design; path = Packages/Design; sourceTree = SOURCE_ROOT; };
 		B6FFDCD3519F08BE40B795A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BE9F62E85A6781363529C695 /* PaywallUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallUITests.swift; sourceTree = "<group>"; };
 		C5D350F94B5D85006223717C /* OuterDisplayModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OuterDisplayModifier.swift; sourceTree = "<group>"; };
 		CBD61B12171C323F91CBEEB0 /* Content */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Content; path = Packages/Content; sourceTree = SOURCE_ROOT; };
 		CEFE5248B042C59B4162E703 /* ReactionReelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionReelUITests.swift; sourceTree = "<group>"; };
@@ -170,6 +178,16 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
+		445F412041010A66F936DB3D /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				360851DC78FEC48BCBB96512 /* AllowanceStorage.swift */,
+				A82C2E802C4FCBD3259CB328 /* PaywallView.swift */,
+				7DD047FB0A8A3744059BAB41 /* StoreManager.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
 		4854565A10D454F1A95629E8 /* PartyCharades */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +206,7 @@
 				E9AB0B355A183FF8A78851CB /* Reel */,
 				7E9C69A24A5B3082D782831F /* RoundSummary */,
 				F4DAF8FF432CD3593CB397AA /* Setup */,
+				445F412041010A66F936DB3D /* Store */,
 			);
 			path = PartyCharades;
 			sourceTree = "<group>";
@@ -207,6 +226,7 @@
 			children = (
 				E21846A1C3700CCF45FE6269 /* CaptureConsentUITests.swift */,
 				2AF2C20FB6E7EE34810CA960 /* PartyCharadesUITests.swift */,
+				BE9F62E85A6781363529C695 /* PaywallUITests.swift */,
 				CEFE5248B042C59B4162E703 /* ReactionReelUITests.swift */,
 				98F1556BE5686E5246B52E27 /* TabletopLayoutUITests.swift */,
 			);
@@ -353,7 +373,7 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					14D68ECA35194A099036234C = {
-						DevelopmentTeam = "";
+						DevelopmentTeam = UC53RL7Y8Y;
 						ProvisioningStyle = Automatic;
 					};
 					659B9BA02C44203FDE01929D = {
@@ -415,6 +435,7 @@
 			files = (
 				B6B38FD81A8C95D52759051F /* CaptureConsentUITests.swift in Sources */,
 				9754025BF110FD621676F854 /* PartyCharadesUITests.swift in Sources */,
+				BC9E9E3E9A008C8C7C2B830C /* PaywallUITests.swift in Sources */,
 				B401E064F8B8FBA50A5CA88C /* ReactionReelUITests.swift in Sources */,
 				0E918DB245BA2B59B4C76E14 /* TabletopLayoutUITests.swift in Sources */,
 			);
@@ -424,6 +445,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A22D119E38712CD1A6FAB7C9 /* AllowanceStorage.swift in Sources */,
 				EDB6A5B8D0A485BA0E15E908 /* AppCoordinator.swift in Sources */,
 				A5D36D178F5FDDBEBFA35B1C /* AppSettings.swift in Sources */,
 				5C72BE5FEB86CA0F9E3E8469 /* CaptureConsentView.swift in Sources */,
@@ -445,6 +467,7 @@
 				535AE444BE8A263596B32105 /* OuterDisplayModifier.swift in Sources */,
 				F7C162168680CCB95C9E6E53 /* PartyCharadesApp.swift in Sources */,
 				03C2B51646AB6B58A711E894 /* PausedView.swift in Sources */,
+				F5B5A4DFAEF4DB9D1ABDCA6C /* PaywallView.swift in Sources */,
 				DC20840E52C0FB0F32FB3B68 /* ReelPlayback.swift in Sources */,
 				BF4BE1CFA9B305CCC6988AC4 /* RootView.swift in Sources */,
 				65D25BCC75709A6FFFF5D6C7 /* RoundSummaryView.swift in Sources */,
@@ -452,6 +475,7 @@
 				1757DF1F41B9806C87D535AF /* ScrollableCenteredColumn.swift in Sources */,
 				F172F0BA5D1F5E4A62CE90ED /* SettingsView.swift in Sources */,
 				4E9D469554FB2D612B725EF8 /* SingleScreenGameplayView.swift in Sources */,
+				0CBB2500E846E1184C1AC6A8 /* StoreManager.swift in Sources */,
 				D203CB7557C29F94D9ADF0B0 /* TabletopGameplayView.swift in Sources */,
 				F796F1C4CF3CE8E8C1923D73 /* Theme.swift in Sources */,
 				A7B82466FA62DB33FDD837EA /* TickSound.swift in Sources */,
@@ -476,7 +500,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UC53RL7Y8Y;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -602,7 +626,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UC53RL7Y8Y;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				LD_RUNPATH_SEARCH_PATHS = (

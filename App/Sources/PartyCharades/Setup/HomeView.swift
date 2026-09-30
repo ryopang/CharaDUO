@@ -96,6 +96,13 @@ struct HomeView: View {
                         .fixedSize(horizontal: false, vertical: true)
                 }
 
+                if let remaining = coordinator.store.allowance.remaining {
+                    Text("Games left: \(remaining)")
+                        .font(.footnote.weight(.semibold))
+                        .foregroundStyle(.white.opacity(0.85))
+                        .accessibilityIdentifier("gamesLeft")
+                }
+
                 if let startError = coordinator.startError {
                     Text(startError)
                         .font(.footnote)

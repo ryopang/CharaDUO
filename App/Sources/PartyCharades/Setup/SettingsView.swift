@@ -8,10 +8,31 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(AppCoordinator.self) private var coordinator
     @Environment(\.dismiss) private var dismiss
+    @State private var showPaywall = false
 
     var body: some View {
         NavigationStack {
             Form {
+                Section {
+                    LabeledContent("Games left") {
+                        if let remaining = coordinator.store.allowance.remaining {
+                            Text("\(remaining)").monospacedDigit()
+                        } else {
+                            Text("Unlimited")
+                        }
+                    }
+                    if !coordinator.store.allowance.hasUnlimited {
+                        Button("Get More Games") { showPaywall = true }
+                    }
+                    Button("Restore Purchases") { Task { await coordinator.store.restore() } }
+                } header: {
+                    Text("Games")
+                } footer: {
+                    if let message = coordinator.store.message {
+                        Text(message)
+                    }
+                }
+
                 Section {
                     Picker("Language", selection: languageBinding) {
                         ForEach(ContentLanguage.allCases, id: \.self) { language in
@@ -48,6 +69,12 @@ struct SettingsView: View {
             }
             .scrollContentBackground(.hidden)
             .background(Theme.backdrop.ignoresSafeArea())
+            .sheet(isPresented: $showPaywall) {
+                PaywallView(
+                    onUnlocked: { showPaywall = false },
+                    onDismiss: { showPaywall = false }
+                )
+            }
             .navigationTitle("Settings")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
