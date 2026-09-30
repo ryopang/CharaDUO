@@ -1,4 +1,4 @@
-# App Review Notes — CharaDUO 1.0
+# App Review Notes — CharaDUO 1.3.1
 
 Paste into App Store Connect → App Review Information → Notes. No sign-in is
 required; the app has no accounts and no network access.
@@ -43,8 +43,8 @@ half has large Skip / Correct zones. No camera session is started on
 non-Duo hardware, so the camera indicator never lights there. Tap **Quick
 Play** for an instant 2-team match.
 
-**Languages.** English, Cantonese (Hong Kong), Traditional Chinese (Taiwan) and
-Simplified Chinese (Mainland). The in-app language setting (gear icon on the
+**Languages.** English, Cantonese (Hong Kong), Traditional Chinese (Taiwan),
+Simplified Chinese (Mainland) and Japanese. The in-app language setting (gear icon on the
 Home screen) changes the word bank and the interface together.
 
 **Name.** The app name is "CharaDUO". "Duo" is used descriptively to refer to
